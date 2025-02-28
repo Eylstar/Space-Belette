@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     InputAction sprint;
     InputAction jump;
     
+    PlayerAnimationController animController;
+    
     Vector2 moveDirection;
     Vector2 currentInputVector;
     Vector2 currentVelocity;
@@ -25,12 +27,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float jumpForce = 5;
     
     Rigidbody rb;
-    bool isGrounded;
     
     void Awake()
     {
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
+        animController = GetComponent<PlayerAnimationController>();
         SetupInputs();
     }
     
@@ -45,6 +47,8 @@ public class PlayerMove : MonoBehaviour
 
         sprint.performed += _ => SetSpeed(sprintSpeed);
         sprint.canceled += _ => SetSpeed(walkSpeed);
+        
+        //jump.performed += _ => OnJump();
     }
 
     void Start()
@@ -58,6 +62,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         UpdatePosition();
+        ApplyHorizontalDamping();
     }
     
     void UpdatePosition()
@@ -72,15 +77,27 @@ public class PlayerMove : MonoBehaviour
         rb.AddForce(move * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
     
+    void ApplyHorizontalDamping()
+    {
+        Vector3 vel = rb.linearVelocity;
+        vel.x *= 1 - (8f * Time.fixedDeltaTime);
+        vel.z *= 1 - (8f * Time.fixedDeltaTime);
+        rb.linearVelocity = vel;
+    }
+    
     void OnJump()
     {
-        if (!IsGrounded()) return;
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        if (IsGrounded())
+        {
+            Debug.Log("Jump");
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            animController.OnJump();
+        }
     }
     
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        return Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.down, 1.25f);
     }
     
     void OnEnable()

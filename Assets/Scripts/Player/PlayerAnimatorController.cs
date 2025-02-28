@@ -6,6 +6,7 @@ public class PlayerAnimationController : MonoBehaviour
     
     readonly int SpeedAnimRef = Animator.StringToHash("Speed");
     readonly int SprintAnimRef = Animator.StringToHash("Sprint");
+    readonly int JumpAnimRef = Animator.StringToHash("Jump");
     PlayerMove playerMove;
 
     void Awake()
@@ -18,5 +19,10 @@ public class PlayerAnimationController : MonoBehaviour
     {
         anim.SetFloat(SpeedAnimRef, playerMove.GetAnimSpeed());
         anim.SetBool(SprintAnimRef, playerMove.IsSprinting());
+    }
+    
+    public void OnJump()
+    {
+        anim.SetTrigger(JumpAnimRef);
     }
 }
