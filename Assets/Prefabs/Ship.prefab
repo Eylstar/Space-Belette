@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8708950737766626871, guid: fc332b02d299c0a4e842b63d9aa79415, type: 3}
   shootPoint: {fileID: 1629531236617098650}
-  bulletSpeed: 30
+  bulletSpeed: 5000
   shootRate: 0.15
 --- !u!1 &5278054319652768318
 GameObject:

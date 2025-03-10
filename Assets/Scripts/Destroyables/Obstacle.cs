@@ -1,5 +1,3 @@
 using UnityEngine;
 
-public class Obstacle : Destroyable
-{
-}
+public class Obstacle : Destroyable { }

@@ -86,13 +86,11 @@ public class PlayerMove : MonoBehaviour
     }
     
     void OnJump()
-    {
-        if (IsGrounded())
-        {
-            Debug.Log("Jump");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            animController.OnJump();
-        }
+    {   
+        if (!IsGrounded()) return;
+        Debug.Log("Jump");
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        animController.OnJump();
     }
     
     bool IsGrounded()

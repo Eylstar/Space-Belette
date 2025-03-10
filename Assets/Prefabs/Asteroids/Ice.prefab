@@ -71,6 +71,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6129785185528675588, guid: 5ea62c28d6170a248a97c9e7b74bdb7a, type: 3}
+      propertyPath: collisionType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 653095879000780261, guid: 5ea62c28d6170a248a97c9e7b74bdb7a, type: 3}
       propertyPath: m_Name
       value: Ice

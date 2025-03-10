@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,7 @@ public class ShipShoot : MonoBehaviour
     
     Quaternion initialRotation;
     Vector2 lookDirection;
+    
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class ShipShoot : MonoBehaviour
         shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate);
         shoot.canceled += _ => CancelInvoke(nameof(Shoot));
     }
+    
     
     void GetLookDirection(InputAction.CallbackContext ctx)
     {
@@ -45,7 +48,6 @@ public class ShipShoot : MonoBehaviour
         {
             lookDirection = ctx.ReadValue<Vector2>();
         }
-        
     }
 
     void Update()
@@ -64,7 +66,11 @@ public class ShipShoot : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, transform.rotation * Quaternion.Euler(90, 0, 0));
-        bullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * bulletSpeed, ForceMode.Impulse);
-        Destroy(bullet, 5f);
+        bullet.GetComponent<Projectile>().SetSpeed(bulletSpeed);
+    }
+    
+    void OnDisable()
+    {
+        rotation.performed -= GetLookDirection; 
     }
 }

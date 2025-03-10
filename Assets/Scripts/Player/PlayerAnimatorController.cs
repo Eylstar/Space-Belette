@@ -18,7 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
     void Update()
     {
         anim.SetFloat(SpeedAnimRef, playerMove.GetAnimSpeed());
-        anim.SetBool(SprintAnimRef, playerMove.IsSprinting());
+        anim.SetBool(SprintAnimRef, playerMove.IsSprinting() && playerMove.GetAnimSpeed() > 0);
     }
     
     public void OnJump()

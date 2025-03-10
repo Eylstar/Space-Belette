@@ -134,7 +134,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 116
   m_CollisionDetection: 2
 --- !u!114 &-6129785185528675588
@@ -149,5 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cde46bab24ad92439a467a07b814e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValue: 0
-  maxHealth: 0
+  hitPower: 1
+  collisionType: 1
+  collisionFilter: 000000000200000003000000
