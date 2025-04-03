@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public class Obstacle : Destroyable { }
+public abstract class Obstacle : Destroyable { }
