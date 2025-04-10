@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    Camera cam;
+    [SerializeField] Camera cam;
+    [SerializeField] float lerpStrength = 0.1f;
     Vector3 offset;
     
     void Start()
     {
-        cam = Camera.main;
         offset = cam.transform.position - transform.position;
     }
     
-    void LateUpdate()
+    void FixedUpdate()
     {
         Vector3 targetPosition = transform.position + offset;
-        cam.transform.position = Vector3.Lerp(cam.transform.position, targetPosition, 0.1f);
+        cam.transform.position = Vector3.Slerp(cam.transform.position, targetPosition, lerpStrength);
     }
 }

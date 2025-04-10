@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3923738351385653705
 Transform:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 82cf48cc6cdba1c47aced0d89e71b300, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -510,7 +510,7 @@ Rigidbody:
   m_GameObject: {fileID: 1415734097492305460}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 8
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -540,11 +540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c95559303e0605408b8b844dde9e4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 50
-  sprintSpeed: 85
+  walkSpeed: 35
+  sprintSpeed: 55
   smoothInputAcceleration: 0.05
   smoothInputDecceleration: 0.05
-  jumpForce: 50
+  jumpForce: 5
 --- !u!114 &7806920512739395191
 MonoBehaviour:
   m_ObjectHideFlags: 0
