@@ -12,106 +12,26 @@ public class TilePlacer : MonoBehaviour
     }
     public GameObject floorPrefab;
     private GridManager grid;
-    private GameObject highlightedTile;
-    private Material originalMaterial;
-    public Material highlightMaterial; // Matériau pour la surbrillance (rouge)
-    public Material selectedMaterial; // Matériau pour la sélection (vert)
     public ShipConstruct shipConstruct;
     private bool isHighlightMode = false;
-    // Dictionnaire pour suivre les tuiles posées
     public Dictionary<Vector2Int, GameObject> placedTiles = new Dictionary<Vector2Int, GameObject>();
 
     void Start()
     {
         grid = GridManager.Instance;
+        shipConstruct = FindFirstObjectByType<ShipConstruct>();
     }
 
     void Update()
     {
-        if (isHighlightMode)
-        {
-            HandleMouseOver();
 
-            if (Input.GetMouseButtonDown(0)) // clic gauche
-            {
-                HandleHighlightClick();
-            }
+        if (Input.GetMouseButtonDown(0)) // clic gauche
+        {
+            HandleLeftClick();
         }
-        else
+        else if (Input.GetMouseButtonDown(1)) // clic droit
         {
-            if (Input.GetMouseButtonDown(0)) // clic gauche
-            {
-                HandleLeftClick();
-            }
-            else if (Input.GetMouseButtonDown(1)) // clic droit
-            {
-                HandleRightClick();
-            }
-        }
-    }
-
-    public void EnableHighlightMode()
-    {
-        isHighlightMode = !isHighlightMode;
-        if (!isHighlightMode)
-        {
-            ResetHighlight();
-        }
-        Debug.Log($"Mode surbrillance activé : {isHighlightMode}");
-    }
-
-    private void HandleMouseOver()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-            GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.CompareTag("Tile") || hitObject.CompareTag("Floor"))
-            {
-                if (highlightedTile != hitObject)
-                {
-                    ResetHighlight();
-                    highlightedTile = hitObject;
-                    originalMaterial = highlightedTile.GetComponent<Renderer>().material;
-                    highlightedTile.GetComponent<Renderer>().material = highlightMaterial;
-                }
-            }
-            else
-            {
-                ResetHighlight();
-            }
-        }
-        else
-        {
-            ResetHighlight();
-        }
-    }
-
-    private void ResetHighlight()
-    {
-        if (highlightedTile != null)
-        {
-            highlightedTile.GetComponent<Renderer>().material = originalMaterial;
-            highlightedTile = null;
-        }
-    }
-
-    private void HandleHighlightClick()
-    {
-        if (highlightedTile != null)
-        {
-            Vector3 adjustedPosition = highlightedTile.transform.position - new Vector3(0.5f, -0.5f, 0);
-            Vector2Int gridPos = grid.WorldToGrid(adjustedPosition);
-            PlacePlayerShip(gridPos);
-
-            // Confirmer la sélection en mettant la case en vert
-            highlightedTile.GetComponent<Renderer>().material = selectedMaterial;
-
-            // Quitter le mode de sélection
-            isHighlightMode = false;
-            highlightedTile = null; // Réinitialiser la case surlignée
+            HandleRightClick();
         }
     }
 
@@ -139,7 +59,8 @@ public class TilePlacer : MonoBehaviour
                     if (floorComp != null)
                     {
                         floorComp.SetFloorName(element.name);
-                        UpdateWalls(gridPos, floorComp);                
+                        UpdateWalls(gridPos, floorComp);
+                        floorComp.SetRoof(false);
                     }
 
                     placedTiles.Add(gridPos, element);
@@ -176,7 +97,7 @@ public class TilePlacer : MonoBehaviour
                         foreach (KeyValuePair<Vector2Int, GameObject> pair in placedTiles)
                         {
                             if (pair.Value.name == name)
-                            { 
+                            {
                                 UpdateNeighborWallsAfterRemoval(pair.Key);
                                 placedTiles.Remove(pair.Key);
                                 Destroy(pair.Value);

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Tile
   - Floor
+  - FxTemporaire
+  - Roof
   layers:
   - Default
   - TransparentFX

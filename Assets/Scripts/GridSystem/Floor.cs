@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using static TilePlacer;
 
 public class Floor : MonoBehaviour
@@ -11,6 +12,8 @@ public class Floor : MonoBehaviour
     public GameObject wallNorth;
     public GameObject wallWest;
     public GameObject wallEast;
+    public GameObject roof;
+    public Sprite icon;
     [SerializeField] int cost;
     
     public string FloorName { get; private set; }
@@ -47,5 +50,9 @@ public class Floor : MonoBehaviour
             case Direction.East: if (wallEast) wallEast.SetActive(active); break;
             case Direction.West: if (wallWest) wallWest.SetActive(active); break;
         }
+    }
+    public void SetRoof(bool active)
+    {
+        if (roof) roof.SetActive(active);
     }
 }

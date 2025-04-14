@@ -111,6 +111,7 @@ MonoBehaviour:
   wallNorth: {fileID: 8364840532305825975}
   wallWest: {fileID: 2549462884615737516}
   wallEast: {fileID: 1508993057205653242}
+  roof: {fileID: 5590100131634582473}
   cost: 100
 --- !u!65 &1460129702833286739
 BoxCollider:
@@ -391,6 +392,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00b1bec52fe66d4ab902c800f8965cc, type: 3}
+--- !u!1 &5590100131634582473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2958853119368974924, guid: f00b1bec52fe66d4ab902c800f8965cc, type: 3}
+  m_PrefabInstance: {fileID: 7249655550080369029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7242853028216562668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6820526400938601, guid: f00b1bec52fe66d4ab902c800f8965cc, type: 3}

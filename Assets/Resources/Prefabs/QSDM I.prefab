@@ -113,6 +113,8 @@ MonoBehaviour:
   wallNorth: {fileID: 8364840532305825975}
   wallWest: {fileID: 2549462884615737516}
   wallEast: {fileID: 1508993057205653242}
+  roof: {fileID: 2732593253109778676}
+  icon: {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
   cost: 1000
 --- !u!65 &1460129702833286739
 BoxCollider:
@@ -198,6 +200,11 @@ PrefabInstance:
 --- !u!4 &935571223804950737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6820526400938601, guid: f00b1bec52fe66d4ab902c800f8965cc, type: 3}
+  m_PrefabInstance: {fileID: 928843413031721656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2732593253109778676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2958853119368974924, guid: f00b1bec52fe66d4ab902c800f8965cc, type: 3}
   m_PrefabInstance: {fileID: 928843413031721656}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1012472956524402791
@@ -576,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4858155384150006, guid: 553a5c3889b3ac94685552c962d2d57b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.75
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4858155384150006, guid: 553a5c3889b3ac94685552c962d2d57b, type: 3}
       propertyPath: m_LocalPosition.x
