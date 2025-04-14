@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Wall_Doorframe_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4950033287718502, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

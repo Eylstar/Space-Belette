@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1415734097492305460, guid: dbf936357f97f8a45a48d5a78cf4595a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3923738351385653705, guid: dbf936357f97f8a45a48d5a78cf4595a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.28944683
@@ -491,6 +495,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7806920512739395191, guid: dbf936357f97f8a45a48d5a78cf4595a, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 419810132}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1144,7 +1152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1642180385}
-  lerpStrength: 0.05
+  lerpStrength: 0.08
+  MaxSize: 80
+  zoomOutSpeed: 5000
+  zoomInSpeed: 1
 --- !u!1001 &9191534121770251318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,7 +1222,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: speed
-      value: 60
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: maxSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: acceleration
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: deceleration
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
