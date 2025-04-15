@@ -6,12 +6,16 @@ public class Floor : MonoBehaviour
 {
 
     public BlocType blocType;
-    public int ID;
-    public GameObject wallSouth;
-    public GameObject wallNorth;
-    public GameObject wallWest;
-    public GameObject wallEast;
+    
+    [SerializeField] public int ID;
     [SerializeField] int cost;
+    
+    [SerializeField] GameObject wallSouth;
+    [SerializeField] GameObject wallNorth;
+    [SerializeField] GameObject wallWest;
+    [SerializeField] GameObject wallEast;
+    [SerializeField] GameObject roof;
+    
     
     public string FloorName { get; private set; }
 
@@ -22,10 +26,12 @@ public class Floor : MonoBehaviour
     {
         OnFloorPlaced.Invoke(cost);
     }
+    
     private void OnDestroy()
     {
         OnFloorRemoved.Invoke(cost);
     }
+    
     public void SetFloorName(string name)
     {
         FloorName = name;

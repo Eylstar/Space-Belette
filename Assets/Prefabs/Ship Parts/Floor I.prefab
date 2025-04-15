@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.8, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6442779087711415863}
@@ -107,11 +107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocType: 0
   ID: 0
+  cost: 100
   wallSouth: {fileID: 6448115703174458435}
   wallNorth: {fileID: 8364840532305825975}
   wallWest: {fileID: 2549462884615737516}
   wallEast: {fileID: 1508993057205653242}
-  cost: 100
+  roof: {fileID: 0}
 --- !u!65 &1460129702833286739
 BoxCollider:
   m_ObjectHideFlags: 0

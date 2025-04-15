@@ -15,12 +15,12 @@ public class GridManager : MonoBehaviour
     [Header("Debug")]
     public bool showGridGizmos = true;
 
-    public GameObject gridTilePrefab; // assigné dans l'inspecteur
+    public GameObject gridTilePrefab; // assignÃ© dans l'inspecteur
     private GameObject[,] gridVisuals;
 
     private void Awake()
     {
-        // Singleton pour y accéder facilement depuis d'autres scripts
+        // Singleton pour y accÃ©der facilement depuis d'autres scripts
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         GenerateGridVisual();
@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Vector3 pos = GridToWorld(x, y);
-                Quaternion rotation = Quaternion.Euler(90f, 0f, 0f); // Rotation de 90° sur l'axe X
+                Quaternion rotation = Quaternion.Euler(90f, 0f, 0f); // Rotation de 90 degrÃ©s sur l'axe X
                 GameObject tile = Instantiate(gridTilePrefab, pos, rotation, transform);
                 gridVisuals[x, y] = tile;
             }

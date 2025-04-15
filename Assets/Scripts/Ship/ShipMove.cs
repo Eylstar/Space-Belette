@@ -44,15 +44,8 @@ public class ShipMove : MonoBehaviour
             
             float directionDot = Vector2.Dot(currentVelocity.normalized, moveDirection.normalized);
             bool isChangingDirection = directionDot < 0.5f;
-
-            if (isChangingDirection)
-            {
-                accelFactor = acceleration * 4f;
-            }
-            else
-            {
-                accelFactor = acceleration * Mathf.SmoothStep(0f, 1f, t);
-            }
+            
+            accelFactor = acceleration * (isChangingDirection ? 4f : Mathf.SmoothStep(0f, 1f, t));
         }
         else
         {
@@ -66,6 +59,11 @@ public class ShipMove : MonoBehaviour
         rb.MovePosition(rb.position + movement);
         
         camManager.SetDezoomFactor(currentVelocity.magnitude / maxSpeed);
+    }
+    
+    public Vector2 GetCurrentVelocity()
+    {
+        return currentVelocity;
     }
     
     void OnEnable()

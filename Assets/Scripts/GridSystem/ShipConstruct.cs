@@ -4,7 +4,7 @@ using static TilePlacer;
 
 public class ShipConstruct : MonoBehaviour
 {
-    public PlayerShipSO playerShipSO;
+    [SerializeField] PlayerShipSO playerShipSO;
     public GameObject PlayerShip;
 
     FloorListSO floorListSO;

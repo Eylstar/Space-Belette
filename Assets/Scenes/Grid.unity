@@ -2468,7 +2468,7 @@ MonoBehaviour:
   height: 10
   cellSize: 5
   showGridGizmos: 1
-  gridTilePrefab: {fileID: 5712455243870768803, guid: 8654da401f5488a40aae387cdb103473, type: 3}
+  gridTilePrefab: {fileID: 7184603560138859861, guid: 7869545cc79b6cd49aef7696ea8d0948, type: 3}
 --- !u!4 &1535806825
 Transform:
   m_ObjectHideFlags: 0

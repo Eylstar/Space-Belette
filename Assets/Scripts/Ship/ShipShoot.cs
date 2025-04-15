@@ -18,10 +18,12 @@ public class ShipShoot : MonoBehaviour
     Quaternion initialRotation;
     Vector2 lookDirection;
     
+    ShipMove shipMove;
 
     void Start()
     {
         cam = Camera.main;
+        shipMove = GetComponent<ShipMove>();
         
         rotation = InputSystem.actions.FindAction("Aim");
         shoot = InputSystem.actions.FindAction("Shoot");
@@ -66,11 +68,31 @@ public class ShipShoot : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, transform.rotation * Quaternion.Euler(90, 0, 0));
-        bullet.GetComponent<Projectile>().SetSpeed(bulletSpeed);
+        bullet.GetComponent<Projectile>().SetSpeed(bulletSpeed + shipMove.GetCurrentVelocity().magnitude);
     }
     
     void OnDisable()
     {
         rotation.performed -= GetLookDirection; 
+    }
+}
+
+
+public class ShipColliderSetup : MonoBehaviour
+{
+    BoxCollider boxCollider;
+    MeshCollider[] meshColliders;
+    void Start()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+        meshColliders = GetComponentsInChildren<MeshCollider>();
+    }
+    void ActiveOnOFF(bool Activate)
+    {
+        boxCollider.enabled = !Activate;
+        foreach (var meshCollider in meshColliders)
+        {
+            meshCollider.enabled = !Activate;
+        }
     }
 }
