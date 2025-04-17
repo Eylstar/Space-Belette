@@ -5,7 +5,7 @@ using static TilePlacer;
 
 public class ShipConstruct : MonoBehaviour
 {
-    public PlayerShipSO playerShipSO;
+    PlayerShipSO playerShipSO;
     public GameObject PlayerShip;
     GameObject gridObj;
     [SerializeField] GameObject playerCharacter;
@@ -109,8 +109,8 @@ public class ShipConstruct : MonoBehaviour
         CenterPlayerShip(playerShip);
 
         PlayerShip = playerShip;
+        playerShip.AddComponent<ShipColliderSetup>();
         Instantiate(playerCharacter, PlayerShip.transform.position, Quaternion.identity, PlayerShip.transform);
-
         Debug.Log("PlayerShip reconstruit à partir du ScriptableObject");
     }
     private void CenterPlayerShip(GameObject playerShip)
