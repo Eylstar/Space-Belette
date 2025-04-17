@@ -28,23 +28,19 @@ public class ShipConstruct : MonoBehaviour
         // Parcourir tous les enfants du GameObject
         foreach (Transform tile in gridObj.transform)
         {
+            Floor floor = tile.GetComponentInChildren<Floor>();
             // Vérifier si l'enfant a des enfants
-            if (tile.childCount > 0)
+            if (floor != null)
             {
                 // Parcourir les enfants de l'enfant
-                foreach (Transform floor in tile)
+                foreach (Transform wall in floor.transform)
                 {
-                    if (floor.gameObject.activeInHierarchy)
+                    if (!wall.gameObject.activeInHierarchy)
                     {
-                        foreach (Transform walls in floor)
-                        {
-                            if (!walls.gameObject.activeInHierarchy) Destroy(walls.gameObject);
-                        }
-                        // Réassigner le parent de l'enfant à PlayerShip
-                        floor.SetParent(PlayerShip.transform);
+                        Destroy(wall.gameObject);
                     }
-
                 }
+                floor.transform.SetParent(PlayerShip.transform);
             }
         }
         SavePlayerShip();

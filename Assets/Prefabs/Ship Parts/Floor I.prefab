@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408038741610665331}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39,7 +39,7 @@ Transform:
   - {fileID: 1505349412590210190}
   - {fileID: 7242853028216562668}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5159419227801939838
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,14 +107,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocType: 0
   ID: 0
-  cost: 100
-  wallSouth: {fileID: 6448115703174458435}
-  wallNorth: {fileID: 8364840532305825975}
-  wallWest: {fileID: 2549462884615737516}
-  wallEast: {fileID: 1508993057205653242}
-  roof: {fileID: 5590100131634582473}
   icon: {fileID: 0}
   cost: 100
+  wallNorth: {fileID: 8364840532305825975}
+  wallSouth: {fileID: 6448115703174458435}
+  wallEast: {fileID: 1508993057205653242}
+  wallWest: {fileID: 2549462884615737516}
+  roof: {fileID: 5590100131634582473}
 --- !u!65 &1460129702833286739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146,7 +145,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Wall_W
+      value: SM_Bld_Wall_E
       objectReference: {fileID: 0}
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_TagString
@@ -217,7 +216,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Wall_E
+      value: SM_Bld_Wall_W
       objectReference: {fileID: 0}
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_TagString
@@ -288,7 +287,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Wall_N
+      value: SM_Bld_Wall_S
       objectReference: {fileID: 0}
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_TagString
@@ -426,7 +425,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_Name
-      value: SM_Bld_Wall_S
+      value: SM_Bld_Wall_N
       objectReference: {fileID: 0}
     - target: {fileID: 1168136811114946, guid: 103cc39f51141714b8910daa066c1d84, type: 3}
       propertyPath: m_TagString
