@@ -76,23 +76,3 @@ public class ShipShoot : MonoBehaviour
         rotation.performed -= GetLookDirection; 
     }
 }
-
-
-public class ShipColliderSetup : MonoBehaviour
-{
-    BoxCollider boxCollider;
-    MeshCollider[] meshColliders;
-    void Start()
-    {
-        boxCollider = GetComponent<BoxCollider>();
-        meshColliders = GetComponentsInChildren<MeshCollider>();
-    }
-    void ActiveOnOFF(bool Activate)
-    {
-        boxCollider.enabled = !Activate;
-        foreach (var meshCollider in meshColliders)
-        {
-            meshCollider.enabled = !Activate;
-        }
-    }
-}

@@ -8,11 +8,6 @@ public class Floor : MonoBehaviour
 
     public BlocType blocType;
     public int ID;
-    public GameObject wallSouth;
-    public GameObject wallNorth;
-    public GameObject wallWest;
-    public GameObject wallEast;
-    public GameObject roof;
     public Sprite icon;
     [SerializeField] int cost;
     
