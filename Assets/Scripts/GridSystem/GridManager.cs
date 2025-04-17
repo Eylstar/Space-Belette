@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
+        if(SceneManager.GetActiveScene().name != "Grid")
+        {
+            return;
+        }
         // Singleton pour y accéder facilement depuis d'autres scripts
         if (Instance == null) Instance = this;
         else Destroy(gameObject);

@@ -1,18 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static TilePlacer;
 
 public class ShipConstruct : MonoBehaviour
 {
-    public PlayerShipSO playerShipSO;
+    PlayerShipSO playerShipSO;
     public GameObject PlayerShip;
-
+    GameObject gridObj;
+    [SerializeField] GameObject playerCharacter;
     FloorListSO floorListSO;
     EngineListSO engineListSO;
     WeaponListSO weaponListSO;
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
+        gridObj = FindFirstObjectByType<GridManager>().gameObject;
+        playerShipSO = Resources.Load<PlayerShipSO>("ScriptableObjects/PlayerShipSO");
         floorListSO = Resources.Load<FloorListSO>("ScriptableObjects/FloorList");
         engineListSO = Resources.Load<EngineListSO>("ScriptableObjects/EngineList");
         weaponListSO = Resources.Load<WeaponListSO>("ScriptableObjects/WeaponList");
@@ -21,7 +26,7 @@ public class ShipConstruct : MonoBehaviour
     public void ReassignChildrenToPlayerShip()
     {
         // Parcourir tous les enfants du GameObject
-        foreach (Transform tile in transform)
+        foreach (Transform tile in gridObj.transform)
         {
             // Vérifier si l'enfant a des enfants
             if (tile.childCount > 0)
@@ -51,6 +56,7 @@ public class ShipConstruct : MonoBehaviour
         SaveGameObjectData(PlayerShip, shipData.children);
         playerShipSO.shipData = shipData;
         Debug.Log("Données de PlayerShip sauvegardées dans le ScriptableObject");
+        SceneManager.LoadScene("Game");
     }
 
     private void SaveGameObjectData(GameObject gameObject, List<ChildData> childrenData)
@@ -90,13 +96,21 @@ public class ShipConstruct : MonoBehaviour
 
         ShipData shipData = playerShipSO.shipData;
         GameObject playerShip = new GameObject(shipData.name);
+        var rb = playerShip.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.freezeRotation = true;
+        rb.useGravity = false;
+
+        playerShip.AddComponent<Playershipmove>();
+
         LoadGameObjectData(playerShip, shipData.children);
 
         // Centrer le vaisseau autour du milieu de PlayerShip
         CenterPlayerShip(playerShip);
 
         PlayerShip = playerShip;
-
+        playerShip.AddComponent<ShipColliderSetup>();
+        Instantiate(playerCharacter, PlayerShip.transform.position, Quaternion.identity, PlayerShip.transform);
         Debug.Log("PlayerShip reconstruit à partir du ScriptableObject");
     }
     private void CenterPlayerShip(GameObject playerShip)
