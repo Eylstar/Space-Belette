@@ -51,7 +51,7 @@ public class TilePlacer : MonoBehaviour
 
                 if (!placedTiles.ContainsKey(gridPos))
                 {
-                    GameObject element = Instantiate(floorPrefab, hitObject.transform);
+                    GameObject element = Instantiate(floorPrefab, hitObject.transform.parent);
                     element.transform.localPosition = new Vector3(0.5f, -0.5f, 0f);
                     element.name = $"Bloc{gridPos.x}{gridPos.y}";
 

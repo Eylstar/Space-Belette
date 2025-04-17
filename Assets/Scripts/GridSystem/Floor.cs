@@ -16,6 +16,13 @@ public class Floor : MonoBehaviour
     public Sprite icon;
     [SerializeField] int cost;
     
+    [SerializeField] GameObject wallSouth;
+    [SerializeField] GameObject wallNorth;
+    [SerializeField] GameObject wallWest;
+    [SerializeField] GameObject wallEast;
+    [SerializeField] GameObject roof;
+    
+    
     public string FloorName { get; private set; }
 
     public static UnityEvent<int> OnFloorPlaced = new UnityEvent<int>();
@@ -25,10 +32,12 @@ public class Floor : MonoBehaviour
     {
         OnFloorPlaced.Invoke(cost);
     }
+    
     private void OnDestroy()
     {
         OnFloorRemoved.Invoke(cost);
     }
+    
     public void SetFloorName(string name)
     {
         FloorName = name;

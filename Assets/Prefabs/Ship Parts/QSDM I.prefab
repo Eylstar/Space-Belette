@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocType: 1
   ID: 0
+  cost: 1000
   wallSouth: {fileID: 6448115703174458435}
   wallNorth: {fileID: 8364840532305825975}
   wallWest: {fileID: 2549462884615737516}
