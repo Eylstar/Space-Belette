@@ -11,10 +11,10 @@ public class Floor : MonoBehaviour
     public Sprite icon;
     [SerializeField] int cost;
     
-    [SerializeField] GameObject wallSouth;
     [SerializeField] GameObject wallNorth;
-    [SerializeField] GameObject wallWest;
+    [SerializeField] GameObject wallSouth;
     [SerializeField] GameObject wallEast;
+    [SerializeField] GameObject wallWest;
     [SerializeField] GameObject roof;
     
     

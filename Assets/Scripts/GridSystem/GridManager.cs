@@ -55,8 +55,9 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Vector3 pos = GridToWorld(x, y);
-                Quaternion rotation = Quaternion.Euler(90f, 0f, 0f); // Rotation de 90 degrés sur l'axe X
+                Quaternion rotation = Quaternion.Euler(0f, 0f, 0f); // Rotation de 90 degrés sur l'axe X
                 GameObject tile = Instantiate(gridTilePrefab, pos, rotation, transform);
+                tile.name = $"Tile_{x}_{y}";
                 gridVisuals[x, y] = tile;
             }
         }

@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408038741610665331}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39,7 +39,7 @@ Transform:
   - {fileID: 87225737403852423}
   - {fileID: 4831804431773345384}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5159419227801939838
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,14 +107,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocType: 2
   ID: 1
+  icon: {fileID: 21300000, guid: a5ff23d874e24c54282e53096d84b122, type: 3}
   cost: 500
   wallSouth: {fileID: 0}
   wallNorth: {fileID: 0}
   wallWest: {fileID: 0}
   wallEast: {fileID: 0}
   roof: {fileID: 7645364493874517581}
-  icon: {fileID: 21300000, guid: a5ff23d874e24c54282e53096d84b122, type: 3}
-  cost: 500
 --- !u!65 &1460129702833286739
 BoxCollider:
   m_ObjectHideFlags: 0
