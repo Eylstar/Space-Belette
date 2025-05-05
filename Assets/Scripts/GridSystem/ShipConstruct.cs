@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static TilePlacer;
+using static Bloc;
 
 public class ShipConstruct : MonoBehaviour
 {
@@ -28,19 +28,28 @@ public class ShipConstruct : MonoBehaviour
         // Parcourir tous les enfants du GameObject
         foreach (Transform tile in gridObj.transform)
         {
-            Floor floor = tile.GetComponentInChildren<Floor>();
+            Bloc bloc = tile.GetComponentInChildren<Bloc>();
             // Vérifier si l'enfant a des enfants
-            if (floor != null)
+            if (bloc != null)
             {
                 // Parcourir les enfants de l'enfant
-                foreach (Transform wall in floor.transform)
+                foreach (Transform menu in bloc.transform)
                 {
-                    if (!wall.gameObject.activeInHierarchy)
+                    foreach(Transform sub in menu.transform) 
                     {
-                        Destroy(wall.gameObject);
+                        if (sub.gameObject.name == "Room") 
+                        {
+                            foreach (Transform wall in sub.transform) 
+                            {
+                                if (!wall.gameObject.activeInHierarchy) 
+                                {
+                                    Destroy(wall.gameObject);
+                                }
+                            }
+                        }
                     }
                 }
-                floor.transform.SetParent(PlayerShip.transform);
+                bloc.transform.SetParent(PlayerShip.transform);
             }
         }
         SavePlayerShip();
@@ -52,7 +61,7 @@ public class ShipConstruct : MonoBehaviour
         SaveGameObjectData(PlayerShip, shipData.children);
         playerShipSO.shipData = shipData;
         Debug.Log("Données de PlayerShip sauvegardées dans le ScriptableObject");
-        SceneManager.LoadScene("Game");
+        //SceneManager.LoadScene("Game");
     }
 
     private void SaveGameObjectData(GameObject gameObject, List<ChildData> childrenData)
@@ -70,7 +79,7 @@ public class ShipConstruct : MonoBehaviour
             };
 
             // Vérifier si l'objet a un composant Floor et sauvegarder le type de bloc et l'ID
-            Floor floorComponent = child.GetComponent<Floor>();
+            Bloc floorComponent = child.GetComponent<Bloc>();
             if (floorComponent != null)
             {
                 childData.type = floorComponent.blocType;
@@ -168,20 +177,51 @@ public class ShipConstruct : MonoBehaviour
             {
                 child.transform.localPosition = childData.position;
                 child.transform.localRotation = childData.rotation;
-                child.transform.localScale = childData.scale;
-
-                // Désactiver les murs qui ne sont pas dans les données uniquement pour les objets de type Floor
-                if (childData.type != BlocType.Engine)
+                child.transform.localScale = childData.scale; 
+                SetWalls(childData, child);
+            }
+        }
+    }
+    void SetWalls(ChildData childData, GameObject child)
+    { 
+        // Désactiver les murs qui ne sont pas dans les données uniquement pour les objets de type Floor
+        if (childData.type != BlocType.Engine)
+        {
+            foreach (Transform menu in child.transform)
+            {
+                if (menu.gameObject.name == "Graph")
                 {
-                    foreach (Transform wall in child.transform)
+                    foreach (Transform sub in menu.transform)
                     {
-                        if (wall.name.Contains("Wall") && !childData.children.Exists(c => c.name == wall.name))
+                        if (sub.gameObject.name == "Room")
                         {
-                            wall.gameObject.SetActive(false);
+                            foreach (Transform wall in sub.transform)
+                            {
+                                // Vérifier si le mur n'est pas dans les données et le désactiver
+                                if (wall.name.Contains("Wall") && !ExistsInHierarchy(childData.children, wall.name))
+                                {
+                                    wall.gameObject.SetActive(false);
+                                }
+                            }
                         }
                     }
                 }
             }
         }
+    }
+    private bool ExistsInHierarchy(List<ChildData> children, string name)
+    {
+        foreach (var child in children)
+        {
+            if (child.name == name)
+            {
+                return true;
+            }
+            if (child.children != null && ExistsInHierarchy(child.children, name))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

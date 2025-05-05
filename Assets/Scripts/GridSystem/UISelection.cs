@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-using static TilePlacer;
+using static Bloc;
 
 public class UISelection : MonoBehaviour
 {

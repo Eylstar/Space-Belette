@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static TilePlacer;
+using static Bloc;
 
 [CreateAssetMenu(fileName = "PlayerShipSO", menuName = "ScriptableObjects/PlayerShipSO")]
 public class PlayerShipSO : ScriptableObject

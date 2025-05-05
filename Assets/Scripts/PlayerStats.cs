@@ -9,10 +9,15 @@ public class PlayerStats : MonoBehaviour
     private void OnEnable()
     {
         // Abonnez-vous à l'événement OnFloorPlaced pour mettre à jour l'argent
-        Floor.OnFloorPlaced.AddListener(ChangeMoneyDown);
-        Floor.OnFloorRemoved.AddListener(ChangeMoneyUp);
+        Bloc.OnFloorPlaced.AddListener(ChangeMoneyDown);
+        Bloc.OnFloorRemoved.AddListener(ChangeMoneyUp);
     }
-
+    private void OnDisable()
+    {
+        // Désabonnez-vous de l'événement OnFloorPlaced pour éviter les fuites de mémoire
+        Bloc.OnFloorPlaced.RemoveListener(ChangeMoneyDown);
+        Bloc.OnFloorRemoved.RemoveListener(ChangeMoneyUp);
+    }
     // Méthode pour changer le montant d'argent
     public void ChangeMoneyUp(int amount)
     {

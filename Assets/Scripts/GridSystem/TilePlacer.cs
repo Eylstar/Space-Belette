@@ -1,15 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static Floor;
+using static Bloc;
 
 public class TilePlacer : MonoBehaviour
 {
-    public enum BlocType
-    {
-        Floor,
-        Weapon,
-        Engine
-    }
     public GameObject floorPrefab;
     private GridManager grid;
     public ShipConstruct shipConstruct;
@@ -55,10 +49,10 @@ public class TilePlacer : MonoBehaviour
                     element.transform.localPosition = new Vector3(grid.cellSize*.5f,0f , -grid.cellSize * .5f);
                     element.name = $"Bloc{gridPos.x}{gridPos.y}";
 
-                    var floorComp = element.GetComponent<Floor>();
+                    var floorComp = element.GetComponent<Bloc>();
                     if (floorComp != null)
                     {
-                        floorComp.SetFloorName(element.name);
+                        floorComp.SetBlocName(element.name);
                         UpdateWalls(gridPos, floorComp);
                         floorComp.SetRoof(false);
                     }
@@ -84,14 +78,14 @@ public class TilePlacer : MonoBehaviour
         {
             // Vérifier si l'objet touché est une tuile
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.CompareTag("Floor"))
+            if (hitObject.CompareTag("Bloc"))
             {
-                Floor floor = hitObject.GetComponent<Floor>();
-                Debug.Log($"Floor name: {floor.FloorName}");
+                Bloc floor = hitObject.GetComponent<Bloc>();
+                Debug.Log($"Floor name: {floor.BlocName}");
                 // Vérifier si la tuile est occupée par un sol
                 if (floor != null)
                 {
-                    string name = floor.FloorName;
+                    string name = floor.BlocName;
                     if (name != null)
                     {
                         foreach (KeyValuePair<Vector2Int, GameObject> pair in placedTiles)
@@ -125,7 +119,7 @@ public class TilePlacer : MonoBehaviour
         }
     }
 
-    private void UpdateWalls(Vector2Int pos, Floor currentFloor)
+    private void UpdateWalls(Vector2Int pos, Bloc currentFloor)
     {
         Vector2Int[] offsets = {
             new Vector2Int(0, 1),  // North
@@ -152,7 +146,7 @@ public class TilePlacer : MonoBehaviour
                 // On a un voisin : on supprime LE MUR VERS le voisin
                 currentFloor.SetWall(dirTowardNeighbor, false);
 
-                Floor neighborFloor = placedTiles[neighborPos].GetComponent<Floor>();
+                Bloc neighborFloor = placedTiles[neighborPos].GetComponent<Bloc>();
                 neighborFloor.SetWall(dirFromNeighbor, false);
             }
             else
@@ -198,7 +192,7 @@ public class TilePlacer : MonoBehaviour
             if (placedTiles.ContainsKey(neighborPos))
             {
                 GameObject neighborObj = placedTiles[neighborPos];
-                Floor neighborFloor = neighborObj.GetComponent<Floor>();
+                Bloc neighborFloor = neighborObj.GetComponent<Bloc>();
                 neighborFloor.SetWall(directions[i], true);
             }
         }

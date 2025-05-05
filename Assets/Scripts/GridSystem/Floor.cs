@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static TilePlacer;
+using static Bloc;
 
 public class Floor : MonoBehaviour
 {

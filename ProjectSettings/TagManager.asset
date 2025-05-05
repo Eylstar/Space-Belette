@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Tile
-  - Floor
   - FxTemporaire
   - Roof
   - Wall
+  - Bloc
+  - Floor
   layers:
   - Default
   - TransparentFX

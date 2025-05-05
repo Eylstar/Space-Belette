@@ -16,10 +16,10 @@ public class ContentButton : MonoBehaviour
     {
         text.text = name;
         _prefab = prefab;
-        Floor floorComponent = prefab.GetComponent<Floor>();
-        if (floorComponent != null && floorComponent.icon != null)
+        Bloc floorComponent = prefab.GetComponent<Bloc>();
+        if (floorComponent != null && floorComponent.Icon != null)
         {
-            icon.sprite = floorComponent.icon;
+            icon.sprite = floorComponent.Icon;
             icon.enabled = true;
         }
         else
