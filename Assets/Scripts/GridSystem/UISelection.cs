@@ -22,7 +22,7 @@ public class UISelection : MonoBehaviour
         EngineList = Resources.Load<EngineListSO>("ScriptableObjects/EngineList");
         WeaponList = Resources.Load<WeaponListSO>("ScriptableObjects/WeaponList");
         Floors.onClick.AddListener(() => SetContent(BlocType.Floor));
-        Engine.onClick.AddListener(() => SetContent(BlocType.Engine));
+        Engine.onClick.AddListener(() => SetContent(BlocType.Utility));
         Weapons.onClick.AddListener(() => SetContent(BlocType.Weapon));
         
     }
@@ -49,7 +49,7 @@ public class UISelection : MonoBehaviour
                     obj.GetComponent<ContentButton>().SetContent(item.Value.name, item.Value);
                 }
                 break;
-            case BlocType.Engine:
+            case BlocType.Utility:
                 foreach (var item in EngineList.EngineList)
                 {
                     GameObject obj = Instantiate(contentPrefab, Content);

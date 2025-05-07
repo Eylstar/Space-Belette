@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
+        cam = FindFirstObjectByType<Camera>();
         offset = cam.transform.position - transform.position;
         OriginalSize = cam.orthographicSize;
     }

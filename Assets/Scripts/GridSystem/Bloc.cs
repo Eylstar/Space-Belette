@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class Bloc : MonoBehaviour
 {
     public BlocType blocType;
+    public UtilityType utilityType = UtilityType.Null;
     public string BlocName { get; private set; }
     public int ID;
     public Sprite Icon;
@@ -12,20 +13,31 @@ public class Bloc : MonoBehaviour
     [SerializedDictionary("Object", "Collider")]
     [SerializeField] SerializedDictionary<GameObject, GameObject> colliders = new SerializedDictionary<GameObject, GameObject>();
     
-    [SerializeField] GameObject WallNorth, WallSouth, WallEast, WallWest, BulletSpawn, Roof;
+    public GameObject WallNorth, WallSouth, WallEast, WallWest, BulletSpawn, Roof;
 
 
     public static UnityEvent<int> OnFloorPlaced = new UnityEvent<int>();
     public static UnityEvent<int> OnFloorRemoved = new UnityEvent<int>();
 
+    public static UnityEvent<UtilityType> OnUtilPlaced = new UnityEvent<UtilityType>();
+    public static UnityEvent<UtilityType> OnUtilRemoved = new UnityEvent<UtilityType>();
+
     private void OnEnable()
     {
         OnFloorPlaced.Invoke(Cost);
+        if (utilityType != UtilityType.Null)
+        {
+            OnUtilPlaced.Invoke(utilityType);
+        }
     }
 
     private void OnDestroy()
     {
         OnFloorRemoved.Invoke(Cost);
+        if (utilityType != UtilityType.Null)
+        {
+            OnUtilRemoved.Invoke(utilityType);
+        }
     }
 
     public void SetBlocName(string name)
@@ -49,8 +61,15 @@ public class Bloc : MonoBehaviour
     public enum BlocType
     {
         Floor,
-        Engine,
+        Utility,
         Weapon
+    }
+    public enum UtilityType
+    {
+        Cockpit,
+        Engine,
+        Other, 
+        Null
     }
     public enum Direction
     {

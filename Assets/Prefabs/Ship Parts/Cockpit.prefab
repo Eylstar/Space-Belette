@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2066949512684360941, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2549462884615737516, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -333,6 +337,10 @@ PrefabInstance:
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: WallSouth
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: utilityType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: colliders._serializedList.Array.data[0].Key
@@ -420,6 +428,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7625901757000638239, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924178401240938040, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8364840532305825975, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}

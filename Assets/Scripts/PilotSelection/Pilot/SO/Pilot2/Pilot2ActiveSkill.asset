@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224dfd63b44e37146ab302d37bd78f80, type: 3}
+  m_Name: Pilot2ActiveSkill
+  m_EditorClassIdentifier: 
+  SkillName: Onde de mouffette
+  Description: "L\xE2che derri\xE8re le vaisseau un gros blob gluant violet qui ralentit
+    et empoisonne les ennemis qui le touchent.\n\n\"Une attaque surprise sign\xE9e
+    du derri\xE8re.\"\n\nCooldown : 18 sec"
