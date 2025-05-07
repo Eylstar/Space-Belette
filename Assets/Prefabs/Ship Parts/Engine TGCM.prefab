@@ -494,6 +494,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: utilityType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: colliders._serializedList.Array.data[1].Key
       value: 
       objectReference: {fileID: 3006554710013306365}
@@ -547,6 +551,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7625901757000638239, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924178401240938040, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

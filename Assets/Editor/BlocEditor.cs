@@ -4,12 +4,13 @@ using UnityEngine;
 [CustomEditor(typeof(Bloc))]
 public class BlocEditor : Editor
 {
-    private SerializedProperty blocTypeProp, IDProp, IconProp, CostProp, collidersProp;
+    private SerializedProperty blocTypeProp, utilityTypeProp, IDProp, IconProp, CostProp, collidersProp;
     private SerializedProperty wallNorthProp, wallSouthProp, wallEastProp, wallWestProp, bulletSpawnProp, roofProp;
 
     private void OnEnable()
     {
         blocTypeProp = serializedObject.FindProperty("blocType");
+        utilityTypeProp = serializedObject.FindProperty("utilityType");
         IDProp = serializedObject.FindProperty("ID");
         IconProp = serializedObject.FindProperty("Icon");
         CostProp = serializedObject.FindProperty("Cost");
@@ -32,6 +33,12 @@ public class BlocEditor : Editor
         // BlocType
         EditorGUILayout.PropertyField(blocTypeProp);
 
+        // Afficher UtilityType uniquement si le bloc est de type Utility
+        if ((Bloc.BlocType)blocTypeProp.enumValueIndex == Bloc.BlocType.Utility)
+        {
+            EditorGUILayout.PropertyField(utilityTypeProp);
+        }
+
         // Champs standards
         EditorGUILayout.PropertyField(IDProp);
         EditorGUILayout.PropertyField(IconProp);
@@ -51,12 +58,12 @@ public class BlocEditor : Editor
             EditorGUILayout.PropertyField(wallWestProp);
         }
 
-        if (type == Bloc.BlocType.Weapon || type == Bloc.BlocType.Engine)
+        if (type == Bloc.BlocType.Weapon || type == Bloc.BlocType.Utility)
         {
             EditorGUILayout.PropertyField(bulletSpawnProp);
         }
 
-        if (type == Bloc.BlocType.Floor || type == Bloc.BlocType.Engine || type == Bloc.BlocType.Weapon)
+        if (type == Bloc.BlocType.Floor || type == Bloc.BlocType.Utility || type == Bloc.BlocType.Weapon)
         {
             EditorGUILayout.PropertyField(roofProp);
         }

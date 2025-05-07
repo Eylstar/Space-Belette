@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad03aff6cea81fb46aef604da9b785e7, type: 3}
+  m_Name: Pilot1
+  m_EditorClassIdentifier: 
+  pilotName: Jack
+  pilotLevel: 2
+  pilotExperience: 0
+  pilotImage: {fileID: 21300000, guid: 3278f6a6baca9ab40945f261720ede84, type: 3}
+  pilotPrefab: {fileID: 1415734097492305460, guid: dbf936357f97f8a45a48d5a78cf4595a, type: 3}
+  IsUnlocked: 1
+  ActiveSkill: {fileID: 11400000, guid: 105cf5baff3290148973e9c6e53317f5, type: 2}
+  PassiveSkill: {fileID: 11400000, guid: 4926573ad2ed20448b971d22f90893c8, type: 2}

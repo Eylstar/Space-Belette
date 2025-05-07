@@ -47,7 +47,7 @@ public class TilePlacer : MonoBehaviour
                 {
                     GameObject element = Instantiate(floorPrefab, hitObject.transform.parent);
                     element.transform.localPosition = new Vector3(grid.cellSize*.5f,0f , -grid.cellSize * .5f);
-                    element.name = $"Bloc{gridPos.x}{gridPos.y}";
+                    element.name = $"Bloc{gridPos.x}.{gridPos.y}";
 
                     var floorComp = element.GetComponent<Bloc>();
                     if (floorComp != null)
