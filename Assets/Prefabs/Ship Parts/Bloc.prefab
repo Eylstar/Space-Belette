@@ -47,8 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535c6b87bd3d743448ec8457aba70820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocType: 0
+  blocType: 1
   utilityType: 3
+  CoordGrid: {x: 0, y: 0}
+  LifeBonus: 0
+  BlocWeight: 0
+  WeightGain: 0
   ID: 0
   Icon: {fileID: 0}
   Cost: 100
@@ -70,8 +74,8 @@ MonoBehaviour:
   WallSouth: {fileID: 6448115703174458435}
   WallEast: {fileID: 1508993057205653242}
   WallWest: {fileID: 2549462884615737516}
-  BulletSpawn: {fileID: 0}
   Roof: {fileID: 5590100131634582473}
+  BulletSpawn: {fileID: 0}
 --- !u!65 &1354679589706221398
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Bloc;
@@ -22,7 +23,7 @@ public class ChildData
     public Vector3 position;
     public Quaternion rotation;
     public Vector3 scale;
-    public List<ChildData> children = new List<ChildData>();
+    [NonSerialized] public List<ChildData> children = new List<ChildData>();
     public bool isActive;
     public BlocType type;
     public int ID;

@@ -13,7 +13,6 @@ public class PilotSelection : MonoBehaviour
     [SerializeField] Transform Spawner;
     [SerializeField] TextMeshProUGUI ActiveTxt, PassiveTxt;
     Pilot SelectedPilot;
-    bool isCapsuleOpen = false;
     public static event Action<Pilot> OnPilotSelected;
     
     void Start()
@@ -52,7 +51,8 @@ public class PilotSelection : MonoBehaviour
     }
     public void ValidPilot()
     {
-        StartCoroutine(AnimateCapsuleTop(-600f, 2f)); // Descend jusqu'à -600 en 1 seconde
+        if (SelectedPilot.IsUnlocked)
+            StartCoroutine(AnimateCapsuleTop(-600f, 2f)); // Descend jusqu'à -600 en 1 seconde
     }
 
     private IEnumerator AnimateCapsuleTop(float targetTop, float duration)
@@ -71,7 +71,6 @@ public class PilotSelection : MonoBehaviour
 
         // Assure que la position finale est exactement celle souhaitée
         rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, targetTop);
-        isCapsuleOpen = true;
         
         if (SelectedPilot.IsUnlocked) 
         {
@@ -86,7 +85,6 @@ public class PilotSelection : MonoBehaviour
     {
         RectTransform rectTransform = capsule;
         rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 4f); // Réinitialise le Top à 4
-        isCapsuleOpen = false;
     }
 
 

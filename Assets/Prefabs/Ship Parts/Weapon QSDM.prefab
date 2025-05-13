@@ -221,6 +221,37 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43357091510670778, guid: ee8fd9222ed8d844baa7c44f50cc81b8, type: 2}
+--- !u!1 &4715928895644164923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1510844170274139433}
+  m_Layer: 0
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1510844170274139433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715928895644164923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5, y: 6.5, z: 5.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6687156663467193283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2807185043876103226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,6 +347,10 @@ PrefabInstance:
       value: -5.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: Cost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: Icon
       value: 
       objectReference: {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
@@ -323,6 +358,18 @@ PrefabInstance:
       propertyPath: blocType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: LifeBonus
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: BlocWeight
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: BulletSpawn
+      value: 
+      objectReference: {fileID: 1510844170274139433}
     - target: {fileID: 6442779087711415863, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0001
@@ -382,6 +429,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7625901757000638239, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1510844170274139433}
     - targetCorrespondingSourceObject: {fileID: 7242853028216562668, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6059996991658809129}
@@ -396,6 +446,11 @@ PrefabInstance:
 --- !u!4 &5880259399634652976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7242853028216562668, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+  m_PrefabInstance: {fileID: 3826134097715391708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6687156663467193283 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7625901757000638239, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
   m_PrefabInstance: {fileID: 3826134097715391708}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6757432073450724845 stripped

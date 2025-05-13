@@ -4,8 +4,9 @@ using UnityEngine;
 [CustomEditor(typeof(Bloc))]
 public class BlocEditor : Editor
 {
-    private SerializedProperty blocTypeProp, utilityTypeProp, IDProp, IconProp, CostProp, collidersProp;
+    private SerializedProperty blocTypeProp, utilityTypeProp, IDProp, IconProp, CostProp, lifeBonusProp, blocWeightProp, weightGainProp, collidersProp;
     private SerializedProperty wallNorthProp, wallSouthProp, wallEastProp, wallWestProp, bulletSpawnProp, roofProp;
+    private SerializedProperty coordGridProp;
 
     private void OnEnable()
     {
@@ -14,6 +15,9 @@ public class BlocEditor : Editor
         IDProp = serializedObject.FindProperty("ID");
         IconProp = serializedObject.FindProperty("Icon");
         CostProp = serializedObject.FindProperty("Cost");
+        lifeBonusProp = serializedObject.FindProperty("LifeBonus");
+        blocWeightProp = serializedObject.FindProperty("BlocWeight");
+        weightGainProp = serializedObject.FindProperty("WeightGain");
         collidersProp = serializedObject.FindProperty("colliders");
 
         wallNorthProp = serializedObject.FindProperty("WallNorth");
@@ -22,6 +26,8 @@ public class BlocEditor : Editor
         wallWestProp = serializedObject.FindProperty("WallWest");
         bulletSpawnProp = serializedObject.FindProperty("BulletSpawn");
         roofProp = serializedObject.FindProperty("Roof");
+
+        coordGridProp = serializedObject.FindProperty("CoordGrid");
     }
 
     public override void OnInspectorGUI()
@@ -43,6 +49,20 @@ public class BlocEditor : Editor
         EditorGUILayout.PropertyField(IDProp);
         EditorGUILayout.PropertyField(IconProp);
         EditorGUILayout.PropertyField(CostProp);
+        EditorGUILayout.PropertyField(lifeBonusProp);
+        EditorGUILayout.PropertyField(coordGridProp);
+
+        // Afficher WeightGain uniquement pour UtilityType.Engine
+        if ((Bloc.BlocType)blocTypeProp.enumValueIndex == Bloc.BlocType.Utility &&
+            (Bloc.UtilityType)utilityTypeProp.enumValueIndex == Bloc.UtilityType.Engine)
+        {
+            EditorGUILayout.PropertyField(weightGainProp);
+        }
+        // Afficher BlocWeight pour tous les autres types
+        else
+        {
+            EditorGUILayout.PropertyField(blocWeightProp);
+        }
 
         // SerializedDictionary (colliders)
         EditorGUILayout.PropertyField(collidersProp, true);
@@ -58,7 +78,8 @@ public class BlocEditor : Editor
             EditorGUILayout.PropertyField(wallWestProp);
         }
 
-        if (type == Bloc.BlocType.Weapon || type == Bloc.BlocType.Utility)
+        if (type == Bloc.BlocType.Weapon ||
+            (type == Bloc.BlocType.Utility && (Bloc.UtilityType)utilityTypeProp.enumValueIndex == Bloc.UtilityType.Cockpit))
         {
             EditorGUILayout.PropertyField(bulletSpawnProp);
         }

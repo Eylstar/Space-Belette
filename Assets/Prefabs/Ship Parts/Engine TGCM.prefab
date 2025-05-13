@@ -470,6 +470,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: Cost
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: Icon
       value: 
       objectReference: {fileID: 21300000, guid: a5ff23d874e24c54282e53096d84b122, type: 3}
@@ -486,12 +490,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: LifeBonus
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: WallNorth
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: WallSouth
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: BlocWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: WeightGain
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: utilityType

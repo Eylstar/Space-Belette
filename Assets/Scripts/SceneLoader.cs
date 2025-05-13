@@ -16,6 +16,9 @@ public class SceneLoader : MonoBehaviour
             case "Game":
                 SceneManager.LoadScene("Game");
                 break;
+            case "Exit":
+                Application.Quit();
+                break;
             default:
                 Debug.LogError("Invalid scene type");
                 break;

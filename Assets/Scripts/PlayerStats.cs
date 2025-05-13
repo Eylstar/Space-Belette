@@ -1,10 +1,8 @@
-using System;
-using System.Drawing;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] public int money { get; private set; } = 1000000;
+    public int Money { get; private set; } = 1000;
 
     private void OnEnable()
     {
@@ -21,10 +19,10 @@ public class PlayerStats : MonoBehaviour
     // Méthode pour changer le montant d'argent
     public void ChangeMoneyUp(int amount)
     {
-        money += amount;
+        Money += amount;
     }
     public void ChangeMoneyDown(int amount)
     {
-        money -= amount;
+        Money -= amount;
     }
 }

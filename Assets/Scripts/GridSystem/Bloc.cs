@@ -6,6 +6,10 @@ public class Bloc : MonoBehaviour
 {
     public BlocType blocType;
     public UtilityType utilityType = UtilityType.Null;
+    public Vector2Int CoordGrid;
+    public int LifeBonus;
+    public int BlocWeight = 0;
+    public int WeightGain = 0;
     public string BlocName { get; private set; }
     public int ID;
     public Sprite Icon;
@@ -13,7 +17,8 @@ public class Bloc : MonoBehaviour
     [SerializedDictionary("Object", "Collider")]
     [SerializeField] SerializedDictionary<GameObject, GameObject> colliders = new SerializedDictionary<GameObject, GameObject>();
     
-    public GameObject WallNorth, WallSouth, WallEast, WallWest, BulletSpawn, Roof;
+    public GameObject WallNorth, WallSouth, WallEast, WallWest, Roof;
+    public Transform BulletSpawn;
 
 
     public static UnityEvent<int> OnFloorPlaced = new UnityEvent<int>();

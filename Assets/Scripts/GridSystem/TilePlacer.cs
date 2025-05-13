@@ -7,13 +7,14 @@ public class TilePlacer : MonoBehaviour
     public GameObject floorPrefab;
     private GridManager grid;
     public ShipConstruct shipConstruct;
-    private bool isHighlightMode = false;
     public Dictionary<Vector2Int, GameObject> placedTiles = new Dictionary<Vector2Int, GameObject>();
+    PlayerStats playerStats;
 
     void Start()
     {
         grid = GridManager.Instance;
         shipConstruct = FindFirstObjectByType<ShipConstruct>();
+        playerStats = FindFirstObjectByType<PlayerStats>();
     }
 
     void Update()
@@ -31,6 +32,7 @@ public class TilePlacer : MonoBehaviour
 
     private void HandleLeftClick()
     {
+        if (CanBuyPart() == false) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -47,14 +49,17 @@ public class TilePlacer : MonoBehaviour
                 {
                     GameObject element = Instantiate(floorPrefab, hitObject.transform.parent);
                     element.transform.localPosition = new Vector3(grid.cellSize*.5f,0f , -grid.cellSize * .5f);
-                    element.name = $"Bloc{gridPos.x}.{gridPos.y}";
 
                     var floorComp = element.GetComponent<Bloc>();
                     if (floorComp != null)
                     {
+                        floorComp.CoordGrid = gridPos;
                         floorComp.SetBlocName(element.name);
                         UpdateWalls(gridPos, floorComp);
                         floorComp.SetRoof(false);
+                        if (floorComp.BlocWeight > 0)
+                        { shipConstruct.CurrentWeight += floorComp.BlocWeight; }
+                        else { shipConstruct.MaxWeight += floorComp.WeightGain; }
                     }
 
                     placedTiles.Add(gridPos, element);
@@ -67,44 +72,58 @@ public class TilePlacer : MonoBehaviour
             }
         }
     }
-
+    private bool CanBuyPart()
+    {
+        if (playerStats.Money >= floorPrefab.GetComponent<Bloc>().Cost)
+        {
+            return true;
+        }
+        else
+        {
+            Debug.Log("Pas assez d'argent pour acheter cette partie.");
+            return false;
+        }
+    }
     private void HandleRightClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Debug.Log("Right click");
-        // On vérifie qu'on a cliqué sur quelque chose dans la scène
+
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            // Vérifier si l'objet touché est une tuile
             GameObject hitObject = hit.collider.gameObject;
+
             if (hitObject.CompareTag("Bloc"))
             {
                 Bloc floor = hitObject.GetComponent<Bloc>();
-                Debug.Log($"Floor name: {floor.BlocName}");
-                // Vérifier si la tuile est occupée par un sol
+
                 if (floor != null)
                 {
-                    string name = floor.BlocName;
-                    if (name != null)
+                    Vector2Int gridPos = floor.CoordGrid; // Utilisation des coordonnées de la grille
+                    if (placedTiles.ContainsKey(gridPos))
                     {
-                        foreach (KeyValuePair<Vector2Int, GameObject> pair in placedTiles)
-                        {
-                            if (pair.Value.name == name)
-                            {
-                                UpdateNeighborWallsAfterRemoval(pair.Key);
-                                placedTiles.Remove(pair.Key);
-                                Destroy(pair.Value);
-                                Debug.Log($"Sol supprimé à {pair.Key}");
-                                break;
-                            }
-                        }
+                        if (floor.BlocWeight > 0)
+                        { shipConstruct.CurrentWeight -= floor.BlocWeight; }
+                        else { shipConstruct.MaxWeight -= floor.WeightGain; }
+                        UpdateNeighborWallsAfterRemoval(gridPos);
+                        GameObject tileToRemove = placedTiles[gridPos];
+                        placedTiles.Remove(gridPos);
+                        Destroy(tileToRemove);
+                        Debug.Log($"Bloc supprimé à {gridPos}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Aucun bloc trouvé à {gridPos} dans placedTiles.");
                     }
                 }
                 else
                 {
-                    Debug.Log($"Aucun sol à supprimer");
+                    Debug.LogWarning("Le GameObject cliqué n'a pas de composant Bloc.");
                 }
+            }
+            else
+            {
+                Debug.Log("Le GameObject cliqué n'est pas un Bloc.");
             }
         }
     }
