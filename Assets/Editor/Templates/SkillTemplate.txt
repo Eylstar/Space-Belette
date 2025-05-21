@@ -1,0 +1,16 @@
+using UnityEngine;
+
+public class #SCRIPTNAME# : Skill
+{
+    // Variables
+
+    public override void Apply(ShipManager ship, Pilot pilot)
+    {
+        // Implémentation ici
+    }
+
+    public override void Remove(ShipManager ship, Pilot pilot)
+    {
+        // Implémentation ici
+    }
+}

@@ -60,6 +60,7 @@ public class TilePlacer : MonoBehaviour
                         if (floorComp.BlocWeight > 0)
                         { shipConstruct.CurrentWeight += floorComp.BlocWeight; }
                         else { shipConstruct.MaxWeight += floorComp.WeightGain; }
+                        shipConstruct.UpdateWeight();
                     }
 
                     placedTiles.Add(gridPos, element);
@@ -74,9 +75,14 @@ public class TilePlacer : MonoBehaviour
     }
     private bool CanBuyPart()
     {
-        if (playerStats.Money >= floorPrefab.GetComponent<Bloc>().Cost)
+        if (floorPrefab != null && playerStats.Money >= floorPrefab.GetComponent<Bloc>().Cost)
         {
             return true;
+        }
+        else if (floorPrefab == null)
+        {
+            Debug.Log("Aucune partie sélectionnée.");
+            return false;
         }
         else
         {
@@ -109,6 +115,7 @@ public class TilePlacer : MonoBehaviour
                         GameObject tileToRemove = placedTiles[gridPos];
                         placedTiles.Remove(gridPos);
                         Destroy(tileToRemove);
+                        shipConstruct.UpdateWeight();
                         Debug.Log($"Bloc supprimé à {gridPos}");
                     }
                     else

@@ -5,8 +5,8 @@ using UnityEngine;
 public class BlocEditor : Editor
 {
     private SerializedProperty blocTypeProp, utilityTypeProp, IDProp, IconProp, CostProp, lifeBonusProp, blocWeightProp, weightGainProp, collidersProp;
-    private SerializedProperty wallNorthProp, wallSouthProp, wallEastProp, wallWestProp, bulletSpawnProp, roofProp;
-    private SerializedProperty coordGridProp;
+    private SerializedProperty wallNorthProp, wallSouthProp, wallEastProp, wallWestProp, bulletSpawnProp, roofProp, playerSpawnProp;
+    private SerializedProperty coordGridProp, levelProp;
 
     private void OnEnable()
     {
@@ -18,6 +18,7 @@ public class BlocEditor : Editor
         lifeBonusProp = serializedObject.FindProperty("LifeBonus");
         blocWeightProp = serializedObject.FindProperty("BlocWeight");
         weightGainProp = serializedObject.FindProperty("WeightGain");
+        levelProp = serializedObject.FindProperty("Level");
         collidersProp = serializedObject.FindProperty("colliders");
 
         wallNorthProp = serializedObject.FindProperty("WallNorth");
@@ -26,6 +27,7 @@ public class BlocEditor : Editor
         wallWestProp = serializedObject.FindProperty("WallWest");
         bulletSpawnProp = serializedObject.FindProperty("BulletSpawn");
         roofProp = serializedObject.FindProperty("Roof");
+        playerSpawnProp = serializedObject.FindProperty("PlayerSpawn");
 
         coordGridProp = serializedObject.FindProperty("CoordGrid");
     }
@@ -50,6 +52,7 @@ public class BlocEditor : Editor
         EditorGUILayout.PropertyField(IconProp);
         EditorGUILayout.PropertyField(CostProp);
         EditorGUILayout.PropertyField(lifeBonusProp);
+        EditorGUILayout.PropertyField(levelProp);
         EditorGUILayout.PropertyField(coordGridProp);
 
         // Afficher WeightGain uniquement pour UtilityType.Engine
@@ -87,6 +90,12 @@ public class BlocEditor : Editor
         if (type == Bloc.BlocType.Floor || type == Bloc.BlocType.Utility || type == Bloc.BlocType.Weapon)
         {
             EditorGUILayout.PropertyField(roofProp);
+        }
+
+        // Afficher PlayerSpawn uniquement pour UtilityType.Cockpit
+        if (type == Bloc.BlocType.Utility && (Bloc.UtilityType)utilityTypeProp.enumValueIndex == Bloc.UtilityType.Cockpit)
+        {
+            EditorGUILayout.PropertyField(playerSpawnProp);
         }
 
         serializedObject.ApplyModifiedProperties();

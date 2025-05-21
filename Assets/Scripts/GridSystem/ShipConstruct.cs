@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Bloc;
 
 public class ShipConstruct : MonoBehaviour
@@ -11,7 +13,7 @@ public class ShipConstruct : MonoBehaviour
     PlayerShipSO playerShipSO;
     public GameObject PlayerShip;
     GameObject gridObj;
-    GameObject playerCharacter;
+    Pilot Pilot;
     FloorListSO floorListSO;
     EngineListSO engineListSO;
     WeaponListSO weaponListSO;
@@ -21,12 +23,15 @@ public class ShipConstruct : MonoBehaviour
     int EngineCount;
     public int MaxWeight = 0;
     public int CurrentWeight = 0;
-
+    [SerializeField] Slider weightSlider;
+    [SerializeField] TextMeshProUGUI errorText;
+    string errorLogs;
     private void OnEnable()
     {
         PilotSelection.OnPilotSelected += OnPilotSelected;
         OnUtilPlaced.AddListener(UtilAdd);
         OnUtilRemoved.AddListener(UtilRemove);
+        UpdateWeight();
     }
     private void OnDisable()
     {
@@ -55,7 +60,11 @@ public class ShipConstruct : MonoBehaviour
         {
             isCockpitPlaced = true;
             CockpitCount++;
-            if (CockpitCount != 1) isCockpitPlaced = false;
+            if (CockpitCount != 1)
+            {
+                isCockpitPlaced = false;
+
+            }
         }
         else if (type == UtilityType.Engine)
         {
@@ -65,7 +74,7 @@ public class ShipConstruct : MonoBehaviour
     }
     private void OnPilotSelected(Pilot pilot)
     {
-        playerCharacter = pilot.pilotPrefab;
+        Pilot = pilot;
         SceneManager.LoadScene("Game");
     }
 
@@ -81,8 +90,21 @@ public class ShipConstruct : MonoBehaviour
 
     public void ReassignChildrenToPlayerShip()
     {
+        errorLogs = string.Empty;
+
         if (!isCockpitPlaced || !isEnginePlaced || !IsAllConnected() || CurrentWeight > MaxWeight) 
         {
+            if (!isCockpitPlaced)
+            {
+                if (CockpitCount > 1)
+                {
+                    errorLogs += $"You can have only one Cockpit !\n";
+                }
+                else { errorLogs += $"No Cockpit !\n"; }
+            }
+            if (!isEnginePlaced) errorLogs += $"No Engine!\n";
+            if (CurrentWeight > MaxWeight) errorLogs += $"Too heavy! Remove some blocs.\n";
+            ShowError(2f);
             Debug.Log($"Cockpit : {isCockpitPlaced} / Engine : {isEnginePlaced} / All Connected : {IsAllConnected()} / Weight : {CurrentWeight}/{MaxWeight}");
             return; 
         }
@@ -169,6 +191,7 @@ public class ShipConstruct : MonoBehaviour
 
         playerShip.AddComponent<Playershipmove>();
         ShipManager sm = playerShip.AddComponent<ShipManager>();
+        sm.MainPilot = Pilot;
         LoadGameObjectData(playerShip, shipData.children, sm);
 
         // Centrer le vaisseau autour du milieu de PlayerShip
@@ -176,7 +199,7 @@ public class ShipConstruct : MonoBehaviour
 
         PlayerShip = playerShip;
         playerShip.AddComponent<ShipColliderSetup>();
-        Instantiate(playerCharacter, PlayerShip.transform.position, Quaternion.identity, PlayerShip.transform);
+        sm.SpawnPilot();
         Debug.Log("PlayerShip reconstruit à partir du ScriptableObject");
     }
     private void CenterPlayerShip(GameObject playerShip)
@@ -226,6 +249,10 @@ public class ShipConstruct : MonoBehaviour
                     {
                         child = Instantiate(enginePrefab, parent.transform);
                         SetShipManager(child, manager);
+                        if (child.GetComponent<Bloc>().utilityType == UtilityType.Cockpit)
+                        {
+                            manager.shipSpawners.Add(ShipManager.ShipSpawner.Cockpit , child.GetComponent<Bloc>().PlayerSpawn);
+                        }
                     }
                     break;
                 case BlocType.Weapon:
@@ -301,126 +328,286 @@ public class ShipConstruct : MonoBehaviour
     }
     private bool IsAllConnected()
     {
+        // Récupérer tous les blocs de la grille
+        List<Bloc> allBlocs = new List<Bloc>();
         foreach (Transform tile in gridObj.transform)
         {
             Bloc bloc = tile.GetComponentInChildren<Bloc>();
-            if (bloc == null) continue;
+            if (bloc != null)
+                allBlocs.Add(bloc);
+        }
 
-            // Vérifier si le bloc a des coordonnées valides
-            if (bloc.CoordGrid == null)
+        // Trouver le cockpit
+        Bloc cockpit = allBlocs.Find(b => b.utilityType == Bloc.UtilityType.Cockpit);
+        if (cockpit == null)
+        {
+            errorLogs += "Aucun cockpit trouvé pour le test de connexion.\n";
+            return false;
+        }
+
+        // Vérification : aucun bloc devant le cockpit (même X, Y > cockpit.Y)
+        foreach (Bloc b in allBlocs)
+        {
+            if (b.CoordGrid.x == cockpit.CoordGrid.x && b.CoordGrid.y > cockpit.CoordGrid.y)
             {
-                Debug.LogError($"Le bloc '{bloc.name}' n'a pas de CoordGrid défini.");
+                errorLogs += $"{cockpit.name} ne peut pas avoir de bloc devant lui (Y > {cockpit.CoordGrid.y}).\n";
                 return false;
             }
-
-            // Vérifier si le bloc a au moins un voisin valide
-            if (!HasNeighbor(bloc.CoordGrid, bloc))
-            {
-                Debug.LogWarning($"Le bloc '{bloc.name}' aux coordonnées ({bloc.CoordGrid}) n'est pas valide.");
-                return false;
-            }
         }
 
-        return true;
-    }
+        // BFS
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        Queue<Bloc> queue = new Queue<Bloc>();
+        queue.Enqueue(cockpit);
+        visited.Add(cockpit.CoordGrid);
 
-    private bool HasNeighbor(Vector2Int coord, Bloc bloc)
-    {
-        // Générer les noms des voisins potentiels
-        Vector2Int[] neighborCoords;
-
-        if (bloc.utilityType != UtilityType.Null) 
-        { 
-            // Si le bloc a un UtilityType, appliquer des règles spécifiques
-            switch (bloc.utilityType)
-            {
-                case UtilityType.Cockpit:
-                    neighborCoords = new Vector2Int[] { coord + Vector2Int.down }; // Le voisin doit être en bas
-                    List<Vector2Int> frontCoords = new List<Vector2Int>();
-                    GridManager gm = FindFirstObjectByType<GridManager>();
-
-                    for (int y = coord.y+1; y < gm.height; y++) // Remplacez `gridWidth` par la largeur réelle de votre grille
-                    {
-                        frontCoords.Add(new Vector2Int(coord.x, y)); // Ajouter toutes les cases devant (ligne au-dessus)
-                    }
-
-                    foreach (Vector2Int frontCoord in frontCoords)
-                    {
-                        foreach (Transform tile in gridObj.transform)
-                        {
-                            Bloc frontBloc = tile.GetComponentInChildren<Bloc>();
-                            if (frontBloc != null && frontBloc.CoordGrid == frontCoord)
-                            {
-                                Debug.LogWarning($"{bloc.name} ne peut pas avoir de bloc devant lui aux coordonnées {frontCoord}.");
-                                return false;
-                            }
-                        }
-                    }
-
-                    // Vérifier qu'il n'y a pas de Engine en diagonale et sur les cotes
-                    Vector2Int[] diagonalCoords = new Vector2Int[]
-                    {
-                    coord + Vector2Int.left,
-                    coord + Vector2Int.right,
-                    coord + Vector2Int.up + Vector2Int.left,  // Diagonale avant gauche
-                    coord + Vector2Int.up + Vector2Int.right,  // Diagonale avant droite
-                    coord + Vector2Int.down + Vector2Int.left,  // Diagonale bas gauche
-                    coord + Vector2Int.down + Vector2Int.right  // Diagonale bas droite
-                    };
-
-                    foreach (Vector2Int diagonalCoord in diagonalCoords)
-                    {
-                        foreach (Transform tile in gridObj.transform)
-                        {
-                            Bloc diagonalBloc = tile.GetComponentInChildren<Bloc>();
-                            if (diagonalBloc != null && diagonalBloc.CoordGrid == diagonalCoord && diagonalBloc.utilityType == UtilityType.Engine)
-                            {
-                                Debug.LogWarning($"{bloc.name} ne peut pas avoir de Engine en diagonale aux coordonnées {diagonalCoord}.");
-                                return false;
-                            }
-                        }
-                    }
-                    Debug.Log($"Bloc '{bloc.name}' (Cockpit) : recherche uniquement en bas ({coord + Vector2Int.down})");
-                    break;
-
-                case UtilityType.Engine:
-                    neighborCoords = new Vector2Int[] { coord + Vector2Int.up }; // Le voisin doit être en haut
-                    Debug.Log($"Bloc {bloc.name} : recherche uniquement en haut ({coord + Vector2Int.up})");
-                    break;
-
-                default:
-                    Debug.LogWarning($"UtilityType inconnu pour le bloc {bloc.name} : {bloc.utilityType}");
-                    return false;
-            }
-        }
-        else
+        while (queue.Count > 0)
         {
-            // Sinon, vérifier tous les voisins (haut, bas, gauche, droite)
-            neighborCoords = new Vector2Int[]
+            Bloc current = queue.Dequeue();
+            foreach (Bloc neighbor in GetValidNeighbors(current, allBlocs))
             {
-                coord + Vector2Int.right, // Droite
-                coord + Vector2Int.left,  // Gauche
-                coord + Vector2Int.up,    // Haut
-                coord + Vector2Int.down   // Bas
-            };
-            Debug.Log($"Bloc '{bloc.name}' : recherche de voisins standards ({string.Join(", ", neighborCoords)})");
-        }
-
-        // Vérifier si au moins un voisin existe dans la hiérarchie
-        foreach (Vector2Int neighborCoord in neighborCoords)
-        {
-            foreach (Transform tile in gridObj.transform)
-            {
-                Bloc neighborBloc = tile.GetComponentInChildren<Bloc>();
-                if (neighborBloc != null && neighborBloc.CoordGrid == neighborCoord)
+                if (!visited.Contains(neighbor.CoordGrid))
                 {
-                    Debug.Log($"Voisin trouvé pour '{bloc.name}' : Coordonnées {neighborCoord}");
-                    return true; // Un voisin valide a été trouvé
+                    visited.Add(neighbor.CoordGrid);
+                    queue.Enqueue(neighbor);
                 }
             }
         }
 
-        Debug.Log($"Aucun voisin trouvé pour le bloc '{bloc.name}' aux coordonnées ({coord})");
-        return false; // Aucun voisin connecté trouvé
+        // Vérifier que tous les blocs sont atteints
+        foreach (Bloc bloc in allBlocs)
+        {
+            if (!visited.Contains(bloc.CoordGrid))
+            {
+                errorLogs += $"Le bloc '{bloc.name}' n'est pas connecté au cockpit.\n";
+                return false;
+            }
+        }
+        return true;
+    }
+    // Retourne les voisins valides selon les contraintes métier
+    private List<Bloc> GetValidNeighbors(Bloc bloc, List<Bloc> allBlocs)
+    {
+        List<Bloc> neighbors = new List<Bloc>();
+        Vector2Int coord = bloc.CoordGrid;
+
+        // Définir les directions standards
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            Vector2Int.right,
+            Vector2Int.left,
+            Vector2Int.up,
+            Vector2Int.down
+        };
+
+        // Contraintes spécifiques Cockpit (déjà vérifiées dans IsAllConnected)
+        if (bloc.utilityType == Bloc.UtilityType.Cockpit)
+        {
+            // Seulement en bas
+            Vector2Int down = coord + Vector2Int.down;
+            Bloc downBloc = allBlocs.Find(b => b.CoordGrid == down);
+            if (downBloc != null)
+            {
+                // Vérifier qu'il n'y a pas d'engine en diagonale/côtés
+                Vector2Int[] diagonals = new Vector2Int[]
+                {
+                    coord + Vector2Int.left,
+                    coord + Vector2Int.right,
+                    coord + Vector2Int.up + Vector2Int.left,
+                    coord + Vector2Int.up + Vector2Int.right,
+                    coord + Vector2Int.down + Vector2Int.left,
+                    coord + Vector2Int.down + Vector2Int.right
+                };
+                foreach (var diag in diagonals)
+                {
+                    Bloc diagBloc = allBlocs.Find(b => b.CoordGrid == diag && b.utilityType == Bloc.UtilityType.Engine);
+                    if (diagBloc != null)
+                    {
+                        errorLogs += $"{bloc.name} ne peut pas avoir de Engine en diagonale.\n";
+                        return neighbors;
+                    }
+                }
+                neighbors.Add(downBloc);
+            }
+        }
+        // Contraintes spécifiques Engine
+        else if (bloc.utilityType == Bloc.UtilityType.Engine)
+        {
+            // Seulement en haut
+            Vector2Int up = coord + Vector2Int.up;
+            Bloc upBloc = allBlocs.Find(b => b.CoordGrid == up);
+            if (upBloc != null)
+            {
+                // Vérification : aucun bloc derrière l'engine (même X, Y < engine.Y)
+                foreach (Bloc b in allBlocs)
+                {
+                    if (b.CoordGrid.x == bloc.CoordGrid.x && b.CoordGrid.y < bloc.CoordGrid.y)
+                    {
+                        errorLogs += $"{bloc.name} ne peut pas avoir de bloc derrière lui (Y < {bloc.CoordGrid.y}).\n";
+                        return neighbors;
+                    }
+                }
+                neighbors.Add(upBloc);
+            }
+        }
+        // Autres blocs : voisins standards
+        else
+        {
+            foreach (var dir in directions)
+            {
+                Vector2Int nCoord = coord + dir;
+                Bloc nBloc = allBlocs.Find(b => b.CoordGrid == nCoord);
+                if (nBloc != null)
+                    neighbors.Add(nBloc);
+            }
+        }
+        return neighbors;
+    }
+    //private bool HasNeighbor(Vector2Int coord, Bloc bloc)
+    //{
+    //    // Générer les noms des voisins potentiels
+    //    Vector2Int[] neighborCoords;
+
+    //    if (bloc.utilityType != UtilityType.Null) 
+    //    { 
+    //        // Si le bloc a un UtilityType, appliquer des règles spécifiques
+    //        switch (bloc.utilityType)
+    //        {
+    //            case UtilityType.Cockpit:
+    //                neighborCoords = new Vector2Int[] { coord + Vector2Int.down }; // Le voisin doit être en bas
+    //                List<Vector2Int> frontCoords = new List<Vector2Int>();
+    //                GridManager gm = FindFirstObjectByType<GridManager>();
+
+    //                for (int y = coord.y+1; y < gm.height; y++)
+    //                {
+    //                    frontCoords.Add(new Vector2Int(coord.x, y)); // Ajouter toutes les cases devant (ligne au-dessus)
+    //                }
+
+    //                foreach (Vector2Int frontCoord in frontCoords)
+    //                {
+    //                    foreach (Transform tile in gridObj.transform)
+    //                    {
+    //                        Bloc frontBloc = tile.GetComponentInChildren<Bloc>();
+    //                        if (frontBloc != null && frontBloc.CoordGrid == frontCoord)
+    //                        {
+    //                            Debug.LogWarning($"{bloc.name} ne peut pas avoir de bloc devant lui aux coordonnées {frontCoord}.");
+    //                            errorLogs += $"{bloc.name} ne peut pas avoir de bloc devant lui.\n";
+    //                            return false;
+    //                        }
+    //                    }
+    //                }
+
+    //                // Vérifier qu'il n'y a pas de Engine en diagonale et sur les cotes
+    //                Vector2Int[] diagonalCoords = new Vector2Int[]
+    //                {
+    //                coord + Vector2Int.left,
+    //                coord + Vector2Int.right,
+    //                coord + Vector2Int.up + Vector2Int.left,  // Diagonale avant gauche
+    //                coord + Vector2Int.up + Vector2Int.right,  // Diagonale avant droite
+    //                coord + Vector2Int.down + Vector2Int.left,  // Diagonale bas gauche
+    //                coord + Vector2Int.down + Vector2Int.right  // Diagonale bas droite
+    //                };
+
+    //                foreach (Vector2Int diagonalCoord in diagonalCoords)
+    //                {
+    //                    foreach (Transform tile in gridObj.transform)
+    //                    {
+    //                        Bloc diagonalBloc = tile.GetComponentInChildren<Bloc>();
+    //                        if (diagonalBloc != null && diagonalBloc.CoordGrid == diagonalCoord && diagonalBloc.utilityType == UtilityType.Engine)
+    //                        {
+    //                            Debug.LogWarning($"{bloc.name} ne peut pas avoir de Engine en diagonale aux coordonnées {diagonalCoord}.");
+    //                            errorLogs += $"{bloc.name} ne peut pas avoir de Engine en diagonale.\n";
+    //                            return false;
+    //                        }
+    //                    }
+    //                }
+    //                Debug.Log($"Bloc '{bloc.name}' (Cockpit) : recherche uniquement en bas ({coord + Vector2Int.down})");
+    //                break;
+
+    //            case UtilityType.Engine:
+
+    //                neighborCoords = new Vector2Int[] { coord + Vector2Int.up }; // Le voisin doit être en haut
+
+    //                List<Vector2Int> backCoords = new List<Vector2Int>();
+    //                for (int y = coord.y - 1; y > 0 ; y--)
+    //                {
+    //                    backCoords.Add(new Vector2Int(coord.x, y)); // Ajouter toutes les cases derriere (ligne au-dessous)
+    //                }
+    //                foreach (Vector2Int backCoord in backCoords)
+    //                {
+    //                    foreach (Transform tile in gridObj.transform)
+    //                    {
+    //                        Bloc backBloc = tile.GetComponentInChildren<Bloc>();
+    //                        if (backBloc != null && backBloc.CoordGrid == backCoord)
+    //                        {
+    //                            Debug.LogWarning($"{bloc.name} ne peut pas avoir de bloc derriere lui aux coordonnees {backCoord}.");
+    //                            errorLogs += $"{bloc.name} ne peut pas avoir de bloc derriere lui.\n";
+    //                            return false;
+    //                        }
+    //                    }
+    //                }
+    //                Debug.Log($"Bloc {bloc.name} : recherche uniquement en haut ({coord + Vector2Int.up})");
+    //                break;
+
+    //            default:
+    //                Debug.LogWarning($"UtilityType inconnu pour le bloc {bloc.name} : {bloc.utilityType}");
+    //                return false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // Sinon, vérifier tous les voisins (haut, bas, gauche, droite)
+    //        neighborCoords = new Vector2Int[]
+    //        {
+    //            coord + Vector2Int.right, // Droite
+    //            coord + Vector2Int.left,  // Gauche
+    //            coord + Vector2Int.up,    // Haut
+    //            coord + Vector2Int.down   // Bas
+    //        };
+    //        Debug.Log($"Bloc '{bloc.name}' : recherche de voisins standards ({string.Join(", ", neighborCoords)})");
+    //    }
+
+    //    // Vérifier si au moins un voisin existe dans la hiérarchie
+    //    foreach (Vector2Int neighborCoord in neighborCoords)
+    //    {
+    //        foreach (Transform tile in gridObj.transform)
+    //        {
+    //            Bloc neighborBloc = tile.GetComponentInChildren<Bloc>();
+    //            if (neighborBloc != null && neighborBloc.CoordGrid == neighborCoord)
+    //            {
+    //                Debug.Log($"Voisin trouvé pour '{bloc.name}' : Coordonnées {neighborCoord}");
+    //                return true; // Un voisin valide a été trouvé
+    //            }
+    //        }
+    //    }
+
+    //    Debug.Log($"Aucun voisin trouvé pour le bloc '{bloc.name}' aux coordonnées ({coord})");
+    //    return false; // Aucun voisin connecté trouvé
+    //}
+
+    internal void UpdateWeight()
+    {
+        //RectTransform sliderRT = weightSlider.GetComponent<RectTransform>();
+        //sliderRT.sizeDelta = new Vector2(MaxWeight, sliderRT.sizeDelta.y);
+        weightSlider.maxValue = MaxWeight;
+        weightSlider.value = CurrentWeight;
+    }
+    public void ShowError(float duration = 2f)
+    {
+        if (errorText == null)
+        {
+            Debug.LogWarning("Aucun composant TMP_Text assigné pour afficher l'erreur.");
+            return;
+        }
+        errorText.text = errorLogs;
+        errorText.gameObject.SetActive(true);
+        CancelInvoke(nameof(HideError));
+        Invoke(nameof(HideError), duration);
+    }
+
+    private void HideError()
+    {
+        if (errorText != null)
+            errorText.gameObject.SetActive(false);
     }
 }
