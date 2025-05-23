@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2646273656378196569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4109473551627284736}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4109473551627284736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2646273656378196569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5165539774635763744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8101271839564830322
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +417,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2395396552453588780}
     - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: PlayerSpawn
+      value: 
+      objectReference: {fileID: 4109473551627284736}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: utilityType
       value: 0
       objectReference: {fileID: 0}
@@ -499,6 +534,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7625901757000638239, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2395396552453588780}
+    - targetCorrespondingSourceObject: {fileID: 7625901757000638239, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4109473551627284736}
     - targetCorrespondingSourceObject: {fileID: 7776100860383636000, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8644627249964216958}

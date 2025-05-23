@@ -1,6 +1,7 @@
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine.Events;
+using System;
 
 public class Bloc : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Bloc : MonoBehaviour
     public int LifeBonus;
     public int BlocWeight = 0;
     public int WeightGain = 0;
+    public int Level = 1;
     public string BlocName { get; private set; }
     public int ID;
     public Sprite Icon;
@@ -18,7 +20,7 @@ public class Bloc : MonoBehaviour
     [SerializeField] SerializedDictionary<GameObject, GameObject> colliders = new SerializedDictionary<GameObject, GameObject>();
     
     public GameObject WallNorth, WallSouth, WallEast, WallWest, Roof;
-    public Transform BulletSpawn;
+    public Transform BulletSpawn, PlayerSpawn;
 
 
     public static UnityEvent<int> OnFloorPlaced = new UnityEvent<int>();
@@ -63,6 +65,7 @@ public class Bloc : MonoBehaviour
     {
         if (Roof) Roof.SetActive(active);
     }
+
     public enum BlocType
     {
         Floor,

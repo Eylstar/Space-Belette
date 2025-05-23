@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: BulletSpawn
       value: 
       objectReference: {fileID: 1510844170274139433}
+    - target: {fileID: 4475211418498153191, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
+      propertyPath: utilityType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6442779087711415863, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0001
