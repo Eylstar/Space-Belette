@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class ShipShoot : MonoBehaviour
 {
-    List<Floor> weapons = new();
+    List<Bloc> weapons = new();
     List<Transform> shootPoints = new();
     Camera cam;
     
@@ -36,7 +36,7 @@ public class ShipShoot : MonoBehaviour
         shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate);
         shoot.canceled += _ => CancelInvoke(nameof(Shoot));
 
-        foreach (Floor f in weapons)
+        foreach (Bloc f in weapons)
         {
            //shootPoints.Add(f.shootOrigin); 
         }
