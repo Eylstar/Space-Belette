@@ -430,7 +430,6 @@ GameObject:
   - component: {fileID: 2337047332160521367}
   - component: {fileID: 7537707434097360367}
   - component: {fileID: 6406563502382210937}
-  - component: {fileID: 7806920512739395191}
   - component: {fileID: 8251607023235728224}
   m_Layer: 0
   m_Name: Player
@@ -523,7 +522,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 2
   m_Constraints: 112
@@ -545,20 +544,6 @@ MonoBehaviour:
   smoothInputAcceleration: 0.05
   smoothInputDecceleration: 0.05
   jumpForce: 5
---- !u!114 &7806920512739395191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415734097492305460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afe94cd809b65940ad2701e93895fd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  lerpStrength: 0.1
 --- !u!114 &8251607023235728224
 MonoBehaviour:
   m_ObjectHideFlags: 0

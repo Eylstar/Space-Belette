@@ -16,6 +16,4 @@ public class TestShipCollider : MonoBehaviour
         if (shipColliderSetup == null) return;
         shipColliderSetup.SetCollidersActive(isActive);
     }
-    
-   
 }

@@ -52,24 +52,24 @@ public class PilotSelection : MonoBehaviour
     public void ValidPilot()
     {
         if (SelectedPilot.IsUnlocked)
-            StartCoroutine(AnimateCapsuleTop(-600f, 2f)); // Descend jusqu'à -600 en 1 seconde
+            StartCoroutine(AnimateCapsuleTop(-600f, 2f)); // Descend jusqu'ï¿½ -600 en 1 seconde
     }
 
     private IEnumerator AnimateCapsuleTop(float targetTop, float duration)
     {
         RectTransform rectTransform = capsule;
-        float initialTop = rectTransform.offsetMax.y; // Récupère la valeur actuelle du Top
+        float initialTop = rectTransform.offsetMax.y; // Rï¿½cupï¿½re la valeur actuelle du Top
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float newTop = Mathf.Lerp(initialTop, targetTop, elapsedTime / duration); // Interpolation linéaire
-            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, newTop); // Met à jour le Top
+            float newTop = Mathf.Lerp(initialTop, targetTop, elapsedTime / duration); // Interpolation linï¿½aire
+            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, newTop); // Met ï¿½ jour le Top
             yield return null; // Attend la prochaine frame
         }
 
-        // Assure que la position finale est exactement celle souhaitée
+        // Assure que la position finale est exactement celle souhaitï¿½e
         rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, targetTop);
         
         if (SelectedPilot.IsUnlocked) 
@@ -84,8 +84,6 @@ public class PilotSelection : MonoBehaviour
     void ResetCapsuleTop()
     {
         RectTransform rectTransform = capsule;
-        rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 4f); // Réinitialise le Top à 4
+        rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 4f); // Rï¿½initialise le Top ï¿½ 4
     }
-
-
 }

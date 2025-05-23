@@ -16,6 +16,12 @@ public class SceneLoader : MonoBehaviour
             case "Game":
                 SceneManager.LoadScene("Game");
                 break;
+            case "Space":
+                SceneManager.LoadScene("Space");
+                break;
+            case "Intro":
+                SceneManager.LoadScene("Intro");
+                break;            
             case "Exit":
                 Application.Quit();
                 break;

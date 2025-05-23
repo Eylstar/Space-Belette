@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int Money { get; private set; } = 1000;
+    public int Money { get; private set; } = 4000;
 
     private void OnEnable()
     {
-        // Abonnez-vous à l'événement OnFloorPlaced pour mettre à jour l'argent
+        // Abonnez-vous ï¿½ l'ï¿½vï¿½nement OnFloorPlaced pour mettre ï¿½ jour l'argent
         Bloc.OnFloorPlaced.AddListener(ChangeMoneyDown);
         Bloc.OnFloorRemoved.AddListener(ChangeMoneyUp);
     }
     private void OnDisable()
     {
-        // Désabonnez-vous de l'événement OnFloorPlaced pour éviter les fuites de mémoire
+        // Dï¿½sabonnez-vous de l'ï¿½vï¿½nement OnFloorPlaced pour ï¿½viter les fuites de mï¿½moire
         Bloc.OnFloorPlaced.RemoveListener(ChangeMoneyDown);
         Bloc.OnFloorRemoved.RemoveListener(ChangeMoneyUp);
     }
-    // Méthode pour changer le montant d'argent
+    // Mï¿½thode pour changer le montant d'argent
     public void ChangeMoneyUp(int amount)
     {
         Money += amount;
