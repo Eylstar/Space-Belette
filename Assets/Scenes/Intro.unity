@@ -348,8 +348,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278221567
-  m_fontColor: {r: 1, g: 0.47928995, b: 0, a: 1}
+    rgba: 4278217437
+  m_fontColor: {r: 0.8679245, g: 0.41524234, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -487,8 +487,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278221567
-  m_fontColor: {r: 1, g: 0.47928995, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -632,8 +632,9 @@ MonoBehaviour:
   m_text: "Sp\xE9cifique : \n\nCockpit\r\n\n\u2022 Position unique : Un seul cockpit
     est autoris\xE9 par vaisseau.\r\n\n\u2022 Pas de blocs devant : Aucune case ne
     doit \xEAtre occup\xE9e devant le cockpit (sur la m\xEAme colonne, mais sur toutes
-    les lignes au-dessus). Cela garantit une ligne de tir d\xE9gag\xE9e pour le pilote.\r\n\n\u2022
-    Connexion obligatoire : En dessous\n\n"
+    les lignes au-dessus). Cela garantit une ligne de tir d\xE9gag\xE9e pour le pilote.\n\n\u2022
+    Pas de bloc Weapon derri\xE8re : la case derri\xE8re la cockpit ne doit pas \xEAtre
+    de type Weapon. \r\n\n\u2022 Connexion obligatoire : En dessous\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58717e8aae2116e43a96549badd51203, type: 2}
   m_sharedMaterial: {fileID: 9154214133889223685, guid: 58717e8aae2116e43a96549badd51203, type: 2}
@@ -642,8 +643,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278221567
-  m_fontColor: {r: 1, g: 0.47928995, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -701,7 +702,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &155717676
@@ -728,8 +729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -455.985}
-  m_SizeDelta: {x: 1720, y: 504.87}
+  m_AnchoredPosition: {x: 960, y: -524.83}
+  m_SizeDelta: {x: 1720, y: 642.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244449218 stripped
 MonoBehaviour:
@@ -1047,7 +1048,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2018165002670815613, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_text
-      value: Preview
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 2069380090473368914, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
@@ -1103,7 +1104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1139,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -740
+      value: -795
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1313,7 +1314,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.47928995, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2646,7 +2647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2682,7 +2683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 740
+      value: 795
       objectReference: {fileID: 0}
     - target: {fileID: 3704686584692715704, guid: 0c63e173256f9e441a720aab81f9ca2e, type: 3}
       propertyPath: m_AnchoredPosition.y

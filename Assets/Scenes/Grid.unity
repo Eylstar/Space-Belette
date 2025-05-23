@@ -2008,6 +2008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerShip: {fileID: 1523378430}
+  gridObj: {fileID: 0}
   MaxWeight: 0
   CurrentWeight: 0
   weightSlider: {fileID: 585987495}
