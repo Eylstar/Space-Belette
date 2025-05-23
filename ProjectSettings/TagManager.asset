@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Bloc
   - Floor
+  - PlayerCam
   layers:
   - Default
   - TransparentFX

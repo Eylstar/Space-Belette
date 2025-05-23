@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class ShipMove : MonoBehaviour
 {
-    CameraManager camManager;
+    CameraLerp camLerp;
     
     InputAction movement;
     Vector2 moveDirection;
@@ -25,11 +25,12 @@ public class ShipMove : MonoBehaviour
         movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
         movement.canceled += _ => Move(Vector2.zero);
 
-        camManager = GetComponent<CameraManager>();
+        camLerp = GetComponent<CameraLerp>();
     }
     
     void Move(Vector2 direction)
     {
+        Debug.Log($"Move: {direction} from ship");
         moveDirection = direction;
     }
     
@@ -58,21 +59,11 @@ public class ShipMove : MonoBehaviour
         Vector3 movement = new Vector3(currentVelocity.x, 0, currentVelocity.y) * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + movement);
         
-        camManager.SetDezoomFactor(currentVelocity.magnitude / maxSpeed);
+        camLerp.SetDezoomFactor(currentVelocity.magnitude / maxSpeed);
     }
     
     public Vector2 GetCurrentVelocity()
     {
         return currentVelocity;
-    }
-    
-    void OnEnable()
-    {
-        movement.Enable();
-    }
-    
-    void OnDisable()
-    {
-        movement.Disable();
     }
 }

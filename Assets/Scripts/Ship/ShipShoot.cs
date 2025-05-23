@@ -1,9 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ShipShoot : MonoBehaviour
 {
+    List<Floor> weapons = new();
+    List<Transform> shootPoints = new();
     Camera cam;
     
     InputAction rotation;
@@ -31,6 +35,11 @@ public class ShipShoot : MonoBehaviour
         rotation.performed += GetLookDirection;
         shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate);
         shoot.canceled += _ => CancelInvoke(nameof(Shoot));
+
+        foreach (Floor f in weapons)
+        {
+           //shootPoints.Add(f.shootOrigin); 
+        }
     }
     
     
@@ -69,10 +78,5 @@ public class ShipShoot : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, transform.rotation * Quaternion.Euler(90, 0, 0));
         bullet.GetComponent<Projectile>().SetSpeed(bulletSpeed + shipMove.GetCurrentVelocity().magnitude);
-    }
-    
-    void OnDisable()
-    {
-        rotation.performed -= GetLookDirection; 
     }
 }

@@ -1,11 +1,12 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {
-    Camera cam;
+    CinemachineCamera cam;
 
     [Header("Movement")]
 
@@ -28,14 +29,6 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody rb;
 
-    void Awake()
-    {
-        cam = Camera.main;
-        rb = GetComponent<Rigidbody>();
-        animController = GetComponent<PlayerAnimationController>();
-        SetupInputs();
-    }
-
     void SetupInputs()
     {
         movement = InputSystem.actions.FindAction("Move");
@@ -48,12 +41,17 @@ public class PlayerMove : MonoBehaviour
         sprint.performed += _ => SetSpeed(sprintSpeed);
         sprint.canceled += _ => SetSpeed(walkSpeed);
 
+        
         //jump.performed += _ => OnJump();
     }
 
-    void Start()
+    public void SetupWalking()
     {
+        cam = FindFirstObjectByType<CameraManager>().playerCinemachineCam;
         SetSpeed(walkSpeed);
+        rb = GetComponent<Rigidbody>();
+        animController = GetComponent<PlayerAnimationController>();
+        SetupInputs();
     }
 
     void SetSpeed(float newSpeed) => speed = newSpeed;
@@ -67,13 +65,19 @@ public class PlayerMove : MonoBehaviour
 
     void UpdatePosition()
     {
-        currentInputVector = Vector2.SmoothDamp(currentInputVector, moveDirection, ref currentVelocity, speed == sprintSpeed ? smoothInputAcceleration : smoothInputDecceleration);
+        Vector2 adjustedMoveDirection = moveDirection;
+        adjustedMoveDirection.x *= 0.2f;
+
+        currentInputVector = Vector2.SmoothDamp(currentInputVector, adjustedMoveDirection, ref currentVelocity, speed == sprintSpeed ? smoothInputAcceleration : smoothInputDecceleration);
         Vector3 move = new Vector3(currentInputVector.x, 0, currentInputVector.y);
         move = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0) * move;
         if (move.magnitude < 0.05f) return;
 
         move.Normalize();
-        rb.MoveRotation(Quaternion.LookRotation(move));
+        
+        Quaternion targetRotation = Quaternion.LookRotation(move);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 2f * Time.fixedDeltaTime));
+
         rb.AddForce(move * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
 
@@ -96,20 +100,6 @@ public class PlayerMove : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.down, 1.25f);
-    }
-
-    void OnEnable()
-    {
-        movement.Enable();
-        sprint.Enable();
-        jump.Enable();
-    }
-
-    void OnDisable()
-    {
-        movement.Disable();
-        sprint.Disable();
-        jump.Disable();
     }
 
     public float GetAnimSpeed() { return moveDirection.magnitude; }

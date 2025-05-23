@@ -68,7 +68,7 @@ public class ShipConstruct : MonoBehaviour
     private void OnPilotSelected(Pilot pilot)
     {
         Pilot = pilot;
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Space");
     }
 
     private void Start()
@@ -153,7 +153,7 @@ public class ShipConstruct : MonoBehaviour
         var rb = playerShip.AddComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = false;
-        playerShip.AddComponent<Playershipmove>();
+        //playerShip.AddComponent<Playershipmove>();
         ShipManager sm = playerShip.AddComponent<ShipManager>();
         sm.MainPilot = Pilot;
         ShipPersistence.LoadGameObjectData(playerShip, shipData.children, sm, floorListSO, engineListSO, weaponListSO);
