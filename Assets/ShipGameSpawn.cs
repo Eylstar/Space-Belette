@@ -5,7 +5,7 @@ public class ShipGameSpawn : MonoBehaviour
     [SerializeField] Transform spawnTransform;
     ShipConstruct shipCons;
     
-    private void Start()
+    private void Awake()
     {
         shipCons = FindFirstObjectByType<ShipConstruct>();
         shipCons.LoadPlayerShip();
