@@ -35,11 +35,6 @@ public class ShipShoot : MonoBehaviour
         rotation.performed += GetLookDirection;
         shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate);
         shoot.canceled += _ => CancelInvoke(nameof(Shoot));
-
-        foreach (Bloc f in weapons)
-        {
-           //shootPoints.Add(f.shootOrigin); 
-        }
     }
     
     

@@ -25,6 +25,20 @@ public class SpawnRulesSO : ScriptableObject
     [UnityEngine.Range(1, 3)] public float groupDispersion;
     [UnityEngine.Range(0, 1)] public float singleRandomOffset;
     public List<WeightedPrefab> prefabsToSpawn;
+
+    float killOrTimeRemaining;
+
+    public void Init()
+    {
+        killOrTimeRemaining = waveSecondsDurationOrEnemiesToKill;
+    }
+
+    public void UpdateCondition(float f)
+    {
+        killOrTimeRemaining -= f;
+    }
+    
+    public float GetKillOrTimeRemaining()=> killOrTimeRemaining;
 }
 
 [Serializable] public struct WeightedPrefab

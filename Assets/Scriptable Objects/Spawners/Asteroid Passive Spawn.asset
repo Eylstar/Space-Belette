@@ -16,7 +16,7 @@ MonoBehaviour:
   - spawnType: 1
     spawnCount: 5
     spawnDeltaPercentage: 0.3
-    spawnRate: 5
+    spawnRate: 1
     distanceFromPlayerToSpawn: 100
     waveCompletionType: 2
     waveSecondsDurationOrEnemiesToKill: 0

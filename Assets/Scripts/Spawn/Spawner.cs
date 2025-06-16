@@ -30,7 +30,6 @@ public class Spawner : MonoBehaviour
     void Spawn(SpawnRule sr)
     {
         int c = sr.spawnCount + Mathf.RoundToInt(sr.spawnCount * sr.spawnDeltaPercentage * Random.Range(-1f, 1f));
-        Debug.Log($"Spawning {c} objects of type {sr.spawnType} with wave completion type {sr.waveCompletionType}");
         GameObject prefab = GetRandomPrefab(sr.prefabsToSpawn);
         
         float angle = Random.Range(0f, 360f);
@@ -62,6 +61,26 @@ public class Spawner : MonoBehaviour
             };
             GameObject spawnedObject = Instantiate(prefab, spawnPosition, rotation);
             spawnedObject.transform.parent = transform;
+            
+            if (spawnedObject.TryGetComponent(out ISpawnable spawnable))
+            {
+                spawnable.OnSpawn();
+            }
+
+            if (spawnedObject.TryGetComponent(out IDamageable damage) && sr.waveCompletionType == WaveCompletionType.EnemiesKilled)
+            {
+                damage.OnDestroy += () => ObjectDestroyed(sr);
+            }
+        }
+    }
+
+    void ObjectDestroyed(SpawnRule sr)
+    {
+        sr.UpdateCondition(1f);
+        if (sr.GetKillOrTimeRemaining() <= 0)
+        {
+            //TODO handle wave completion
+            Debug.Log("Wave completed: " + sr.spawnType);
         }
     }
 

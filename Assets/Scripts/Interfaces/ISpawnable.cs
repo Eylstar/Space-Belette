@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface ISpawnable
 {
-    void Spawn();
+    void OnSpawn();
     GameObject GetGameObject();
 }
