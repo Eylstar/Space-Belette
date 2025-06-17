@@ -16,4 +16,4 @@ MonoBehaviour:
   Description: "Tant que le vaisseau ne tire pas, la vitesse de d\xE9placement augmente
     de +30%.\n\n\"Quand t'arr\xEAtes de tirer, t\u2019pars comme une fus\xE9e \xE0
     moustaches.\""
-  Effect: {fileID: 11400000, guid: b40a2538cb211ff43984027b5f627e7a, type: 2}
+  Effect: {fileID: 11400000, guid: e3c64a3095dfc604a988b10effc29533, type: 2}

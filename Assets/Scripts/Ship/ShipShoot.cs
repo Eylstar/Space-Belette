@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class ShipShoot : MonoBehaviour
 {
@@ -15,34 +16,35 @@ public class ShipShoot : MonoBehaviour
     
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform shootPoint;
-    
+    ShipManager shipManager;
     [SerializeField] float bulletSpeed = 10f;
     [SerializeField] float shootRate = 0.1f;
-    
+    public float factor = 1;
     Quaternion initialRotation;
     Vector2 lookDirection;
-    
+
+    public bool IsShooting => shoot.ReadValue<float>() > 0;
+
     ShipMove shipMove;
 
     void Start()
     {
         cam = Camera.main;
         shipMove = GetComponent<ShipMove>();
-        
+        shipManager = GetComponentInChildren<ShipManager>();
         rotation = InputSystem.actions.FindAction("Aim");
         shoot = InputSystem.actions.FindAction("Shoot");
         
         rotation.performed += GetLookDirection;
-        shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate);
+        shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate / factor);
         shoot.canceled += _ => CancelInvoke(nameof(Shoot));
 
+        weapons = shipManager.ShootBlocs;
         foreach (Bloc f in weapons)
         {
-           //shootPoints.Add(f.shootOrigin); 
+            shootPoints.Add(f.BulletSpawn);
         }
     }
-    
-    
     void GetLookDirection(InputAction.CallbackContext ctx)
     {
         if (ctx.control.device is Keyboard or Mouse && Mouse.current != null)
@@ -76,7 +78,18 @@ public class ShipShoot : MonoBehaviour
     
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, transform.rotation * Quaternion.Euler(90, 0, 0));
-        bullet.GetComponent<Projectile>().SetSpeed(bulletSpeed + shipMove.GetCurrentVelocity().magnitude);
+        foreach (Transform shootPoint in shootPoints)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, transform.rotation * Quaternion.Euler(90, 0, 0));
+            bullet.GetComponent<Projectile>().SetSpeed((bulletSpeed * factor) + shipMove.GetCurrentVelocity().magnitude);
+        }
+    }
+    public void UpdateShootRate()
+    {
+        // Annule le tir en cours
+        CancelInvoke(nameof(Shoot));
+        // Si le bouton de tir est maintenu, relance le tir avec le nouveau facteur
+        if (shoot.ReadValue<float>() > 0)
+            InvokeRepeating(nameof(Shoot), 0, shootRate / factor);
     }
 }

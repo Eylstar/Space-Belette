@@ -43,6 +43,7 @@ public class ShipConstruct : MonoBehaviour
         {
             CockpitCount--;
             if (CockpitCount != 1) isCockpitPlaced = false;
+            if (CockpitCount == 1) isCockpitPlaced = true;
         }
         else if (type == UtilityType.Engine)
         {
@@ -150,10 +151,6 @@ public class ShipConstruct : MonoBehaviour
         }
         ShipData shipData = playerShipSO.shipData;
         GameObject playerShip = new GameObject(shipData.name);
-        var rb = playerShip.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.useGravity = false;
-        //playerShip.AddComponent<Playershipmove>();
         ShipManager sm = playerShip.AddComponent<ShipManager>();
         sm.MainPilot = Pilot;
         ShipPersistence.LoadGameObjectData(playerShip, shipData.children, sm, floorListSO, engineListSO, weaponListSO);

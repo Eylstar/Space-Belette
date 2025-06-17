@@ -16,4 +16,4 @@ MonoBehaviour:
   Description: "Fige tous les ennemis visibles \xE0 l\u2019\xE9cran pendant 1 seconde.
     Litt\xE9ralement : ils sont hypnotis\xE9s.\n\n\"Une seule caresse du regard,
     et tout l\u2019univers s\u2019arr\xEAte.\"\n\nCooldown : 30 sec"
-  EffectPrefab: {fileID: 0}
+  Effect: {fileID: 11400000, guid: c3bfdeec9640bc242ba7fe89cdbd6c51, type: 2}

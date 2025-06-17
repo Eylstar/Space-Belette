@@ -1,24 +1,47 @@
 using UnityEngine;
 public class ShipColliderSetup : MonoBehaviour
 {
-    private BoxCollider[] boxColliders;
-    private MeshCollider[] meshColliders;
+    public BoxCollider[] boxColliders;
+    public MeshCollider[] meshColliders;
 
-    void Start()
+    void OnEnable()
     {
         boxColliders = GetComponentsInChildren<BoxCollider>();
         meshColliders = GetComponentsInChildren<MeshCollider>();
+        if (boxColliders.Length == 0 && meshColliders.Length == 0)
+        {
+            Debug.LogWarning("No colliders found in children of " + gameObject.name);
+        }
+        else
+        {
+            SetCollidersActive(true);
+        }
     }
 
     public void SetCollidersActive(bool isActive)
     {
-        foreach (var boxCollider in boxColliders)
+        Debug.LogWarning("Setting colliders");
+        if (isActive == true)
         {
-            boxCollider.enabled = isActive;
+            foreach (var boxCollider in boxColliders)
+            {
+                boxCollider.enabled = true;
+            }
+            foreach (var meshCollider in meshColliders)
+            {
+                meshCollider.enabled = false;
+            }
         }
-        foreach (var meshCollider in meshColliders)
+        else
         {
-            meshCollider.enabled = isActive;
+            foreach (var boxCollider in boxColliders)
+            {
+                boxCollider.enabled = false;
+            }
+            foreach (var meshCollider in meshColliders)
+            {
+                meshCollider.enabled = true;
+            }
         }
     }
 }

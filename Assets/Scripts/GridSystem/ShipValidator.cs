@@ -29,7 +29,7 @@ public static class ShipValidator
                 errorLogs += $"{cockpit.name} ne peut pas avoir de bloc devant lui (Y > {cockpit.CoordGrid.y}).\n";
                 return false;
             }
-            if (b.CoordGrid.x == cockpit.CoordGrid.x && b.CoordGrid.y < cockpit.CoordGrid.y && b.blocType == Bloc.BlocType.Weapon)
+            if (b.CoordGrid.x == cockpit.CoordGrid.x && b.CoordGrid.y == cockpit.CoordGrid.y-1 && b.blocType == Bloc.BlocType.Weapon)
             {
                 errorLogs += $"{cockpit.name} ne peut pas avoir de bloc Weapon à l'arrière (Y < {cockpit.CoordGrid.y}).\n";
                 return false;

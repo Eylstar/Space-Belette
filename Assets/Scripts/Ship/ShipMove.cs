@@ -9,12 +9,23 @@ public class ShipMove : MonoBehaviour
     InputAction movement;
     Vector2 moveDirection;
     Vector2 currentVelocity;
-    
-    [SerializeField] float speed = 10f;
-    [SerializeField] float acceleration = 5f;
-    [SerializeField] float deceleration = 3f;
-    [SerializeField] float maxSpeed = 20f;
-    
+
+    [SerializeField] float baseSpeed = 10f;
+    [SerializeField] float baseAcceleration = 5f;
+    [SerializeField] float baseDeceleration = 3f;
+    [SerializeField] float baseMaxSpeed = 20f;
+    float multiplier = 10f;
+
+    float speed => baseSpeed * multiplier;
+    float acceleration => baseAcceleration * multiplier;
+    float deceleration => baseDeceleration * multiplier;
+    float maxSpeed => baseMaxSpeed * multiplier;
+
+    public bool ZigzagActive = false;
+    public float zigzagAmplitude;
+    public float zigzagFrequency;
+    private float zigzagTimer = 0f;
+
     Rigidbody rb;
 
     void Awake()
@@ -37,6 +48,25 @@ public class ShipMove : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 targetVelocity = moveDirection * speed;
+
+        // Zigzag même à l'arrêt
+        if (ZigzagActive)
+        {
+            zigzagTimer += Time.fixedDeltaTime * zigzagFrequency;
+            float offset = Mathf.Sin(zigzagTimer) * zigzagAmplitude;
+
+            // Si le joueur ne donne pas de direction, on prend "en avant" (par défaut vers Z+)
+            Vector3 forward = transform.forward;
+            Vector2 baseDir = moveDirection != Vector2.zero
+                ? moveDirection.normalized
+                : new Vector2(forward.x, forward.z).normalized;
+            Vector2 perp = new Vector2(-baseDir.y, baseDir.x).normalized;
+            targetVelocity += perp * offset;
+        }
+        else
+        {
+            zigzagTimer = 0f;
+        }
 
         float accelFactor;
         if (moveDirection != Vector2.zero)
@@ -65,5 +95,10 @@ public class ShipMove : MonoBehaviour
     public Vector2 GetCurrentVelocity()
     {
         return currentVelocity;
+    }
+    public void SpeedModificator(float mult) 
+    {
+        multiplier = mult;
+        Debug.Log($"Max Speed : {maxSpeed}");
     }
 }

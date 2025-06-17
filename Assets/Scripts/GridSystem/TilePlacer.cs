@@ -75,7 +75,7 @@ public class TilePlacer : MonoBehaviour
     }
     private bool CanBuyPart()
     {
-        if (floorPrefab != null && playerStats.Money >= floorPrefab.GetComponent<Bloc>().Cost)
+        if (floorPrefab != null && PlayerStats.Money >= floorPrefab.GetComponent<Bloc>().Cost) // Utilisation correcte de la propriété statique  
         {
             return true;
         }

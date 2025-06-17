@@ -52,34 +52,33 @@ public class PilotSelection : MonoBehaviour
     public void ValidPilot()
     {
         if (SelectedPilot.IsUnlocked)
-            StartCoroutine(AnimateCapsuleTop(-600f, 2f)); // Descend jusqu'� -600 en 1 seconde
+        {
+            // On veut que le haut descende jusqu'en bas du parent
+            float targetY = -capsule.parent.GetComponent<RectTransform>().rect.height;
+            StartCoroutine(AnimateCapsuleTop(targetY, 2f));
+        }
     }
 
     private IEnumerator AnimateCapsuleTop(float targetTop, float duration)
     {
         RectTransform rectTransform = capsule;
-        float initialTop = rectTransform.offsetMax.y; // R�cup�re la valeur actuelle du Top
+        float initialTop = rectTransform.offsetMax.y;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float newTop = Mathf.Lerp(initialTop, targetTop, elapsedTime / duration); // Interpolation lin�aire
-            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, newTop); // Met � jour le Top
-            yield return null; // Attend la prochaine frame
+            float newTop = Mathf.Lerp(initialTop, targetTop, elapsedTime / duration);
+            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, newTop);
+            yield return null;
         }
 
-        // Assure que la position finale est exactement celle souhait�e
         rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, targetTop);
-        
-        if (SelectedPilot.IsUnlocked) 
-        {
+
+        if (SelectedPilot.IsUnlocked)
             OnPilotSelected?.Invoke(SelectedPilot);
-        }
         else
-        {
             ResetCapsuleTop();
-        }
     }
     void ResetCapsuleTop()
     {

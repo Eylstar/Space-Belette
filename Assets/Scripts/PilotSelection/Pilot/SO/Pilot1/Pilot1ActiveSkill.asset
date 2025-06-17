@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: "Augmente ta cadence de tir de +100% pendant 4 secondes, mais fait
     partir le vaisseau en zigzag al\xE9atoire.\n\n\"Elle panique. Elle panique fort.\"\n\nCooldown
     : 20 sec"
+  Effect: {fileID: 11400000, guid: 0009f41c99de17d4ebeada7d1784af0d, type: 2}

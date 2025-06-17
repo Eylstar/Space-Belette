@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64611107894033396, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23600118499739126, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
     - {fileID: 33669070227683608, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
@@ -514,13 +518,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7924178401240938040, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8364840532305825975, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4362297660580777309, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1508993057205653242, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
     - {fileID: 2549462884615737516, guid: b07c85a2a5adfc94a8d33134637e5a7f, type: 3}
@@ -784,6 +789,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64611107894033396, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23600118499739126, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
     - {fileID: 33669070227683608, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
@@ -864,6 +873,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 64187082151245798, guid: 0741d70c2fff9e649aaa876e134494ca, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23568537703282782, guid: 0741d70c2fff9e649aaa876e134494ca, type: 3}
     - {fileID: 33301965453895886, guid: 0741d70c2fff9e649aaa876e134494ca, type: 3}
@@ -936,6 +949,10 @@ PrefabInstance:
     - target: {fileID: 4061040161476304, guid: 130285f6824c6b343987ff150a0bd211, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64578997210643838, guid: 130285f6824c6b343987ff150a0bd211, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23305647914758490, guid: 130285f6824c6b343987ff150a0bd211, type: 3}

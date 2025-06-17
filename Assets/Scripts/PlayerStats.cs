@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int Money { get; private set; } = 10000;
+    public static int Money { get; private set; } = 10000;
 
     private void OnEnable()
     {
@@ -17,11 +17,11 @@ public class PlayerStats : MonoBehaviour
         Bloc.OnFloorRemoved.RemoveListener(ChangeMoneyUp);
     }
     // M�thode pour changer le montant d'argent
-    public void ChangeMoneyUp(int amount)
+    public static void ChangeMoneyUp(int amount)
     {
         Money += amount;
     }
-    public void ChangeMoneyDown(int amount)
+    public static void ChangeMoneyDown(int amount)
     {
         Money -= amount;
     }

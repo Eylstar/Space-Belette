@@ -15,4 +15,4 @@ MonoBehaviour:
   SkillName: "Lunettes de Pr\xE9cision Cosmo-\xC9rudite"
   Description: "En fin de mission, la belette gagne +15% d\u2019XP et +10% d'orbes
     suppl\xE9mentaire.\n\n\"Belette \xE0 lunettes... belette \xE0 pi\xE9cettes\""
-  EffectPrefab: {fileID: 0}
+  Effect: {fileID: 11400000, guid: c8d73b5770e843243ae33c927ca36c89, type: 2}
