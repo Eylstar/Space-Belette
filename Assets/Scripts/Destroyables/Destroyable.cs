@@ -4,8 +4,6 @@ using UnityEngine;
 
 public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 {
-    public Action<int> onDeath;
-    
     [SerializeField] protected int hitPower = 1;
     protected int scoreValue;
     protected int maxHealth;
@@ -23,6 +21,8 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         health = maxHealth;
     }
     
+    
+
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
@@ -31,11 +31,14 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
             Die();
         }
     }
-    
+
+    public Action OnDestroy { get; set; }
+
     protected virtual void Die()
     {
         Destroy(gameObject);
-        onDeath?.Invoke(scoreValue);
+        OnDestroy?.Invoke();
+        Debug.Log("I am destroyed");
     }
     
     protected virtual void OnCollisionEnter(Collision other)
