@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Chasing : Enemy
 {
-    GameObject playerShip;
-
-    Rigidbody rb;
-
     protected override void Start()
     {
         base.Start();
-        rb = GetComponent<Rigidbody>();
-        playerShip = enemiesManager.GetPlayerReference();
         StartCoroutine(LookAtPlayer());
     }
 

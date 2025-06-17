@@ -657,7 +657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnWaves:
   - spawnRules: {fileID: 11400000, guid: 21f1e437ada6f294dae2d01b1483eb72, type: 2}
-  optionalSpawnWaves: []
+  optionalSpawnWaves:
+  - spawnRules: {fileID: 11400000, guid: 3cb64ff6b42d9b44aab3e53550462c48, type: 2}
 --- !u!4 &1307851434
 Transform:
   m_ObjectHideFlags: 0
@@ -1043,7 +1044,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2083736710414423859, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3143081865424624480, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_Name
@@ -1095,7 +1096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7690656824598173793, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
