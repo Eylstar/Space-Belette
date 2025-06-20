@@ -589,8 +589,9 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &926882685
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7809091822468905611, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
-  m_PrefabInstance: {fileID: 1471527097741218938}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926882679}
   m_Enabled: 1
@@ -1273,9 +1274,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7417930680471355914, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7518483096977593894, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518483096977593894, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8482507826362549751, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1301,6 +1310,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8741251926653587814, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1321,7 +1334,7 @@ PrefabInstance:
     - target: {fileID: 1187635877088259942, guid: 90c0c84373391534cb0edac1d1eb24a9, type: 3}
       propertyPath: Currency
       value: 
-      objectReference: {fileID: 1121121796}
+      objectReference: {fileID: 0}
     - target: {fileID: 1187635877088259942, guid: 90c0c84373391534cb0edac1d1eb24a9, type: 3}
       propertyPath: EndLabel
       value: 
@@ -1337,6 +1350,10 @@ PrefabInstance:
     - target: {fileID: 4060872541450270936, guid: 90c0c84373391534cb0edac1d1eb24a9, type: 3}
       propertyPath: m_Name
       value: EndMission
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060872541450270936, guid: 90c0c84373391534cb0edac1d1eb24a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4909487679549249526, guid: 90c0c84373391534cb0edac1d1eb24a9, type: 3}
       propertyPath: m_LocalPosition.x
