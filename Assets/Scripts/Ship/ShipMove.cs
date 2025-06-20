@@ -41,7 +41,6 @@ public class ShipMove : MonoBehaviour
     
     void Move(Vector2 direction)
     {
-        Debug.Log($"Move: {direction} from ship");
         moveDirection = direction;
     }
     
@@ -49,13 +48,13 @@ public class ShipMove : MonoBehaviour
     {
         Vector2 targetVelocity = moveDirection * speed;
 
-        // Zigzag même à l'arrêt
+        // Zigzag mÃªme Ã  l'arrÃªt
         if (ZigzagActive)
         {
             zigzagTimer += Time.fixedDeltaTime * zigzagFrequency;
             float offset = Mathf.Sin(zigzagTimer) * zigzagAmplitude;
 
-            // Si le joueur ne donne pas de direction, on prend "en avant" (par défaut vers Z+)
+            // Si le joueur ne donne pas de direction, on prend "en avant" (par dÃ©faut vers Z+)
             Vector3 forward = transform.forward;
             Vector2 baseDir = moveDirection != Vector2.zero
                 ? moveDirection.normalized

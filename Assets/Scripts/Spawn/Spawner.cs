@@ -7,10 +7,13 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    Dictionary<SpawnRule, bool> spawnRulesWithObectives = new();
     GameObject player;
     
     [SerializeField] List<SpawnWave> spawnWaves;
     [SerializeField] List<SpawnWave> optionalSpawnWaves;
+    
+    float timeElapsed = 0f;
 
     void Start()
     {
@@ -19,6 +22,14 @@ public class Spawner : MonoBehaviour
         {
             wave.onSpawn += Spawn;
             wave.SpawnRulesInitialisation();
+            foreach (SpawnRule sr in wave.spawnRules.spawnRules)
+            {
+                sr.Init();
+                if (sr.waveCompletionType == WaveCompletionType.EnemiesKilled || sr.waveCompletionType == WaveCompletionType.Time)
+                {
+                    spawnRulesWithObectives.Add(sr, false);
+                }
+            }
         }
         foreach (SpawnWave wave in optionalSpawnWaves)
         {
@@ -77,14 +88,69 @@ public class Spawner : MonoBehaviour
     void ObjectDestroyed(SpawnRule sr)
     {
         sr.UpdateCondition(1f);
-        if (sr.GetKillOrTimeRemaining() <= 0)
+        if (sr.GetKillOrTimeRemaining() <= 0 && spawnRulesWithObectives.ContainsKey(sr) && spawnRulesWithObectives[sr] == false)
         {
-            //TODO handle wave completion
-            Debug.Log("Wave completed: " + sr.spawnType);
+            Debug.Log($"Wave completed by kills.");
+            spawnRulesWithObectives[sr] = true;
+            CheckAllRulesCompleted();
+        }
+    }
+    
+    void Update()
+    {
+        TimeElapsing();
+    }
+
+    void TimeElapsing()
+    {
+        // Check for waves with time-based completion
+        foreach (SpawnWave wave in spawnWaves)
+        {
+            foreach (SpawnRule sr in wave.spawnRules.spawnRules)
+            {
+                if (sr.waveCompletionType == WaveCompletionType.Time)
+                {
+                    sr.UpdateCondition(Time.deltaTime);
+                    
+                    if (sr.GetKillOrTimeRemaining() <= 0 && spawnRulesWithObectives.ContainsKey(sr) && spawnRulesWithObectives[sr] == false)
+                    {
+                        Debug.Log($"Wave completed by time.");
+                        spawnRulesWithObectives[sr] = true;
+                        CheckAllRulesCompleted();
+                    }
+                }
+            }
         }
     }
 
     
+    void CheckAllRulesCompleted()
+    {
+        bool allCompleted = true;
+        foreach (var kvp in spawnRulesWithObectives)
+        {
+            if (!kvp.Value)
+            {
+                allCompleted = false;
+                break;
+            }
+        }
+        
+        if (allCompleted)
+        {
+            Debug.Log("All spawn rules completed.");
+            foreach (SpawnWave wave in spawnWaves)
+            {
+                foreach (SpawnRule sr in wave.spawnRules.spawnRules)
+                {
+                    wave.StopSpawnRoutine(sr);
+                }
+                wave.Disable();
+            }
+        }
+    }
+
+
     GameObject GetRandomPrefab(List<WeightedPrefab> prefabs)
     {
         float totalWeight = 0;
@@ -119,6 +185,9 @@ public class Spawner : MonoBehaviour
 [Serializable]
 class SpawnWave
 {
+    Dictionary<SpawnRule, SpawnRoutineContainer> ruleToContainer = new();
+    Action<SpawnRule> spawnHandler;
+    
     public Action<SpawnRule> onSpawn;
     public SpawnRulesSO spawnRules;
     
@@ -127,20 +196,29 @@ class SpawnWave
     public void SpawnRulesInitialisation()
     {
         spawnRoutineContainers = new List<SpawnRoutineContainer>();
+        spawnHandler = OnSpawnTriggered;
+        
         foreach (SpawnRule sr in spawnRules.spawnRules)
         {
             SpawnRoutineContainer spawnRoutineContainer = new GameObject("SpawnRoutineContainer").AddComponent<SpawnRoutineContainer>();
-            if (onSpawn != null)
-            {
-                spawnRoutineContainer.onSpawnEvent += onSpawn.Invoke;
-            }
-            else
-            {
-                Debug.LogWarning("onSpawn is null when subscribing.");
-            }
+            spawnRoutineContainer.onSpawnEvent += spawnHandler;
             spawnRoutineContainer.StartSpawnRoutine(sr);
             spawnRoutineContainers.Add(spawnRoutineContainer);
+            ruleToContainer[sr] = spawnRoutineContainer;
         }
+    }
+    
+    public void StopSpawnRoutine(SpawnRule spawnRule)
+    {
+        if (ruleToContainer.TryGetValue(spawnRule, out SpawnRoutineContainer src))
+        {
+            src.StopSpawnRoutine();
+        }
+    }
+    
+    void OnSpawnTriggered(SpawnRule spawnRule)
+    {
+        onSpawn?.Invoke(spawnRule);
     }
     
     public void Disable()
@@ -149,7 +227,7 @@ class SpawnWave
         {
             if (src != null)
             {
-                src.onSpawnEvent -= onSpawn.Invoke;
+                src.onSpawnEvent -= spawnHandler;
                 src.CancelInvoke();
                 Object.Destroy(src.gameObject);
             }
@@ -167,6 +245,11 @@ class SpawnRoutineContainer : MonoBehaviour
     {
         currentRule = spawnRule;
         InvokeRepeating(nameof(SpawnCallback), spawnRule.spawnRate, spawnRule.spawnRate);
+    }
+    
+    public void StopSpawnRoutine()
+    {
+        CancelInvoke(nameof(SpawnCallback));
     }
     
     void SpawnCallback()

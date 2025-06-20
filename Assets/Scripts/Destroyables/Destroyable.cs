@@ -38,7 +38,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
     {
         Destroy(gameObject);
         OnDestroy?.Invoke();
-        Debug.Log("I am destroyed");
+        //Debug.Log("I am destroyed");
     }
     
     protected virtual void OnCollisionEnter(Collision other)
@@ -46,14 +46,34 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         //If the other object is collidable
         if (other.gameObject.TryGetComponent(out ICollidable collidable))
         {
-            Debug.Log("Collision with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
+            //Debug.Log("Collision with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
             //If the other object is in the filter
             if (collidable.GetFilter().Contains(collisionType))
             {
                 //If the other object is damageable
                 if (collidable.GetGameObject().TryGetComponent(out IDamageable damageable))
                 {
-                    Debug.Log("Deal damage to " + collidable.GetGameObject().name);
+                    //Debug.Log("Deal damage to " + collidable.GetGameObject().name);
+                    //Deal damage
+                    damageable.TakeDamage(hitPower);
+                }
+            }
+        }
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        //If the other object is collidable
+        if (other.gameObject.TryGetComponent(out ICollidable collidable))
+        {
+            //Debug.Log("Trigger with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
+            //If the other object is in the filter
+            if (collidable.GetFilter().Contains(collisionType))
+            {
+                //If the other object is damageable
+                if (collidable.GetGameObject().TryGetComponent(out IDamageable damageable))
+                {
+                    //Debug.Log("Deal damage to " + collidable.GetGameObject().name);
                     //Deal damage
                     damageable.TakeDamage(hitPower);
                 }
@@ -61,5 +81,9 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         }
     }
     
+    void CollisionHandler(Collision collision)
+    {
+    }
+
     public GameObject GetGameObject() => gameObject;
 }

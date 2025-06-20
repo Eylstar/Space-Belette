@@ -38,13 +38,14 @@ public class ShipShoot : MonoBehaviour
         rotation.performed += GetLookDirection;
         shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate / factor);
         shoot.canceled += _ => CancelInvoke(nameof(Shoot));
-
+        
         weapons = shipManager.ShootBlocs;
         foreach (Bloc f in weapons)
         {
             shootPoints.Add(f.BulletSpawn);
         }
     }
+    
     void GetLookDirection(InputAction.CallbackContext ctx)
     {
         if (ctx.control.device is Keyboard or Mouse && Mouse.current != null)
@@ -78,12 +79,19 @@ public class ShipShoot : MonoBehaviour
     
     void Shoot()
     {
-        foreach (Transform shootPoint in shootPoints)
+        if (shipManager == null)
         {
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, transform.rotation * Quaternion.Euler(90, 0, 0));
             bullet.GetComponent<Projectile>().SetSpeed((bulletSpeed * factor) + shipMove.GetCurrentVelocity().magnitude);
+            return;
+        }
+        foreach (Transform s in shootPoints)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, s.position, transform.rotation * Quaternion.Euler(90, 0, 0));
+            bullet.GetComponent<Projectile>().SetSpeed((bulletSpeed * factor) + shipMove.GetCurrentVelocity().magnitude);
         }
     }
+    
     public void UpdateShootRate()
     {
         // Annule le tir en cours

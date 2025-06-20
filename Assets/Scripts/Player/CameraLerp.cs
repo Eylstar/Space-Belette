@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class CameraLerp : MonoBehaviour
 {
-    CinemachineCamera cam;
+    [SerializeField] GameObject cameraHolder;
+    [SerializeField] CinemachineCamera cam;
     [SerializeField] float lerpStrength = 0.1f;
     [SerializeField] Vector3 offset;
     
@@ -23,7 +24,7 @@ public class CameraLerp : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 targetPosition = transform.position + offset;
-        cam.transform.position = Vector3.Slerp(cam.transform.position, targetPosition, lerpStrength);
+        cameraHolder.transform.position = Vector3.Slerp(cameraHolder.transform.position, targetPosition, lerpStrength);
     }
     
     

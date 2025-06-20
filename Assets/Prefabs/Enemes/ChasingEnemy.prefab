@@ -62,8 +62,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2733333849437231326}
   m_Father: {fileID: 0}
@@ -135,14 +135,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPower: 1
   collisionType: 0
-  collisionFilter: 0200000003000000
+  collisionFilter: 020000000300000000000000
   rotationSpeed: 3
-  moveSpeed: 5000
+  moveSpeed: 1000
   bulletPrefab: {fileID: 8708950737766626871, guid: 0b7475d637cb4b643bfe1f89cd645c76, type: 3}
   bulletSpawnPoint: {fileID: 2733333849437231326}
   distanceToPlayerToShoot: 40
-  bulletSpeed: 0
-  fireRate: 1e+10
+  bulletSpeed: 100
+  fireRate: 0.5
+  explosionPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
 --- !u!54 &-4234307500111750200
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

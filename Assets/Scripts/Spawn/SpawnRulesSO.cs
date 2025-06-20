@@ -10,7 +10,7 @@ public class SpawnRulesSO : ScriptableObject
     public List<SpawnRule> spawnRules = new();
 }
 
-[Serializable] public struct SpawnRule
+[Serializable] public class SpawnRule
 {
     public SpawnType spawnType;
     
@@ -31,6 +31,7 @@ public class SpawnRulesSO : ScriptableObject
     public void Init()
     {
         killOrTimeRemaining = waveSecondsDurationOrEnemiesToKill;
+        Debug.Log("INIT" + killOrTimeRemaining);
     }
 
     public void UpdateCondition(float f)

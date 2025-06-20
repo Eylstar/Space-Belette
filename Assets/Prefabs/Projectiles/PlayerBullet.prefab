@@ -103,7 +103,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -126,4 +126,4 @@ MonoBehaviour:
   hitPower: 1
   collisionType: 3
   collisionFilter: 040000000000000001000000
-  lifeTime: 5
+  lifeTime: 2

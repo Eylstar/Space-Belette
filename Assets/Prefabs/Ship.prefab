@@ -133,10 +133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb8c894bd8544440ba4fbd889cc6c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
-  acceleration: 40
-  deceleration: 80
-  maxSpeed: 80
+  baseSpeed: 10
+  baseAcceleration: 5
+  baseDeceleration: 3
+  baseMaxSpeed: 20
+  ZigzagActive: 0
+  zigzagAmplitude: 0
+  zigzagFrequency: 0
 --- !u!114 &1459365913271100142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +156,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1629531236617098650}
   bulletSpeed: 50
   shootRate: 0.125
+  factor: 1
 --- !u!114 &8573625272599689246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +197,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 2

@@ -14,7 +14,7 @@ public class SwitchCams : MonoBehaviour
     bool isShipCamActive = true;
     private void Start()
     {
-        cameraManager = FindFirstObjectByType<CameraManager>();
+        /*cameraManager = FindFirstObjectByType<CameraManager>();
         playerCinemachineCam = cameraManager.playerCinemachineCam;
         shipCinemachineCam = cameraManager.shipCinemachineCam;
         
@@ -24,7 +24,7 @@ public class SwitchCams : MonoBehaviour
         CameraTarget target = new CameraTarget();
         target.LookAtTarget = player.transform;
         target.TrackingTarget = player.transform;
-        playerCinemachineCam.Target = target;
+        playerCinemachineCam.Target = target;*/
     }
     
     public void SwitchToShipCam()
