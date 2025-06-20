@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 public class ShipColliderSetup : MonoBehaviour
 {
     public BoxCollider[] boxColliders;
     public MeshCollider[] meshColliders;
+    public static event Action OnShipEnter;
+    public static event Action OnShipExit;
 
     void OnEnable()
     {
@@ -23,6 +26,8 @@ public class ShipColliderSetup : MonoBehaviour
         Debug.LogWarning("Setting colliders");
         if (isActive == true)
         {
+            OnShipExit?.Invoke();
+            Debug.LogWarning("Enabling box colliders and disabling mesh colliders");
             foreach (var boxCollider in boxColliders)
             {
                 boxCollider.enabled = true;
@@ -32,8 +37,10 @@ public class ShipColliderSetup : MonoBehaviour
                 meshCollider.enabled = false;
             }
         }
-        else
+        else if (isActive == false)
         {
+            OnShipEnter?.Invoke();
+            Debug.LogWarning("Disabling box colliders and enabling mesh colliders");
             foreach (var boxCollider in boxColliders)
             {
                 boxCollider.enabled = false;

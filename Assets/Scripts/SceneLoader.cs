@@ -1,27 +1,30 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public static class SceneLoader 
 {
-    public void LoadScene(string sceneType)
+    public static void LoadScene(string sceneType)
     {
         switch (sceneType)
         {
             case "Start":
-                SceneManager.LoadScene("Start");
-                break;
-            case "Grid":
-                SceneManager.LoadScene("Grid");
-                break;
-            case "Game":
-                SceneManager.LoadScene("Game");
-                break;
-            case "Space":
-                SceneManager.LoadScene("Space");
+                SceneManager.LoadScene("StartScene");
                 break;
             case "Intro":
                 SceneManager.LoadScene("Intro");
                 break;            
+            case "Grid":
+                SceneManager.LoadScene("Grid");
+                break;
+            case "CharacterSelection":
+                SceneManager.LoadScene("CharacterSelection");
+                break;
+            case "MissionSelection":
+                SceneManager.LoadScene("MissionSelection");
+                break;
+            case "Space":
+                SceneManager.LoadScene("Space");
+                break;
             case "Exit":
                 Application.Quit();
                 break;

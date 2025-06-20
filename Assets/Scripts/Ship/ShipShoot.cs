@@ -26,7 +26,17 @@ public class ShipShoot : MonoBehaviour
     public bool IsShooting => shoot.ReadValue<float>() > 0;
 
     ShipMove shipMove;
-
+    private void OnDisable()
+    {
+        if (rotation != null)
+            rotation.performed -= GetLookDirection;
+        if (shoot != null)
+        {
+            shoot.started -= OnShootStarted;
+            shoot.canceled -= OnShootCanceled;
+        }
+        CancelInvoke(nameof(Shoot));
+    }
     void Start()
     {
         cam = Camera.main;
@@ -36,8 +46,8 @@ public class ShipShoot : MonoBehaviour
         shoot = InputSystem.actions.FindAction("Shoot");
         
         rotation.performed += GetLookDirection;
-        shoot.started += _ => InvokeRepeating(nameof(Shoot), 0, shootRate / factor);
-        shoot.canceled += _ => CancelInvoke(nameof(Shoot));
+        shoot.started += OnShootStarted;
+        shoot.canceled += OnShootCanceled;
 
         weapons = shipManager.ShootBlocs;
         foreach (Bloc f in weapons)
@@ -45,6 +55,16 @@ public class ShipShoot : MonoBehaviour
             shootPoints.Add(f.BulletSpawn);
         }
     }
+    private void OnShootStarted(InputAction.CallbackContext ctx)
+    {
+        InvokeRepeating(nameof(Shoot), 0, shootRate / factor);
+    }
+
+    private void OnShootCanceled(InputAction.CallbackContext ctx)
+    {
+        CancelInvoke(nameof(Shoot));
+    }
+
     void GetLookDirection(InputAction.CallbackContext ctx)
     {
         if (ctx.control.device is Keyboard or Mouse && Mouse.current != null)

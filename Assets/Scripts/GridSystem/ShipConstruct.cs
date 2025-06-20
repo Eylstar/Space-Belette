@@ -6,6 +6,7 @@ using static Bloc;
 
 public class ShipConstruct : MonoBehaviour
 {
+    public static ShipConstruct Instance { get; private set; }
     public GameObject PlayerShip;
     public GameObject gridObj;
     Pilot Pilot;
@@ -14,27 +15,74 @@ public class ShipConstruct : MonoBehaviour
     WeaponListSO weaponListSO;
     PlayerShipSO playerShipSO;
     bool isCockpitPlaced = false;
-    int CockpitCount;
+    [SerializeField] int CockpitCount;
     bool isEnginePlaced = false;
-    int EngineCount;
+    [SerializeField] int EngineCount;
     public int MaxWeight = 0;
     public int CurrentWeight = 0;
     [SerializeField] Slider weightSlider;
     [SerializeField] TextMeshProUGUI errorText;
     string errorLogs;
+    [SerializeField] Button ValidBtn;
 
-    private void OnEnable()
+    private void Awake()
     {
+        // Singleton classique
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // S'abonner à l'événement de chargement de scène
+        SceneManager.sceneLoaded += OnSceneLoaded;
         PilotSelection.OnPilotSelected += OnPilotSelected;
         OnUtilPlaced.AddListener(UtilAdd);
         OnUtilRemoved.AddListener(UtilRemove);
-        UpdateWeight();
     }
-    private void OnDisable()
+
+    private void OnDestroy()
     {
+        // Désabonnement propre
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         PilotSelection.OnPilotSelected -= OnPilotSelected;
         OnUtilPlaced.RemoveListener(UtilAdd);
         OnUtilRemoved.RemoveListener(UtilRemove);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Grid")
+        {
+            // Appelle ici la logique de OnEnable
+            SetupShipConstruct();
+        }
+    }
+
+    // Place ici tout le code de ton OnEnable (sauf le Singleton/DontDestroyOnLoad)
+    private void SetupShipConstruct()
+    {
+
+        Debug.LogWarning("On setup le ShipConstruct");
+        isCockpitPlaced = false;
+        CockpitCount = 0;
+        isEnginePlaced = false;
+        EngineCount = 0;
+        MaxWeight = 0;
+        CurrentWeight = 0;
+        ValidBtn = GameObject.FindGameObjectWithTag("ValidBtn").GetComponent<Button>();
+        ValidBtn.onClick.AddListener(ReassignChildrenToPlayerShip);
+        PlayerShip = GameObject.FindGameObjectWithTag("PlayerShip");
+        weightSlider = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
+        errorText = GameObject.FindGameObjectWithTag("LogError").GetComponent<TextMeshProUGUI>();
+        gridObj = FindFirstObjectByType<GridManager>().gameObject;
+        playerShipSO = Resources.Load<PlayerShipSO>("ScriptableObjects/PlayerShipSO");
+        floorListSO = Resources.Load<FloorListSO>("ScriptableObjects/FloorList");
+        engineListSO = Resources.Load<EngineListSO>("ScriptableObjects/EngineList");
+        weaponListSO = Resources.Load<WeaponListSO>("ScriptableObjects/WeaponList");
+        UpdateWeight();
     }
 
     private void UtilRemove(UtilityType type)
@@ -69,17 +117,11 @@ public class ShipConstruct : MonoBehaviour
     private void OnPilotSelected(Pilot pilot)
     {
         Pilot = pilot;
-        SceneManager.LoadScene("Space");
+        SceneLoader.LoadScene("MissionSelection");
     }
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
-        gridObj = FindFirstObjectByType<GridManager>().gameObject;
-        playerShipSO = Resources.Load<PlayerShipSO>("ScriptableObjects/PlayerShipSO");
-        floorListSO = Resources.Load<FloorListSO>("ScriptableObjects/FloorList");
-        engineListSO = Resources.Load<EngineListSO>("ScriptableObjects/EngineList");
-        weaponListSO = Resources.Load<WeaponListSO>("ScriptableObjects/WeaponList");
     }
 
     public void ReassignChildrenToPlayerShip()

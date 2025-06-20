@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelection.unity
     guid: 131a90f95f96d0b44a8e75aa8021cf75
   - enabled: 1
-    path: Assets/Scenes/old/Game.unity
-    guid: cd18bbb166cc00149ac047580e2ee60e
+    path: Assets/Scenes/MissionSelection.unity
+    guid: a53926ddd43cf2446a3161d99124b920
   - enabled: 1
     path: Assets/Scenes/Space.unity
     guid: de1a736aff03d0549b6d56deef7fd6a0

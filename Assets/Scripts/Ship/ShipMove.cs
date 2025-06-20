@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class ShipMove : MonoBehaviour
 {
@@ -27,7 +28,26 @@ public class ShipMove : MonoBehaviour
     private float zigzagTimer = 0f;
 
     Rigidbody rb;
-
+    private void OnEnable()
+    {
+        ShipColliderSetup.OnShipEnter += OnShipEnter;
+        ShipColliderSetup.OnShipExit += OnShipExit;
+    }
+    private void OnDisable()
+    {
+        ShipColliderSetup.OnShipEnter -= OnShipEnter;
+        ShipColliderSetup.OnShipExit -= OnShipExit;
+    }
+    void OnShipEnter() 
+    {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        Debug.Log("Ship entered, constraints set to FreezeAll");
+    }
+    public void OnShipExit()
+    {
+        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        Debug.Log("Ship exited, constraints set to FreezePositionY and FreezeRotation");
+    }
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
