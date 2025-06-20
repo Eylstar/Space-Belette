@@ -11,6 +11,12 @@ TagManager:
   - Bloc
   - Floor
   - PlayerCam
+  - Slider
+  - LogError
+  - PlayerShip
+  - ValidBtn
+  - Grid
+  - Text
   layers:
   - Default
   - TransparentFX
