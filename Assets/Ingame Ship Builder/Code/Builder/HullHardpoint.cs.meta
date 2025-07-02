@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fac20c41e5024344683aa5bc631b4082
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Code/Builder/HullHardpoint.cs
+  uploadId: 709485

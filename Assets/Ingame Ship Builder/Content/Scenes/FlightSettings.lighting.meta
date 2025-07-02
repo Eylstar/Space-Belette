@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9524d317b8fca224080c759ef3e8e2a6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Scenes/FlightSettings.lighting
+  uploadId: 709485

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c131e022675b3e74cae96145fdc59dd1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Builder/Components/aft_superstructure.prefab
+  uploadId: 709485

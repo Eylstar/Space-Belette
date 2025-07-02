@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 923a87f8290541b4fbf490a697afd67b
+timeCreated: 1540741850
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Code/Ship/Models/Fighter.asset
+  uploadId: 709485

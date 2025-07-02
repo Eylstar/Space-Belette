@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2e8c2f9c7d1bc0844939346ce5d4db23
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Game/Components/engine_right.prefab
+  uploadId: 709485

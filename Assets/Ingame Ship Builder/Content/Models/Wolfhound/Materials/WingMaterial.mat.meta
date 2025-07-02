@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f2bc89dea44e9274fb132e98fc3fe4c7
+timeCreated: 1513537742
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Models/Wolfhound/Materials/WingMaterial.mat
+  uploadId: 709485

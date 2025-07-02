@@ -8,10 +8,10 @@ public class PlayerUI : MonoBehaviour
     private void OnEnable()
     {
         playerStats = FindFirstObjectByType<PlayerStats>();
-        PlayerMoneyDisplay.text = $"{PlayerStats.Money}$";
+        PlayerMoneyDisplay.text = $"{PlayerStats.player.Money}$";
     }
     private void Update()
     {
-        PlayerMoneyDisplay.text = $"{PlayerStats.Money}$";
+        PlayerMoneyDisplay.text = $"{PlayerStats.player.Money}$";
     }
 }

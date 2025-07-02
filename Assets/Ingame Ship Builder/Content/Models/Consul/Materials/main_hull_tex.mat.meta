@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bae62984c2237af4da81b28cb240bc3c
+timeCreated: 1539812921
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Models/Consul/Materials/main_hull_tex.mat
+  uploadId: 709485

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: edb72a6a2a9932943851cec59a3bbefb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Builder/Components/wolfhound_engine_left.prefab
+  uploadId: 709485

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e013c84f15f3bab4a8a6b6b8ebdc3ecb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Code/Sectors/ShipLoader.cs
+  uploadId: 709485

@@ -12,8 +12,25 @@ public class Spawner : MonoBehaviour
     
     [SerializeField] List<SpawnWave> spawnWaves;
     [SerializeField] List<SpawnWave> optionalSpawnWaves;
-    
+
+    public static event Action EndMission;
+
     float timeElapsed = 0f;
+
+    private void OnEnable()
+    {
+        spawnWaves = new();
+        optionalSpawnWaves = new();
+
+        foreach (SpawnRulesSO wave in MissionManager.CurrentMission.MainWaves)
+        {
+            spawnWaves.Add(new SpawnWave { spawnRules = wave });
+        }
+        foreach (SpawnRulesSO wave in MissionManager.CurrentMission.OptionalWaves)
+        {
+            optionalSpawnWaves.Add(new SpawnWave { spawnRules = wave });
+        }
+    }
 
     void Start()
     {
@@ -37,7 +54,6 @@ public class Spawner : MonoBehaviour
             wave.SpawnRulesInitialisation();
         }
     }
-    
     void Spawn(SpawnRule sr)
     {
         int c = sr.spawnCount + Mathf.RoundToInt(sr.spawnCount * sr.spawnDeltaPercentage * Random.Range(-1f, 1f));
@@ -147,6 +163,7 @@ public class Spawner : MonoBehaviour
                 }
                 wave.Disable();
             }
+            EndMission?.Invoke();
         }
     }
 

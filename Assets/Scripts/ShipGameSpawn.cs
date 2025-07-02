@@ -7,12 +7,12 @@ public class ShipGameSpawn : MonoBehaviour
     
     private void Awake()
     {
-        /*shipCons = FindFirstObjectByType<ShipConstruct>();
+        shipCons = FindFirstObjectByType<ShipConstruct>();
         shipCons.LoadPlayerShip();
         shipCons.PlayerShip.transform.position = spawnTransform.position;
         shipCons.PlayerShip.transform.rotation = spawnTransform.rotation;
         shipCons.PlayerShip.transform.parent = spawnTransform.transform;
-        
-        FindFirstObjectByType<PlayerMove>(FindObjectsInactive.Include).SetupWalking();*/
+
+        FindFirstObjectByType<PlayerMove>(FindObjectsInactive.Include).SetupWalking();
     }
 }

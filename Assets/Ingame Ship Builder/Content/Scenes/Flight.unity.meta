@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2aaba6316bc440345a6869dfbbebc18a
+timeCreated: 1503449997
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Scenes/Flight.unity
+  uploadId: 709485

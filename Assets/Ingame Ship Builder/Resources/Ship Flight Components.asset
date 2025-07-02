@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b548dea61e4fd4dba5550370b01107, type: 3}
+  m_Name: Ship Flight Components
+  m_EditorClassIdentifier: 
+  HullPrefabs:
+  - {fileID: 6770973880161414208, guid: d45198d3f0968d74cba83000bbcbe693, type: 3}
+  - {fileID: 6685842534458269643, guid: 9cef4f6e4b2e1c0498267c5fd846c4e5, type: 3}
+  ComponentPrefabs:
+  - {fileID: 117727563928738915, guid: 8e987b02e9fa5ec479370a48a68e2541, type: 3}
+  - {fileID: 4404596059774040135, guid: 057acaf04d68faa45893077f0df0e37f, type: 3}
+  - {fileID: 3639575165406797249, guid: 8b4bf06b222aa6b47b2d593b686266ff, type: 3}
+  - {fileID: 241507866156102753, guid: 72868e7c98c15aa468cf6a803ebb4c93, type: 3}
+  - {fileID: 2464058991234180267, guid: 57d340181a6ee844facb3d6144863674, type: 3}
+  - {fileID: 2464058991234180259, guid: e722206b1344e78409500f3321464e5f, type: 3}
+  - {fileID: 2464058991234180281, guid: 2e8c2f9c7d1bc0844939346ce5d4db23, type: 3}
+  - {fileID: 2464058991234180269, guid: cde1d333d8dc98f4ebe03c01064d1cbb, type: 3}
+  - {fileID: 5274805572210870823, guid: caa35df8dc1e6ca4aa389aa7165937c0, type: 3}
+  - {fileID: 5274805572210870817, guid: 787876f57401c04478593c314d952d4a, type: 3}
+  - {fileID: 5274805572210870821, guid: b011b24ce9a9ef04e8601954cbaebea1, type: 3}
+  - {fileID: 5274805572210870819, guid: 552722b8b592c9e48b3d9caa5873f3ce, type: 3}
+  ComponentIcons: []

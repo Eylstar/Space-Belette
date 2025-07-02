@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 36d2e2012b3f48b47b3660a7154fc07f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: aft_superstructure_LOD0
+    100002: aft_superstructure_LOD1
+    100004: aft_superstructure_LOD2
+    100006: cargo_pod_LOD0
+    100008: cargo_pod_LOD1
+    100010: cargo_pod_LOD2
+    100012: //RootNode
+    100014: engine_left_LOD0
+    100016: engine_left_LOD1
+    100018: engine_left_LOD2
+    100020: engine_right_LOD0
+    100022: engine_right_LOD1
+    100024: engine_right_LOD2
+    100026: main_hull_LOD0
+    100028: main_hull_LOD1
+    100030: main_hull_LOD2
+    400000: aft_superstructure_LOD0
+    400002: aft_superstructure_LOD1
+    400004: aft_superstructure_LOD2
+    400006: cargo_pod_LOD0
+    400008: cargo_pod_LOD1
+    400010: cargo_pod_LOD2
+    400012: //RootNode
+    400014: engine_left_LOD0
+    400016: engine_left_LOD1
+    400018: engine_left_LOD2
+    400020: engine_right_LOD0
+    400022: engine_right_LOD1
+    400024: engine_right_LOD2
+    400026: main_hull_LOD0
+    400028: main_hull_LOD1
+    400030: main_hull_LOD2
+    2100000: engine_mat
+    2100002: cargo_pod_mat
+    2100004: superstructure_mat
+    2100006: main_hull_mat
+    2100008: glass
+    2300000: aft_superstructure_LOD0
+    2300002: aft_superstructure_LOD1
+    2300004: aft_superstructure_LOD2
+    2300006: cargo_pod_LOD0
+    2300008: cargo_pod_LOD1
+    2300010: cargo_pod_LOD2
+    2300012: engine_left_LOD0
+    2300014: engine_left_LOD1
+    2300016: engine_left_LOD2
+    2300018: engine_right_LOD0
+    2300020: engine_right_LOD1
+    2300022: engine_right_LOD2
+    2300024: main_hull_LOD0
+    2300026: main_hull_LOD1
+    2300028: main_hull_LOD2
+    3300000: aft_superstructure_LOD0
+    3300002: aft_superstructure_LOD1
+    3300004: aft_superstructure_LOD2
+    3300006: cargo_pod_LOD0
+    3300008: cargo_pod_LOD1
+    3300010: cargo_pod_LOD2
+    3300012: engine_left_LOD0
+    3300014: engine_left_LOD1
+    3300016: engine_left_LOD2
+    3300018: engine_right_LOD0
+    3300020: engine_right_LOD1
+    3300022: engine_right_LOD2
+    3300024: main_hull_LOD0
+    3300026: main_hull_LOD1
+    3300028: main_hull_LOD2
+    4300000: engine_left_LOD2
+    4300002: engine_left_LOD1
+    4300004: cargo_pod_LOD2
+    4300006: cargo_pod_LOD1
+    4300008: aft_superstructure_LOD2
+    4300010: aft_superstructure_LOD1
+    4300012: engine_right_LOD2
+    4300014: engine_right_LOD1
+    4300016: main_hull_LOD2
+    4300018: main_hull_LOD1
+    4300020: engine_left_LOD0
+    4300022: cargo_pod_LOD0
+    4300024: aft_superstructure_LOD0
+    4300026: engine_right_LOD0
+    4300028: main_hull_LOD0
+    20500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.01
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Models/Consul/consul.fbx
+  uploadId: 709485

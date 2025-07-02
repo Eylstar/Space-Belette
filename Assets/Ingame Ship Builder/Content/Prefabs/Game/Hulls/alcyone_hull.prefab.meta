@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d45198d3f0968d74cba83000bbcbe693
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Game/Hulls/alcyone_hull.prefab
+  uploadId: 709485

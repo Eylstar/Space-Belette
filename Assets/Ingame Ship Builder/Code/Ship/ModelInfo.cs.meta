@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 65b9cb72fe451e445ac499d1d46a070b
+timeCreated: 1540736973
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Code/Ship/ModelInfo.cs
+  uploadId: 709485

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b011b24ce9a9ef04e8601954cbaebea1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Game/Components/wolfhound_wing_left.prefab
+  uploadId: 709485

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 07dae3816576b8c4a96467342f6ab4c1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Builder/Component image.prefab
+  uploadId: 709485

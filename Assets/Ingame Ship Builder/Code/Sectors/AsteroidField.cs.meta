@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: b26935f1a42396344ab754e3d8171197
+timeCreated: 1471392802
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Code/Sectors/AsteroidField.cs
+  uploadId: 709485

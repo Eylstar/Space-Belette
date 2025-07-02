@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 851ce2bf2a534ce43a45c80ed6cb12f9
+timeCreated: 1539895903
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Models/Consul/Materials/engine_tex.mat
+  uploadId: 709485

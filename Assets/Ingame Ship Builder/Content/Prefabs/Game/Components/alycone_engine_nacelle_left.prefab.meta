@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 72868e7c98c15aa468cf6a803ebb4c93
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Game/Components/alycone_engine_nacelle_left.prefab
+  uploadId: 709485

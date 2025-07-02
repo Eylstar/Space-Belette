@@ -23,6 +23,6 @@ public class PBonusAtEnd : Skill
         int totalXp = xp + (xp * XpPercentBonus / 100);
         int totalCurrency = currency + (currency * CurrencyPercentBonus / 100);
         pilotToUp.AddExperience(totalXp);
-        PlayerStats.ChangeMoneyUp(totalCurrency);
+        PlayerStats.player.ChangeMoneyUp(totalCurrency);
     }
 }

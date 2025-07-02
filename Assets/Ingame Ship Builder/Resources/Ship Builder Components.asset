@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b548dea61e4fd4dba5550370b01107, type: 3}
+  m_Name: Ship Builder Components
+  m_EditorClassIdentifier: 
+  HullPrefabs:
+  - {fileID: 6770973880161414208, guid: d4ab19ed539bd1d4e9e31a198e5c5528, type: 3}
+  - {fileID: 1982604237786307390, guid: cef56ab6a0eeffb4ca33a25f0dae7d6f, type: 3}
+  - {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+  - {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
+  ComponentPrefabs:
+  - {fileID: 117727563928738915, guid: 1557703ff6e15ca4a9fe76d68a4832bb, type: 3}
+  - {fileID: 4404596059774040135, guid: 4202c4348d1532c49a54a8af3a6f94d8, type: 3}
+  - {fileID: 3639575165406797249, guid: f4e9f9bbba6cd2d4d97a6d5b5e42723a, type: 3}
+  - {fileID: 241507866156102753, guid: cd63c197647d37e46973dfd89dcb6960, type: 3}
+  - {fileID: 5823956682262977928, guid: fefe7cd19b0080b4eb82d9e22573a0ed, type: 3}
+  - {fileID: 7570159153011068124, guid: 98061541749083942b925d9b02a75d3a, type: 3}
+  - {fileID: 4263243619262061386, guid: 0bc6acc7697253541aa10cee2026d85c, type: 3}
+  - {fileID: 818962297176341462, guid: c131e022675b3e74cae96145fdc59dd1, type: 3}
+  - {fileID: 2858098925445655699, guid: edb72a6a2a9932943851cec59a3bbefb, type: 3}
+  - {fileID: 8023271286479103381, guid: 4cc096bd3d5812346ab23273de664509, type: 3}
+  - {fileID: 8544473758400044053, guid: 4c030de607c109840b325bf1e927bc4e, type: 3}
+  - {fileID: 3411889827433490437, guid: c80952f29e366234f9f8ce3c30dca443, type: 3}
+  - {fileID: 689339494352841324, guid: 69a4f88fdb7016d4bb5722de6fc9defc, type: 3}
+  - {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+  - {fileID: 1247817801364433646, guid: 8c9bf607c7b92c440abf8b2486896965, type: 3}
+  ComponentIcons:
+  - {fileID: 21300000, guid: 8306c84d5a4cbed43b0e2863d6292110, type: 3}
+  - {fileID: 21300000, guid: 7a0f9ccb7d666124c9c0e9c59ac86293, type: 3}
+  - {fileID: 21300000, guid: 2ded049cd2f86f44f91c493eefd7968f, type: 3}
+  - {fileID: 21300000, guid: 373301d8a183347408ea0991eb1652d1, type: 3}
+  - {fileID: 21300000, guid: 10baa30858189954a8577cb58f237350, type: 3}
+  - {fileID: 21300000, guid: 264e0ecfe79bc3f4e83cce890e3066e0, type: 3}
+  - {fileID: 21300000, guid: d2fef7837889ba04b971aca8b0fc69dc, type: 3}
+  - {fileID: 21300000, guid: 924d704d55485604299a2e1860a1ef60, type: 3}
+  - {fileID: 21300000, guid: 09f183e580c491248b5f824dcd76d09c, type: 3}
+  - {fileID: 21300000, guid: 30b288d8663b1b948bed82832ba41541, type: 3}
+  - {fileID: 21300000, guid: d02f99518cad2bb4797f52ed735a6834, type: 3}
+  - {fileID: 21300000, guid: 1574b630ef2c8aa44aa6d427acce9cae, type: 3}
+  - {fileID: 21300000, guid: a5ff23d874e24c54282e53096d84b122, type: 3}
+  - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
+  - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}

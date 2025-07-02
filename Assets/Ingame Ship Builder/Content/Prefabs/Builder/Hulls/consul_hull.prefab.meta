@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cef56ab6a0eeffb4ca33a25f0dae7d6f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Builder/Hulls/consul_hull.prefab
+  uploadId: 709485

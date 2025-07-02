@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8e987b02e9fa5ec479370a48a68e2541
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Game/Components/alcyone_engine_nacelle_right.prefab
+  uploadId: 709485

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d5ce16f073f08a14c9640aa54133af03
+timeCreated: 1513200593
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Models/Alcyone/Materials/glass__hulltex.mat
+  uploadId: 709485

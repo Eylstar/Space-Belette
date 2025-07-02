@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fefe7cd19b0080b4eb82d9e22573a0ed
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Builder/Components/cargo_pod.prefab
+  uploadId: 709485

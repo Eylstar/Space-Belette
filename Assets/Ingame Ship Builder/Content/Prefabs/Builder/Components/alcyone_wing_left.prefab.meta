@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4202c4348d1532c49a54a8af3a6f94d8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140882
+  packageName: Ingame Spaceship Builder
+  packageVersion: 1.1.0
+  assetPath: Assets/Ingame Ship Builder/Content/Prefabs/Builder/Components/alcyone_wing_left.prefab
+  uploadId: 709485
