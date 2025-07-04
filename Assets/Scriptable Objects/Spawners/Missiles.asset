@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b618b5c307558440ae57ab7482dd395, type: 3}
+  m_Name: Missiles
+  m_EditorClassIdentifier: 
+  spawnRules:
+  - spawnType: 0
+    spawnCount: 1
+    spawnDeltaPercentage: 0
+    spawnRate: 1
+    distanceFromPlayerToSpawn: 200
+    waveCompletionType: 2
+    waveSecondsDurationOrEnemiesToKill: 0
+    groupDispersion: 0
+    singleRandomOffset: 0
+    prefabsToSpawn:
+    - prefab: {fileID: 8787239336557295923, guid: f3a81693fd6a3ae4ea46d0ca7f5b065b, type: 3}
+      weight: 0
+    maxSpawnCount: 0
+    despawnDistance: 0

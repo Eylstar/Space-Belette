@@ -25,8 +25,12 @@ public class SpawnRulesSO : ScriptableObject
     [UnityEngine.Range(1, 3)] public float groupDispersion;
     [UnityEngine.Range(0, 1)] public float singleRandomOffset;
     public List<WeightedPrefab> prefabsToSpawn;
+    
+    public int maxSpawnCount;
+    public float despawnDistance;
 
     float killOrTimeRemaining;
+
 
     public void Init()
     {

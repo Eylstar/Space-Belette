@@ -136,14 +136,16 @@ MonoBehaviour:
   hitPower: 1
   collisionType: 0
   collisionFilter: 020000000300000000000000
+  canShoot: 1
   rotationSpeed: 3
-  moveSpeed: 1000
+  moveSpeed: 13
   bulletPrefab: {fileID: 8708950737766626871, guid: 0b7475d637cb4b643bfe1f89cd645c76, type: 3}
   bulletSpawnPoint: {fileID: 2733333849437231326}
   distanceToPlayerToShoot: 40
   bulletSpeed: 100
   fireRate: 0.5
   explosionPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  distanceMinimumToPlayer: 25
 --- !u!54 &-4234307500111750200
 Rigidbody:
   m_ObjectHideFlags: 0

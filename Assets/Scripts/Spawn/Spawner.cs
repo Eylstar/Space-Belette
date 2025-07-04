@@ -47,7 +47,7 @@ public class Spawner : MonoBehaviour
         float distanceFromPlayer  = sr.distanceFromPlayerToSpawn;
         Vector3 center = new Vector3(player.transform.position.x + distanceFromPlayer * Mathf.Cos(angle * Mathf.Deg2Rad), 0, player.transform.position.z + distanceFromPlayer * Mathf.Sin(angle * Mathf.Deg2Rad));
         
-        float objectSize = prefab.GetComponent<Renderer>()?.bounds.size.magnitude ?? 1f;
+        float objectSize = prefab.GetComponent<Renderer>() != null ? prefab.GetComponent<Renderer>()?.bounds.size.magnitude ?? 1f : prefab.GetComponent<Collider>().bounds.size.magnitude;
         float spacing = objectSize * sr.groupDispersion;
         float radius = spacing / (2f * Mathf.Sin(Mathf.PI / c));
         

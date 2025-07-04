@@ -4,6 +4,8 @@ using UnityEngine;
 public class Enemy : Destroyable, ISpawnable
 {
     protected EnemiesManager enemiesManager;
+
+    [SerializeField] protected bool canShoot;
     
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected float moveSpeed;
@@ -11,10 +13,10 @@ public class Enemy : Destroyable, ISpawnable
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnPoint;
     
-    [SerializeField] float distanceToPlayerToShoot;
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float fireRate;
-    float timer = 0f;
+    [SerializeField] protected float distanceToPlayerToShoot;
+    [SerializeField] protected float bulletSpeed;
+    [SerializeField] protected float fireRate;
+    protected float timer = 0f;
     
     protected GameObject playerShip;
     protected Rigidbody rb;
@@ -39,11 +41,14 @@ public class Enemy : Destroyable, ISpawnable
     protected void Update()
     {
         timer += Time.deltaTime;
-        float distanceToPlayer = Vector3.Distance(transform.position, playerShip.transform.position);
-        if (distanceToPlayer <= distanceToPlayerToShoot && timer >= fireRate)
+        if (canShoot)
         {
-            Shoot();
-            timer = 0f;
+            float distanceToPlayer = Vector3.Distance(transform.position, playerShip.transform.position);
+            if (distanceToPlayer <= distanceToPlayerToShoot && timer >= fireRate)
+            {
+                Shoot();
+                timer = 0f;
+            }
         }
     }
 
