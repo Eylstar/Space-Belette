@@ -25,7 +25,6 @@ public class ShipLoader : MonoBehaviour
         }
 
         hull.GetComponent<Ship>().isPlayerShip = true;
-        Camera.main.GetComponent<CameraController>().SetTargetShip(hull.GetComponent<Ship>());
     }
 
 }

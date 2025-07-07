@@ -6,50 +6,31 @@ using UnityEngine;
 /// <summary>
 /// Ties all the primary ship components together
 /// </summary>
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(ShipCockpitControls))]
-[RequireComponent(typeof(ShipEngines))]
+
 public class Ship : MonoBehaviour
 {
     #region From Assets/IngameShip
-    #region ship components
-    // Player controls
-    public ShipCockpitControls PlayerInput
-    {
-        get { return playerInput; }
-    }
-    private ShipCockpitControls playerInput;
 
-    // Ship rigidbody physics
-    public ShipEngines Thrusters
-    {
-        get { return thrusters; }
-    }
-    private ShipEngines thrusters;
-    #endregion ship components
+    //public bool UsingMouseInput
+    //{
+    //    set { playerInput.useMouseInput = value; }
+    //    get { return playerInput.useMouseInput; }
+    //}
 
-    public bool UsingMouseInput
-    {
-        set { playerInput.useMouseInput = value; }
-        get { return playerInput.useMouseInput; }
-    }
+    //public Vector3 Velocity
+    //{
+    //    get { return rbody.linearVelocity; }
+    //}
 
-    public Vector3 Velocity
-    {
-        get { return rbody.linearVelocity; }
-    }
+    //public float Throttle
+    //{
+    //    get { return playerInput.throttle; }
+    //}
 
-    public float Throttle
-    {
-        get { return playerInput.throttle; }
-    }
-
-    public bool InSupercruise {
-        get { return thrusters.InSupercruise; }
-        set { thrusters.InSupercruise = value;    }
-    }
-
-    private Rigidbody rbody;
+    //public bool InSupercruise {
+    //    get { return thrusters.InSupercruise; }
+    //    set { thrusters.InSupercruise = value;    }
+    //}
 
     // Editor assignable properties
     [Tooltip("The model info holder which contains all data for this ship model")]
@@ -61,17 +42,9 @@ public class Ship : MonoBehaviour
 
     private void Awake()
     {
-        rbody = GetComponent<Rigidbody>();
-        playerInput = GetComponent<ShipCockpitControls>();
-        thrusters = GetComponent<ShipEngines>();
-
         shipMove = FindFirstObjectByType<ShipMove>();
         shipShoot = FindFirstObjectByType<ShipShoot>();
 
-        if (playerInput == null || thrusters == null)
-        {
-            Debug.LogError("Component not found on ship " + name);
-        }
     }
 
     private void Start()
@@ -84,10 +57,10 @@ public class Ship : MonoBehaviour
     /// <summary>
     /// Turns the engine on and off.
     /// </summary>
-    public void ToggleEngine(Light engineTorch)
-    {
-        thrusters.ToggleEngines(engineTorch);
-    }
+    //public void ToggleEngine(Light engineTorch)
+    //{
+    //    thrusters.ToggleEngines(engineTorch);
+    //}
     #endregion
     #region SpaceBelette
 
@@ -129,7 +102,7 @@ public class Ship : MonoBehaviour
                     break;
                 case ShipProp.PropType.Engine:
                     MaxLife += prop.BonusLife;
-                    engineCount += prop.EngineCount;
+                    engineCount += 1;
                     break;
                 case ShipProp.PropType.Utility:
                     MaxLife += prop.BonusLife;
@@ -137,6 +110,7 @@ public class Ship : MonoBehaviour
                     break;
             }
         }
+        Debug.Log($"Engine number : {engineCount}");
         shipMove.SpeedModificator(engineCount);
         CurrentLife = MaxLife;
     }
