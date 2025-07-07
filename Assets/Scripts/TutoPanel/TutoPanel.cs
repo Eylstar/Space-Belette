@@ -17,7 +17,7 @@ public class TutoPanel : MonoBehaviour
         // Si on est au dernier élément, changer de scène
         if (currentIndex == Tutolist.Count - 1)
         {
-            SceneManager.LoadScene("Grid");
+            SceneManager.LoadScene("ShipBuilder");
             return;
         }
 

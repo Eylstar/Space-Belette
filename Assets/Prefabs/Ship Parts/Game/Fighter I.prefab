@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1039860224875995044
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171054321384484797, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      propertyPath: m_Name
+      value: Fighter I
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2113456824560976000, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 6103559604111340547, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+    - {fileID: 1912130774241402499, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+    - {fileID: 4392482630155839070, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+    - {fileID: 1518995973527936189, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+    - {fileID: 5194304447477031487, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 513410169530818566}
+    - targetCorrespondingSourceObject: {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8079585807056578194}
+    - targetCorrespondingSourceObject: {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3013035571004424482}
+    - targetCorrespondingSourceObject: {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3142818864593447880}
+  m_SourcePrefab: {fileID: 100100000, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+--- !u!1 &2172332685347710143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
+  m_PrefabInstance: {fileID: 1039860224875995044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &513410169530818566
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172332685347710143}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!114 &-8079585807056578194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172332685347710143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b9a4171d285154f9c3c247353fb730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addRoll: 1
+  useMouseInput: 1
+  pitch: 0
+  yaw: 0
+  roll: 0
+  strafe: 0
+  throttle: 0
+--- !u!114 &-3013035571004424482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172332685347710143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50f670a7dea945489b01d6adedb472f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3142818864593447880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172332685347710143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b58cb9e30ec724fb88a15da2da0354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShipModelInfo: {fileID: 11400000, guid: fbd97ef3606778c47991e2f243e0a98a, type: 2}
+  isPlayerShip: 0
+  CurrentLife: 0
+  MaxLife: 100
+  ShootPoints: []
+  ShipProps: []
+  shipMove: {fileID: 0}
+  shipShoot: {fileID: 0}

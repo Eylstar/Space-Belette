@@ -3,16 +3,31 @@ using UnityEngine;
 public class ShipGameSpawn : MonoBehaviour
 {
     [SerializeField] Transform spawnTransform;
-    ShipConstruct shipCons;
-    
+    public ShipBuilderComponents Components;
+
     private void Awake()
     {
-        shipCons = FindFirstObjectByType<ShipConstruct>();
-        shipCons.LoadPlayerShip();
-        shipCons.PlayerShip.transform.position = spawnTransform.position;
-        shipCons.PlayerShip.transform.rotation = spawnTransform.rotation;
-        shipCons.PlayerShip.transform.parent = spawnTransform.transform;
+        SerializableShipData data = SerializableShipData.LoadFromFile(ShipBuilderController.SAVE_FOLDER + "TestSnapshot.ship");
 
-        FindFirstObjectByType<PlayerMove>(FindObjectsInactive.Include).SetupWalking();
+        // Spawn the hull
+        GameObject hull = Instantiate(Components.GetHullByName(data.HullName),spawnTransform.position,spawnTransform.rotation,spawnTransform);
+        //hull.transform.localScale = Vector3.one*1.5f;
+
+        // Spawn the components
+        foreach (var mountedComponent in data.Components)
+        {
+            if (mountedComponent.ComponentName == "")
+                continue;
+
+            Instantiate(
+                Components.GetComponentByName(mountedComponent.ComponentName.Replace("(Clone)", "").Trim()),
+                mountedComponent.Position,
+                Quaternion.Euler(mountedComponent.Rotation),
+                hull.transform);
+        }
+
+        hull.GetComponent<Ship>().isPlayerShip = true;
+        //Camera.main.GetComponent<CameraController>().SetTargetShip(hull.GetComponent<Ship>());
     }
+
 }

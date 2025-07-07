@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 8573625272599689246}
   - component: {fileID: 3577673301797450926}
   - component: {fileID: 7570899727174129912}
-  - component: {fileID: 6078430692307099920}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -152,8 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6823619ce5cb91a4dbbc039756cd2516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootPoints: []
   bulletPrefab: {fileID: 8708950737766626871, guid: fc332b02d299c0a4e842b63d9aa79415, type: 3}
   shootPoint: {fileID: 1629531236617098650}
+  shipManager: {fileID: 0}
   bulletSpeed: 50
   shootRate: 0.125
   factor: 1
@@ -169,6 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afe94cd809b65940ad2701e93895fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraHolder: {fileID: 0}
+  cam: {fileID: 0}
   lerpStrength: 0.08
   offset: {x: 0, y: 10, z: 0}
   MaxSize: 80
@@ -214,18 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTransform: {fileID: 797516557542050539}
---- !u!114 &6078430692307099920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3143081865424624480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29f7fe611bc95a44e880c08406bafa49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Components: {fileID: 11400000, guid: 5defc661b5685d94483b521a32020e49, type: 2}
 --- !u!1 &5278054319652768318
 GameObject:
   m_ObjectHideFlags: 0

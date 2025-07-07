@@ -9,7 +9,7 @@ public class AFireRate : Skill
     public float effectDuration = 4f;
     public float cooldownDuration = 20f;
 
-    public override void Apply(ShipManager ship, Pilot pilot)
+    public override void Apply(Ship ship, Pilot pilot)
     {
         // Appelé à chaque frame depuis ShipManager.Update()
         if (!isActive && cooldownTimer <= 0f && Input.GetKeyDown(KeyCode.Space))
@@ -34,7 +34,7 @@ public class AFireRate : Skill
         }
     }
 
-    private void Activate(ShipManager ship)
+    private void Activate(Ship ship)
     {
         isActive = true;
         effectTimer = effectDuration;
@@ -46,7 +46,7 @@ public class AFireRate : Skill
         // Tu peux ajouter un feedback visuel ici
     }
 
-    public override void Remove(ShipManager ship, Pilot pilot)
+    public override void Remove(Ship ship, Pilot pilot)
     {
         if (isActive)
         {

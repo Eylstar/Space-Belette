@@ -8,8 +8,6 @@ public class PlayerStats : MonoBehaviour
     private void OnEnable()
     {
         player = Resources.Load<PlayerStatsSo>("ScriptableObjects/PlayerStatsSO");
-        Bloc.OnFloorPlaced.AddListener(player.ChangeMoneyDown);
-        Bloc.OnFloorRemoved.AddListener(player.ChangeMoneyUp);
         EndMission.MissionReward += GetReward;
     }
 
@@ -21,8 +19,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnDisable()
     {
-        Bloc.OnFloorPlaced.RemoveListener(player.ChangeMoneyDown);
-        Bloc.OnFloorRemoved.RemoveListener(player.ChangeMoneyUp);
+        EndMission.MissionReward -= GetReward;
     }
 
 }

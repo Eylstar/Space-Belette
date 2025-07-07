@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndMission : MonoBehaviour
@@ -16,22 +17,22 @@ public class EndMission : MonoBehaviour
     public static event Action<int, int> MissionReward;
     private void OnEnable()
     {
-        pilot = FindFirstObjectByType<ShipManager>().MainPilot;
+        pilot = Ship.MainPilot;
         PilotXp.text = string.Empty;
         Currency.text = string.Empty;
         EndPanel.SetActive(false);
         mission = MissionManager.CurrentMission;
-        ShipManager.PlayerDeath += MissionFail;
+        //ShipManager.PlayerDeath += MissionFail;
         Spawner.EndMission += MissionComplete;
     }
     private void OnDisable()
     {
-        ShipManager.PlayerDeath -= MissionFail;
+        //ShipManager.PlayerDeath -= MissionFail;
         Spawner.EndMission -= MissionComplete;
     }
     private void BackToMenu()
     {
-        SceneLoader.LoadScene("Grid");
+        SceneManager.LoadScene("ShipBuilder");
     }
     void MissionFail()
     {

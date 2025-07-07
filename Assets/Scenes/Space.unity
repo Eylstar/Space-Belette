@@ -1063,7 +1063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1649264279
 Transform:
   m_ObjectHideFlags: 0
@@ -1523,6 +1523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Instancied
       objectReference: {fileID: 0}
+    - target: {fileID: 7570899727174129912, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: Components
+      value: 
+      objectReference: {fileID: 11400000, guid: 5defc661b5685d94483b521a32020e49, type: 2}
     - target: {fileID: 7690656824598173793, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1535,7 +1539,8 @@ PrefabInstance:
       propertyPath: cameraHolder
       value: 
       objectReference: {fileID: 506136616}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6078430692307099920, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4648167457882114383, guid: 84df2de9285eb40479a8450c072a6661, type: 3}

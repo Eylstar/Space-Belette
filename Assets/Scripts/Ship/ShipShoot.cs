@@ -7,16 +7,15 @@ using UnityEngine.Rendering;
 
 public class ShipShoot : MonoBehaviour
 {
-    List<Bloc> weapons = new();
-    List<Transform> shootPoints = new();
+    public List<Transform> shootPoints = new();
     Camera cam;
-    
+
     InputAction rotation;
     InputAction shoot;
-    
+
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform shootPoint;
-    ShipManager shipManager;
+    [SerializeField] Ship shipManager;
     [SerializeField] float bulletSpeed = 10f;
     [SerializeField] float shootRate = 0.1f;
     public float factor = 1;
@@ -41,19 +40,13 @@ public class ShipShoot : MonoBehaviour
     {
         cam = Camera.main;
         shipMove = GetComponent<ShipMove>();
-        shipManager = GetComponentInChildren<ShipManager>();
+        shipManager = Ship.PlayerShip;
         rotation = InputSystem.actions.FindAction("Aim");
         shoot = InputSystem.actions.FindAction("Shoot");
-        
+
         rotation.performed += GetLookDirection;
         shoot.started += OnShootStarted;
         shoot.canceled += OnShootCanceled;
-
-        weapons = shipManager.ShootBlocs;
-        foreach (Bloc f in weapons)
-        {
-            shootPoints.Add(f.BulletSpawn);
-        }
     }
     private void OnShootStarted(InputAction.CallbackContext ctx)
     {
@@ -87,7 +80,7 @@ public class ShipShoot : MonoBehaviour
     {
         ProcessRotation();
     }
-    
+
     void ProcessRotation()
     {
         if (lookDirection == Vector2.zero) return;
@@ -95,7 +88,7 @@ public class ShipShoot : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(initialRotation.eulerAngles.x, angle, initialRotation.eulerAngles.z);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 25);
     }
-    
+
     void Shoot()
     {
         if (shipManager == null)
@@ -110,7 +103,7 @@ public class ShipShoot : MonoBehaviour
             bullet.GetComponent<Projectile>().SetSpeed((bulletSpeed * factor) + shipMove.GetCurrentVelocity().magnitude);
         }
     }
-    
+
     public void UpdateShootRate()
     {
         // Annule le tir en cours

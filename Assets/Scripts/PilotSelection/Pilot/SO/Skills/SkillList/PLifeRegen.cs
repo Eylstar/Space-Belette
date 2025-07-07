@@ -4,7 +4,7 @@ public class PLifeRegen : Skill
 {
     public int RegenEffect;
     float timer;
-    public override void Apply(ShipManager ship, Pilot pilot)
+    public override void Apply(Ship ship, Pilot pilot)
     {
         timer += Time.deltaTime;
         if (timer >= 1f) 
@@ -16,7 +16,7 @@ public class PLifeRegen : Skill
         }
     }
 
-    public override void Remove(ShipManager ship, Pilot pilot)
+    public override void Remove(Ship ship, Pilot pilot)
     {
     }
 }

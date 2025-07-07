@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class SetupTmpUI : MonoBehaviour
 {
-    [SerializeField] TMP_FontAsset font;
-    [Button]
-    public void ReplaceAllFonts()
-    {
-        TextMeshProUGUI[] texts = GameObject.FindObjectsByType<TextMeshProUGUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+    //[SerializeField] TMP_FontAsset font;
+    //[Button]
+    //public void ReplaceAllFonts()
+    //{
+    //    TextMeshProUGUI[] texts = GameObject.FindObjectsByType<TextMeshProUGUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-        foreach (TextMeshProUGUI oldText in texts)
-        {
-            oldText.font = font;
-        }
+    //    foreach (TextMeshProUGUI oldText in texts)
+    //    {
+    //        oldText.font = font;
+    //    }
 
-        Debug.Log("Remplacement terminé !");
-    }
+    //    Debug.Log("Remplacement terminé !");
+    //}
 }

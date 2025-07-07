@@ -13,19 +13,13 @@ MonoBehaviour:
   m_Name: Ship Flight Components
   m_EditorClassIdentifier: 
   HullPrefabs:
-  - {fileID: 6770973880161414208, guid: d45198d3f0968d74cba83000bbcbe693, type: 3}
-  - {fileID: 6685842534458269643, guid: 9cef4f6e4b2e1c0498267c5fd846c4e5, type: 3}
+  - {fileID: 2172332685347710143, guid: ded70e8024ce2034fab7bd9b89288714, type: 3}
+  - {fileID: 600142880082745211, guid: 134470b648e01e84e91439ea16fd49fb, type: 3}
   ComponentPrefabs:
-  - {fileID: 117727563928738915, guid: 8e987b02e9fa5ec479370a48a68e2541, type: 3}
-  - {fileID: 4404596059774040135, guid: 057acaf04d68faa45893077f0df0e37f, type: 3}
-  - {fileID: 3639575165406797249, guid: 8b4bf06b222aa6b47b2d593b686266ff, type: 3}
-  - {fileID: 241507866156102753, guid: 72868e7c98c15aa468cf6a803ebb4c93, type: 3}
-  - {fileID: 2464058991234180267, guid: 57d340181a6ee844facb3d6144863674, type: 3}
-  - {fileID: 2464058991234180259, guid: e722206b1344e78409500f3321464e5f, type: 3}
-  - {fileID: 2464058991234180281, guid: 2e8c2f9c7d1bc0844939346ce5d4db23, type: 3}
-  - {fileID: 2464058991234180269, guid: cde1d333d8dc98f4ebe03c01064d1cbb, type: 3}
-  - {fileID: 5274805572210870823, guid: caa35df8dc1e6ca4aa389aa7165937c0, type: 3}
-  - {fileID: 5274805572210870817, guid: 787876f57401c04478593c314d952d4a, type: 3}
-  - {fileID: 5274805572210870821, guid: b011b24ce9a9ef04e8601954cbaebea1, type: 3}
   - {fileID: 5274805572210870819, guid: 552722b8b592c9e48b3d9caa5873f3ce, type: 3}
+  - {fileID: 689339494352841324, guid: 69a4f88fdb7016d4bb5722de6fc9defc, type: 3}
+  - {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+  - {fileID: 1247817801364433646, guid: 8c9bf607c7b92c440abf8b2486896965, type: 3}
+  - {fileID: 4561796265504704344, guid: 55f8a30b31c3737439fd9579caa5d15f, type: 3}
+  - {fileID: 7507289440404027721, guid: 5ef1443ce4aeabb48ba60f1c809b4a88, type: 3}
   ComponentIcons: []

@@ -8,7 +8,7 @@ public class PSpeedNoShoot : Skill
     [Header("0 will stuck the ship")]
     public float speedMultiplier;
     float startValue = 10f;
-    public override void Apply(ShipManager ship, Pilot pilot)
+    public override void Apply(Ship ship, Pilot pilot)
     {
         if(!ship.shipShoot.IsShooting)
         {
@@ -20,7 +20,7 @@ public class PSpeedNoShoot : Skill
         }
     }
 
-    public override void Remove(ShipManager ship, Pilot pilot)
+    public override void Remove(Ship ship, Pilot pilot)
     {
         // passive so no need
     }

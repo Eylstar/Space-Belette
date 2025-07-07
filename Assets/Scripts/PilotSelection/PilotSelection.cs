@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PilotSelection : MonoBehaviour
@@ -53,7 +54,6 @@ public class PilotSelection : MonoBehaviour
     {
         if (SelectedPilot.IsUnlocked)
         {
-            // On veut que le haut descende jusqu'en bas du parent
             float targetY = -capsule.parent.GetComponent<RectTransform>().rect.height;
             StartCoroutine(AnimateCapsuleTop(targetY, 2f));
         }
@@ -75,14 +75,17 @@ public class PilotSelection : MonoBehaviour
 
         rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, targetTop);
 
-        if (SelectedPilot.IsUnlocked)
-            OnPilotSelected?.Invoke(SelectedPilot);
+        if (SelectedPilot.IsUnlocked) 
+        {
+            Ship.MainPilot = SelectedPilot;
+            SceneManager.LoadScene("MissionSelection");
+        }
         else
             ResetCapsuleTop();
     }
     void ResetCapsuleTop()
     {
         RectTransform rectTransform = capsule;
-        rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 4f); // R�initialise le Top � 4
+        rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 4f);
     }
 }

@@ -5,13 +5,13 @@ public class PBonusAtEnd : Skill
     public int XpPercentBonus;
     Pilot pilotToUp;
 
-    public override void Apply(ShipManager ship, Pilot pilot)
+    public override void Apply(Ship ship, Pilot pilot)
     {
         pilotToUp = pilot;
         MissionManager.OnMissionCompleted += AddBonus;
     }
 
-    public override void Remove(ShipManager ship, Pilot pilot)
+    public override void Remove(Ship ship, Pilot pilot)
     {
         pilotToUp = null;
         MissionManager.OnMissionCompleted -= AddBonus;

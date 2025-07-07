@@ -63,7 +63,7 @@ public class MissionManager : MonoBehaviour
         startBtn.onClick.RemoveAllListeners();
         startBtn.onClick.AddListener(() =>
         {
-            SceneLoader.LoadScene("Space");
+            SceneManager.LoadScene("Space");
         });
     }
 

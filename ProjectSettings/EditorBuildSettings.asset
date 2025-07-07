@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: abfe577f51745c7489bbafea72a26349
   - enabled: 1
-    path: Assets/Scenes/Grid.unity
-    guid: 7194e79fae5b301479c2e72e2e5c842d
+    path: Assets/Scenes/ShipBuilder.unity
+    guid: ef144f68e00bf9e4bafe3700b36f2655
   - enabled: 1
     path: Assets/Scenes/CharacterSelection.unity
     guid: 131a90f95f96d0b44a8e75aa8021cf75

@@ -18,7 +18,7 @@ public class Panel3 : MonoBehaviour
         // Remove ConstructionHull component
         GameObject ship = buildController.Ship.gameObject;
         SaveShipSnapshot();
-        SceneManager.LoadScene("Flight");
+        SceneManager.LoadScene("CharacterSelection");
     }
 
     public void SaveShipSnapshot()

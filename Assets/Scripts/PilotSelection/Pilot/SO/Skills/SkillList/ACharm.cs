@@ -11,7 +11,7 @@ public class ACharm : Skill
 
     private List<Rigidbody> frozenBodies = new();
 
-    public override void Apply(ShipManager ship, Pilot pilot)
+    public override void Apply(Ship ship, Pilot pilot)
     {
         if (!isActive && cooldownTimer <= 0f && Input.GetKeyDown(KeyCode.Space))
         {
@@ -65,7 +65,7 @@ public class ACharm : Skill
         }
     }
 
-    public override void Remove(ShipManager ship, Pilot pilot)
+    public override void Remove(Ship ship, Pilot pilot)
     {
         if (isActive)
         {
