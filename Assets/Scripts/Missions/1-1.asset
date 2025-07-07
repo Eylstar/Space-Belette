@@ -22,6 +22,7 @@ MonoBehaviour:
   rewardItems: []
   isActive: 1
   MainWaves:
-  - {fileID: 11400000, guid: 21f1e437ada6f294dae2d01b1483eb72, type: 2}
+  - {fileID: 11400000, guid: 62dcf6310408d1e4c88c7ec47eb6294a, type: 2}
   OptionalWaves:
   - {fileID: 11400000, guid: 3cb64ff6b42d9b44aab3e53550462c48, type: 2}
+  - {fileID: 11400000, guid: 426ce8cb6bd253f45b507d87d5c6e7f3, type: 2}

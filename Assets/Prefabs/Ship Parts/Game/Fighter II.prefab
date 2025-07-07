@@ -65,15 +65,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -7983109819402885048}
-    - targetCorrespondingSourceObject: {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4204002036535566143}
-    - targetCorrespondingSourceObject: {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -7154021886627588239}
-    - targetCorrespondingSourceObject: {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3000004971092076739}
   m_SourcePrefab: {fileID: 100100000, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
 --- !u!1 &600142880082745211 stripped
@@ -81,64 +72,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
   m_PrefabInstance: {fileID: 3027502664807419865}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &-7983109819402885048
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600142880082745211}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
---- !u!114 &4204002036535566143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600142880082745211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b9a4171d285154f9c3c247353fb730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addRoll: 1
-  useMouseInput: 1
-  pitch: 0
-  yaw: 0
-  roll: 0
-  strafe: 0
-  throttle: 0
---- !u!114 &-7154021886627588239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600142880082745211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50f670a7dea945489b01d6adedb472f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3000004971092076739
 MonoBehaviour:
   m_ObjectHideFlags: 0

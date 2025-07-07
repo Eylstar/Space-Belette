@@ -68,18 +68,18 @@ public class Ship : MonoBehaviour
     public static Pilot SecondaryPilot;
     public int CurrentLife;
     public int MaxLife = 1;
-    int lifeRegen = 0;
+    public int lifeRegen = 0;
     public List<Transform> ShootPoints = new();
     public List<ShipProp> ShipProps;
     public ShipMove shipMove;
     public ShipShoot shipShoot;
     public static event Action PlayerDeath;
-    float clockTime = 1;
-    float timer = 0;
+    public float clockTime = 1;
+    public float timer = 0;
     void SetShipStats() 
     {
         ShipProps = new();
-        int engineCount = 0;
+        int engineCount = 1;
         var props = GetComponentsInChildren<ShipProp>();
         foreach (var prop in props)
         {
@@ -117,8 +117,11 @@ public class Ship : MonoBehaviour
 
     private void Update()
     {
-        if (MainPilot.ActiveSkill.Effect != null) MainPilot.ActiveSkill.Effect.Apply(this, MainPilot);
-        if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
+        if (MainPilot != null)
+        {
+            if (MainPilot.ActiveSkill.Effect != null) MainPilot.ActiveSkill.Effect.Apply(this, MainPilot);
+            if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
+        }
         if (CurrentLife <= 0)
         {
             PlayerDeath?.Invoke();
