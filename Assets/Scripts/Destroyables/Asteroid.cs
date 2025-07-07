@@ -12,7 +12,7 @@ public class Asteroid : Obstacle
         stats = new AsteroidStatsStruct();
     }
 
-    public void SetupAsteroid(AsteroidStatsStruct s, int division)
+    /*public void SetupAsteroid(AsteroidStatsStruct s, int division)
     {
         //Set the stats of the asteroid
         stats = s;
@@ -53,10 +53,11 @@ public class Asteroid : Obstacle
             }
         }
         base.Die();
-    }
+    }*/
     
     protected override void OnCollisionEnter(Collision other)
     {
+        Debug.Log("Collision with " + other.gameObject.name + " by " + gameObject.name);
         //Check of the other object is collidable
         if (!other.gameObject.TryGetComponent(out ICollidable damageable)) return;
         
@@ -70,5 +71,11 @@ public class Asteroid : Obstacle
         {
             base.OnCollisionEnter(other);
         }
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger with " + other.gameObject.name + " by " + gameObject.name);
+        base.OnTriggerEnter(other);
     }
 }

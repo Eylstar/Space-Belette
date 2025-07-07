@@ -141,7 +141,7 @@ MonoBehaviour:
   moveSpeed: 13
   bulletPrefab: {fileID: 8708950737766626871, guid: 0b7475d637cb4b643bfe1f89cd645c76, type: 3}
   bulletSpawnPoint: {fileID: 2733333849437231326}
-  distanceToPlayerToShoot: 40
+  distanceToPlayerToShoot: 60
   bulletSpeed: 100
   fireRate: 0.5
   explosionPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}

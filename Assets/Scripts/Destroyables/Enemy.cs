@@ -21,8 +21,6 @@ public class Enemy : Destroyable, ISpawnable
     protected GameObject playerShip;
     protected Rigidbody rb;
     
-    [SerializeField] GameObject explosionPrefab;
-    
     
     protected override void Start()
     {
@@ -60,11 +58,6 @@ public class Enemy : Destroyable, ISpawnable
     
     protected override void Die()
     {
-        if (explosionPrefab != null)
-        {
-            GameObject g = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            g.transform.localScale = Vector3.one * 4f;
-        }
         enemiesManager?.RemoveEnemy(this);
         CamShake.instance?.ShakeSmallEnemyKill();
         base.Die();

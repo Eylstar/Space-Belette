@@ -15,6 +15,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
     public List<CollidableType> GetFilter() => collisionFilter;
     public CollidableType GetCollidableType() => collisionType;
     
+    [SerializeField] GameObject explosionPrefab;
     
     protected virtual void Start()
     {
@@ -36,6 +37,11 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 
     protected virtual void Die()
     {
+        if (explosionPrefab != null)
+        {
+            GameObject g = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            g.transform.localScale = Vector3.one * 4f;
+        }
         Destroy(gameObject);
         OnDestroy?.Invoke();
         //Debug.Log("I am destroyed");
@@ -61,7 +67,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         }
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         //If the other object is collidable
         if (other.gameObject.TryGetComponent(out ICollidable collidable))

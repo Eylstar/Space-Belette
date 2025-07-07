@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRules:
   - spawnType: 1
-    spawnCount: 2
-    spawnDeltaPercentage: 1
-    spawnRate: 0.5
+    spawnCount: 1
+    spawnDeltaPercentage: 0.5
+    spawnRate: 0.4
     distanceFromPlayerToSpawn: 150
     waveCompletionType: 2
     waveSecondsDurationOrEnemiesToKill: 0
     groupDispersion: 1
-    singleRandomOffset: 0
+    singleRandomOffset: 0.5
     prefabsToSpawn:
-    - prefab: {fileID: 1056666096333670, guid: f603e71ddc270d54192200e95673e2a6, type: 3}
-      weight: 10
-    - prefab: {fileID: 1822345149752838, guid: 45b62242ff99b0a48a47f713cd6d1687, type: 3}
-      weight: 10
     - prefab: {fileID: 3546741895218899036, guid: 3cfe800675695d84989a6d753932575f, type: 3}
+      weight: 10
+    - prefab: {fileID: 6374262699571621636, guid: fdef3637bf786e04590c1e6304e05fcb, type: 3}
       weight: 2
+    maxSpawnCount: 0
+    despawnDistance: 0

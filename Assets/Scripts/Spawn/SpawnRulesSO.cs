@@ -35,7 +35,6 @@ public class SpawnRulesSO : ScriptableObject
     public void Init()
     {
         killOrTimeRemaining = waveSecondsDurationOrEnemiesToKill;
-        Debug.Log("INIT" + killOrTimeRemaining);
     }
 
     public void UpdateCondition(float f)

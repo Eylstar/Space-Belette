@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class Spawner : MonoBehaviour
 {
     Dictionary<SpawnRule, bool> spawnRulesWithObectives = new();
+    Dictionary<SpawnRule, int> spawnedObjectsCount = new();
     GameObject player;
     
     [SerializeField] List<SpawnWave> spawnWaves;
@@ -40,16 +41,19 @@ public class Spawner : MonoBehaviour
     
     void Spawn(SpawnRule sr)
     {
+        if (spawnedObjectsCount.TryGetValue(sr, out int count) && count >= sr.maxSpawnCount) return;
+        
         int c = sr.spawnCount + Mathf.RoundToInt(sr.spawnCount * sr.spawnDeltaPercentage * Random.Range(-1f, 1f));
         GameObject prefab = GetRandomPrefab(sr.prefabsToSpawn);
-        
+
         float angle = Random.Range(0f, 360f);
         float distanceFromPlayer  = sr.distanceFromPlayerToSpawn;
         Vector3 center = new Vector3(player.transform.position.x + distanceFromPlayer * Mathf.Cos(angle * Mathf.Deg2Rad), 0, player.transform.position.z + distanceFromPlayer * Mathf.Sin(angle * Mathf.Deg2Rad));
         
-        float objectSize = prefab.GetComponent<Renderer>() != null ? prefab.GetComponent<Renderer>()?.bounds.size.magnitude ?? 1f : prefab.GetComponent<Collider>().bounds.size.magnitude;
+        float objectSize = prefab.TryGetComponent<Renderer>(out var r) ? r.bounds.size.magnitude : prefab.TryGetComponent<Collider>(out var col) ? col.bounds.size.magnitude : 1f;
         float spacing = objectSize * sr.groupDispersion;
-        float radius = spacing / (2f * Mathf.Sin(Mathf.PI / c));
+        
+        float radius = c > 1 ? spacing / (2f * Mathf.Sin(Mathf.PI / c)) : 0f;
         
         for (int i = 0; i < c; i++)
         {
@@ -71,6 +75,12 @@ public class Spawner : MonoBehaviour
                 SpawnType.Collectible or _ => Quaternion.identity
             };
             GameObject spawnedObject = Instantiate(prefab, spawnPosition, rotation);
+            
+            if (spawnedObjectsCount.ContainsKey(sr))
+                spawnedObjectsCount[sr]++;
+            else
+                spawnedObjectsCount[sr] = 1;
+            
             spawnedObject.transform.parent = transform;
             
             if (spawnedObject.TryGetComponent(out ISpawnable spawnable))
@@ -78,15 +88,29 @@ public class Spawner : MonoBehaviour
                 spawnable.OnSpawn();
             }
 
-            if (spawnedObject.TryGetComponent(out IDamageable damage) && sr.waveCompletionType == WaveCompletionType.EnemiesKilled)
+            if (spawnedObject.TryGetComponent(out IDamageable damage))
             {
                 damage.OnDestroy += () => ObjectDestroyed(sr);
+                if (sr.waveCompletionType == WaveCompletionType.EnemiesKilled)
+                {
+                    damage.OnDestroy += () => EnemyKilled(sr);
+                }
             }
         }
     }
 
     void ObjectDestroyed(SpawnRule sr)
     {
+        if (!spawnedObjectsCount.ContainsKey(sr)) return;
+        if (spawnedObjectsCount[sr] > 0)
+        {
+            spawnedObjectsCount[sr]--;
+        }
+    }
+    
+    void EnemyKilled(SpawnRule sr)
+    {
+        
         sr.UpdateCondition(1f);
         if (sr.GetKillOrTimeRemaining() <= 0 && spawnRulesWithObectives.ContainsKey(sr) && spawnRulesWithObectives[sr] == false)
         {
