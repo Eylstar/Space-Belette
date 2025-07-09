@@ -9,9 +9,9 @@ public class PLifeRegen : Skill
         timer += Time.deltaTime;
         if (timer >= 1f) 
         {
-            if (ship.CurrentLife <= 0 || ship.CurrentLife == ship.MaxLife) return;
-            ship.CurrentLife += RegenEffect;
-            if (ship.CurrentLife > ship.MaxLife) ship.CurrentLife = ship.MaxLife;
+            if (ship.shipMove.health <= 0 || ship.shipMove.health == ship.MaxLife) return;
+            ship.shipMove.health += RegenEffect;
+            if (ship.shipMove.health > ship.MaxLife) ship.shipMove.health = ship.MaxLife;
             timer = 0f;
         }
     }

@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     private void GetReward(int xp, int credit)
     {
+        Debug.Log($"Reward: {xp} XP, {credit} Credits");
         player.ChangeMoneyUp(credit);
         player.AddExperience(xp);
     }

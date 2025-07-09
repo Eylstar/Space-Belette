@@ -11,27 +11,6 @@ public class Ship : MonoBehaviour
 {
     #region From Assets/IngameShip
 
-    //public bool UsingMouseInput
-    //{
-    //    set { playerInput.useMouseInput = value; }
-    //    get { return playerInput.useMouseInput; }
-    //}
-
-    //public Vector3 Velocity
-    //{
-    //    get { return rbody.linearVelocity; }
-    //}
-
-    //public float Throttle
-    //{
-    //    get { return playerInput.throttle; }
-    //}
-
-    //public bool InSupercruise {
-    //    get { return thrusters.InSupercruise; }
-    //    set { thrusters.InSupercruise = value;    }
-    //}
-
     // Editor assignable properties
     [Tooltip("The model info holder which contains all data for this ship model")]
     public ModelInfo ShipModelInfo;
@@ -54,26 +33,19 @@ public class Ship : MonoBehaviour
         SetShipStats();
     }
 
-    /// <summary>
-    /// Turns the engine on and off.
-    /// </summary>
-    //public void ToggleEngine(Light engineTorch)
-    //{
-    //    thrusters.ToggleEngines(engineTorch);
-    //}
     #endregion
     #region SpaceBelette
 
     public static Pilot MainPilot;
     public static Pilot SecondaryPilot;
-    public int CurrentLife;
     public int MaxLife = 1;
     public int lifeRegen = 0;
     public List<Transform> ShootPoints = new();
     public List<ShipProp> ShipProps;
     public ShipMove shipMove;
     public ShipShoot shipShoot;
-    public static event Action PlayerDeath;
+    public int ShipCost;
+
     public float clockTime = 1;
     public float timer = 0;
     void SetShipStats() 
@@ -110,9 +82,9 @@ public class Ship : MonoBehaviour
                     break;
             }
         }
-        Debug.Log($"Engine number : {engineCount}");
+        Debug.Log($"Pilot Name : {MainPilot.pilotName}");
         shipMove.SpeedModificator(engineCount);
-        CurrentLife = MaxLife;
+        shipMove.SetLife(MaxLife);
     }
 
     private void Update()
@@ -122,20 +94,13 @@ public class Ship : MonoBehaviour
             if (MainPilot.ActiveSkill.Effect != null) MainPilot.ActiveSkill.Effect.Apply(this, MainPilot);
             if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
         }
-        if (CurrentLife <= 0)
-        {
-            PlayerDeath?.Invoke();
-            shipShoot.enabled = false;
-            shipMove.enabled = false;
-            gameObject.SetActive(false);
-        }
         if (timer <= 0f)
         {
             timer = clockTime;
-            if (CurrentLife < MaxLife)
+            if (shipMove.health < MaxLife)
             {
-                CurrentLife += lifeRegen;
-                if (CurrentLife > MaxLife) CurrentLife = MaxLife;
+                shipMove.health += lifeRegen;
+                if (shipMove.health > MaxLife) shipMove.health = MaxLife;
             }
         }
         else

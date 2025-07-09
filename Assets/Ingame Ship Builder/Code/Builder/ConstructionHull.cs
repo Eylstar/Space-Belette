@@ -4,7 +4,7 @@ using UnityEngine;
 public class ConstructionHull : MonoBehaviour
 {
     public Dictionary<HullHardpoint, GameObject> MountedComponents { get; private set; }
-
+    public int ShipCost;
     private void Awake()
     {
         MountedComponents = new Dictionary<HullHardpoint, GameObject>();

@@ -16,14 +16,12 @@ MonoBehaviour:
   - {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
   - {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
   ComponentPrefabs:
-  - {fileID: 3411889827433490437, guid: c80952f29e366234f9f8ce3c30dca443, type: 3}
   - {fileID: 689339494352841324, guid: 69a4f88fdb7016d4bb5722de6fc9defc, type: 3}
   - {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
   - {fileID: 1247817801364433646, guid: 8c9bf607c7b92c440abf8b2486896965, type: 3}
   - {fileID: 4561796265504704344, guid: 55f8a30b31c3737439fd9579caa5d15f, type: 3}
   - {fileID: 7507289440404027721, guid: 5ef1443ce4aeabb48ba60f1c809b4a88, type: 3}
   ComponentIcons:
-  - {fileID: 21300000, guid: 1574b630ef2c8aa44aa6d427acce9cae, type: 3}
   - {fileID: 21300000, guid: a5ff23d874e24c54282e53096d84b122, type: 3}
   - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
   - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}

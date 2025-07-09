@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SerializableShipData
 {
     public string HullName;
+    public int ShipCost;
     public List<SerializableComponentData> Components;
 
     public static SerializableShipData LoadFromFile(string filename)

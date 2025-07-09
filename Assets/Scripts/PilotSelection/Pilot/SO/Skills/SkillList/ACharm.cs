@@ -41,8 +41,8 @@ public class ACharm : Skill
         effectTimer = effectDuration;
         frozenBodies.Clear();
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
+        List<Enemy> enemies = FindFirstObjectByType<EnemiesManager>().GetAllEnemies();
+        foreach (Enemy enemy in enemies)
         {
             Renderer renderer = enemy.GetComponentInChildren<Renderer>();
             if (renderer != null && renderer.isVisible)

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +13,9 @@ public class ShipBuilderController : MonoBehaviour
 #endif
 
     public ShipBuilderComponents ComponentList;
-
+    public PlayerStatsSo PlayerStats;
+    public int ShipFullCost;
+    [SerializeField] TextMeshProUGUI PlayerCurrency, ErrorText;
     [Tooltip("Panels, each for one step of the ship builder")]
     public GameObject[] Panels;
     public Image[] ProgressIndicators;
@@ -20,6 +24,7 @@ public class ShipBuilderController : MonoBehaviour
     public ConstructionHull Ship;
     private int currentStep = 0;
 
+    
     private void Start()
     {
         OpenTab(0);
@@ -34,9 +39,14 @@ public class ShipBuilderController : MonoBehaviour
         if (data == null)
             return;
 
-        LoadShipFromData(data);
+        //LoadShipFromData(data);
+        PlayerCurrency.text = $"{PlayerStats.Money.ToString("N0")} $";
+        ErrorText.gameObject.SetActive(false);
     }
-
+    private void Update()
+    {
+        PlayerCurrency.text = $"{PlayerStats.Money.ToString("N0")} $";
+    }
     public void OnNextClicked()
     {
         Panels[currentStep].SetActive(false);
@@ -67,7 +77,20 @@ public class ShipBuilderController : MonoBehaviour
 
     public void LoadShipFromData(SerializableShipData data)
     {
+        var hullPrefab = ComponentList.GetHullByName(data.HullName.Replace("(Clone)", "").Trim());
+        var hullComponent = hullPrefab.GetComponent<ConstructionHull>();
+        int hullCost = hullComponent != null ? hullComponent.ShipCost : 0;
 
+        // Vérifie l'argent du joueur
+        if (PlayerStats.Money < hullCost)
+        {
+            ShowError("Not enough currency to load this ship!");
+            return;
+        }
+
+        // Déduit le coût
+        PlayerStats.ChangeMoneyDown(hullCost);
+        ShipFullCost = hullCost;
         // Spawn the hull
         Ship = Instantiate(ComponentList.GetHullByName(data.HullName.Replace("(Clone)", "").Trim())).GetComponent<ConstructionHull>();
         Ship.name = Ship.name.Replace("(Clone)", "").Trim();
@@ -93,5 +116,16 @@ public class ShipBuilderController : MonoBehaviour
         }
 
         Camera.main.GetComponent<OrbitCameraController>().SetTarget(Ship.transform);
+    }
+    public void ShowError(string message)
+    {
+        StartCoroutine(ShowErrorCoroutine(message));
+    }
+    IEnumerator ShowErrorCoroutine(string message)
+    {
+        ErrorText.text = message;
+        ErrorText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        ErrorText.gameObject.SetActive(false);
     }
 }

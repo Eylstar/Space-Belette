@@ -40,8 +40,25 @@ public class Panel1 : MonoBehaviour
         string hullName = HullSelector.options[HullSelector.value].text;
 
         if (buildController.Ship != null)
+        {
+            if (buildController.ShipFullCost > 0)
+                buildController.PlayerStats.ChangeMoneyUp(buildController.ShipFullCost);
+            buildController.ShipFullCost = 0;
             GameObject.Destroy(buildController.Ship.gameObject);
+        }
+        var hullPrefab = buildController.ComponentList.GetHullByName(hullName);
+        var hullCost = 0;
+        var hullComponent = hullPrefab.GetComponent<ConstructionHull>();
+        if (hullComponent != null)
+            hullCost = hullComponent.ShipCost;
 
+        if (buildController.PlayerStats.Money < hullCost)
+        {
+            buildController.ShowError("Not enough currency to create this ship!");
+            return;
+        }
+        buildController.PlayerStats.ChangeMoneyDown(hullCost);
+        buildController.ShipFullCost = hullCost;
         buildController.Ship = Instantiate(buildController.ComponentList.GetHullByName(hullName)).GetComponent<ConstructionHull>();
         buildController.Ship.gameObject.name = hullName;
         Camera.main.GetComponent<OrbitCameraController>().SetTarget(buildController.Ship.transform);

@@ -38,6 +38,7 @@ public class Panel3 : MonoBehaviour
     {
         SerializableShipData data = new SerializableShipData();
         data.HullName = buildController.Ship.gameObject.name;
+        data.ShipCost = buildController.ShipFullCost;
         data.Components = new System.Collections.Generic.List<SerializableComponentData>();
         foreach (var mountedComponent in buildController.Ship.MountedComponents)
         {

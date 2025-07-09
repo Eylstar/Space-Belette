@@ -12,15 +12,17 @@ public class Panel2 : MonoBehaviour
     private PanelState state;
     private GameObject selectedComponent;
     private static Vector3 eraserOffset = new Vector3(22, 13, 0);
+    [SerializeField] int freeSlot = 0;
 
-    private enum PanelState { 
+    private enum PanelState
+    {
         SELECT_COMPONENT, // Select a component from the UI to add to model
         DELETE_COMPONENTS, // Click on a component on the model to remove
         MOUNT_COMPONENT // Click on a hardpoint to add the selected component to model
     }
 
     private void Awake()
-    {       
+    {
         buildController = GetComponentInParent<ShipBuilderController>();
         if (buildController.ComponentList.ComponentPrefabs.Length != buildController.ComponentList.ComponentIcons.Length)
             Debug.LogWarning("ShipBuilderController prefab and icon list should match!");
@@ -30,9 +32,13 @@ public class Panel2 : MonoBehaviour
     {
         for (int i = 0; i < buildController.ComponentList.ComponentPrefabs.Length; i++)
         {
+            ShipProp prop = buildController.ComponentList.ComponentPrefabs[i].GetComponent<ShipProp>();
+
             var component = buildController.ComponentList.ComponentPrefabs[i];
             var sprite = buildController.ComponentList.ComponentIcons[i];
             GameObject componentImage = GameObject.Instantiate(IconPrefab, ComponentSelector.transform);
+
+            componentImage.GetComponent<PropInfo>().SetPropInfo(prop.PropName, prop.Cost);
             componentImage.GetComponent<Image>().sprite = sprite;
             var componentIndex = i;
             componentImage.GetComponent<Button>().onClick.AddListener(() => OnComponentSelected(componentIndex));
@@ -41,6 +47,16 @@ public class Panel2 : MonoBehaviour
 
     private void OnComponentSelected(int componentIndex)
     {
+        var prefab = buildController.ComponentList.ComponentPrefabs[componentIndex];
+        var prop = prefab.GetComponent<ShipProp>();
+        int cost = prop != null ? prop.Cost : 0;
+
+        if (!(prop != null && prop.IsStartProp && freeSlot == 0) && buildController.PlayerStats.Money < cost)
+        {
+            buildController.ShowError("Not enought currency to buy this");
+            return;
+        }
+
         state = PanelState.MOUNT_COMPONENT;
         Cursor.SetCursor(null, Vector3.zero, CursorMode.Auto);
         if (selectedComponent != null)
@@ -61,7 +77,19 @@ public class Panel2 : MonoBehaviour
                 string tag = hit.transform.gameObject.tag;
                 if (tag == "Hardpoint")
                 {
-                    if (state == PanelState.MOUNT_COMPONENT) {
+                    if (state == PanelState.MOUNT_COMPONENT)
+                    {
+                        var prop = selectedComponent.GetComponent<ShipProp>();
+                        int cost = prop != null ? prop.Cost : 0;
+                        if (prop.IsStartProp && freeSlot == 0)
+                        {
+                            freeSlot++;
+                        }
+                        else
+                        {
+                            buildController.PlayerStats.ChangeMoneyDown(cost);
+                            buildController.ShipFullCost += cost;
+                        }
                         selectedComponent.layer = LayerMask.NameToLayer("Default");
                         buildController.Ship.MountComponent(hit.transform.gameObject.GetComponent<HullHardpoint>(), selectedComponent);
                         GameObject.Destroy(selectedComponent);
@@ -73,9 +101,37 @@ public class Panel2 : MonoBehaviour
                     Debug.Log("Raycast hit object: " + hit.transform.name);
                     if (tag == "Hardpoint")
                     {
-                        buildController.Ship.UnmountComponent(hit.transform.gameObject.GetComponent<HullHardpoint>());
-                    } else
+                        var hardpoint = hit.transform.gameObject.GetComponent<HullHardpoint>();
+                        if (hardpoint != null && buildController.Ship.MountedComponents.TryGetValue(hardpoint, out GameObject mounted))
+                        {
+                            var prop = mounted.GetComponent<ShipProp>();
+                            int refund = prop != null ? prop.Cost : 0;
+                            if (prop.IsStartProp && freeSlot > 0)
+                            {
+                                freeSlot--;
+                            }
+                            else
+                            {
+                                buildController.PlayerStats.ChangeMoneyUp(refund);
+                                buildController.ShipFullCost -= refund;
+                            }
+                            Debug.Log("Unmounting component: " + mounted.name + " from hardpoint: " + hardpoint.name);
+                        }
+                        buildController.Ship.UnmountComponent(hardpoint);
+                    }
+                    else
                     {
+                        var prop = hit.transform.gameObject.GetComponent<ShipProp>();
+                        int refund = prop != null ? prop.Cost : 0;
+                        if (prop.IsStartProp && freeSlot > 0)
+                        {
+                            freeSlot--;
+                        }
+                        else
+                        {
+                            buildController.PlayerStats.ChangeMoneyUp(refund);
+                            buildController.ShipFullCost -= refund;
+                        }
                         buildController.Ship.UnmountComponent(hit.transform.gameObject);
                     }
                 }

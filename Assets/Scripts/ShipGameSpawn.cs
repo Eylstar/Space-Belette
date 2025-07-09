@@ -10,7 +10,7 @@ public class ShipGameSpawn : MonoBehaviour
         SerializableShipData data = SerializableShipData.LoadFromFile(ShipBuilderController.SAVE_FOLDER + "TestSnapshot.ship");
 
         // Spawn the hull
-        GameObject hull = Instantiate(Components.GetHullByName(data.HullName),spawnTransform.position,spawnTransform.rotation,spawnTransform);
+        GameObject hull = Instantiate(Components.GetHullByName(data.HullName), spawnTransform.position, spawnTransform.rotation, spawnTransform);
         //hull.transform.localScale = Vector3.one*1.5f;
 
         // Spawn the components
@@ -26,7 +26,9 @@ public class ShipGameSpawn : MonoBehaviour
                 hull.transform);
         }
 
-        hull.GetComponent<Ship>().isPlayerShip = true;
+        var shipcomp = hull.GetComponent<Ship>();
+        shipcomp.isPlayerShip = true;
+        shipcomp.ShipCost = data.ShipCost;
         //Camera.main.GetComponent<CameraController>().SetTargetShip(hull.GetComponent<Ship>());
     }
 

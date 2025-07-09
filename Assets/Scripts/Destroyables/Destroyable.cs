@@ -7,7 +7,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
     [SerializeField] protected int hitPower = 1;
     protected int scoreValue;
     protected int maxHealth;
-    int health;
+    public int health;
     
     [SerializeField] protected CollidableType collisionType;
     [SerializeField] protected List<CollidableType> collisionFilter = new();
@@ -22,7 +22,11 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         health = maxHealth;
     }
     
-    
+    public void SetLife(int life)
+    {
+        maxHealth = life;
+        health = life;
+    }
 
     public virtual void TakeDamage(int damage)
     {

@@ -111,15 +111,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd797c63cd53049488cfdb1e4c848a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PropName: Laser
   Type: 0
   ShootPoints:
   - {fileID: 1978947783848790495}
   BonusLife: 0
-  BonusSpeed: 0
+  EngineCount: 0
   BonusDamage: 0
   BonusShield: 0
   LifeRegen: 0
   Cost: 100
+  IsStartProp: 1
 --- !u!4 &9006879788283109644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4831203132392440, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}

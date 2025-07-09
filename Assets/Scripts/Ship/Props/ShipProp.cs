@@ -8,6 +8,7 @@ public class ShipProp : MonoBehaviour
         Engine,
         Utility
     }
+    public string PropName;
     public PropType Type;
     public Transform[] ShootPoints;
     public int BonusLife;
@@ -16,4 +17,5 @@ public class ShipProp : MonoBehaviour
     public int BonusShield;
     public int LifeRegen;
     public int Cost;
+    public bool IsStartProp = false;
 }

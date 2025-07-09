@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1059532882891859292}
   - component: {fileID: 6064415880591700073}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Cost (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 1766189464217874625}
   - component: {fileID: -5326114336104753283}
   - component: {fileID: 5747287023493936285}
+  - component: {fileID: -7983357615229715732}
   m_Layer: 5
   m_Name: Component image
   m_TagString: Untagged
@@ -279,6 +280,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &-7983357615229715732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723645244623427689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320c27ed097e28243a89f0bf76031b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PropNameText: {fileID: 5918942419188911352}
+  PropCostText: {fileID: 6064415880591700073}
 --- !u!1 &5969375197126154732
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +306,7 @@ GameObject:
   - component: {fileID: 8716808271552118842}
   - component: {fileID: 5918942419188911352}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Name (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

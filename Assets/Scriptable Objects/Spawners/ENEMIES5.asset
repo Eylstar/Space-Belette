@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRules:
   - spawnType: 0
-    spawnCount: 10
+    spawnCount: 5
     spawnDeltaPercentage: 0
     spawnRate: 1.5
     distanceFromPlayerToSpawn: 150
     waveCompletionType: 1
-    waveSecondsDurationOrEnemiesToKill: 10
+    waveSecondsDurationOrEnemiesToKill: 50
     groupDispersion: 1.496
     singleRandomOffset: 0.5
     prefabsToSpawn:

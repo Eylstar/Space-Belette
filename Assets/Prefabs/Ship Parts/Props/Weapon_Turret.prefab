@@ -150,12 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd797c63cd53049488cfdb1e4c848a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PropName: Turret
   Type: 0
   ShootPoints:
   - {fileID: 2480966853385317636}
   - {fileID: 5806761775053391511}
   BonusLife: 0
-  BonusSpeed: 0
+  EngineCount: 0
   BonusDamage: 0
   BonusShield: 0
   LifeRegen: 0

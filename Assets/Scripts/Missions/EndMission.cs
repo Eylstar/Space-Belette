@@ -12,17 +12,19 @@ public class EndMission : MonoBehaviour
     [SerializeField] RectTransform btnContainer;
     Mission mission;
     Pilot pilot;
+    int BonusReward;
     PlayerStatsSo playerStats;
     public static event Action NextMission;
     public static event Action<int, int> MissionReward;
     private void OnEnable()
     {
+
         pilot = Ship.MainPilot;
         PilotXp.text = string.Empty;
         Currency.text = string.Empty;
         EndPanel.SetActive(false);
         mission = MissionManager.CurrentMission;
-        //ShipManager.PlayerDeath += MissionFail;
+        ShipMove.PlayerDeath += MissionFail;
         Spawner.EndMission += MissionComplete;
     }
     private void OnDisable()
@@ -43,16 +45,18 @@ public class EndMission : MonoBehaviour
         Currency.text = "0";
     }
     
-    void MissionComplete() 
+    void MissionComplete()
     {
+        Ship ship = FindFirstObjectByType<Ship>();
+        BonusReward = ship.ShipCost;
         EndPanel.SetActive(true);
         SetBtns(true);
         EndLabel.text = "Mission Complete";
         PilotXp.text = mission.rewardExperience.ToString();
-        Currency.text = mission.rewardCredits.ToString();
+        Currency.text = $"{mission.rewardCredits.ToString()} + {BonusReward}";
 
         pilot.AddExperience(mission.rewardExperience);
-        MissionReward?.Invoke(mission.rewardExperience, mission.rewardCredits);
+        MissionReward?.Invoke(mission.rewardExperience, mission.rewardCredits+BonusReward);
 
     }
     

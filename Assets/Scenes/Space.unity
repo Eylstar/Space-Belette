@@ -1034,6 +1034,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4648167457882114383, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
   m_PrefabInstance: {fileID: 9191534121770251318}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555799260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555799249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002ace793e73e5c4aaa86343ecad05f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1558330269 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2847883637742366638, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
@@ -1547,6 +1559,18 @@ PrefabInstance:
       propertyPath: baseAcceleration
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: collisionFilter.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: 'collisionFilter.Array.data[1]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293646697871634812, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: 'collisionFilter.Array.data[2]'
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6817339714279370223, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_Name
       value: Instancied
@@ -1598,7 +1622,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4648167457882114383, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1649264279}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3143081865424624480, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1555799260}
   m_SourcePrefab: {fileID: 100100000, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

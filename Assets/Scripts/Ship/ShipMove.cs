@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+
 
 public class ShipMove : Destroyable
 {
@@ -29,6 +29,9 @@ public class ShipMove : Destroyable
     private float zigzagTimer = 0f;
 
     Rigidbody rb;
+
+    public static event Action PlayerDeath;
+
     private void OnEnable()
     {
         ShipColliderSetup.OnShipEnter += OnShipEnter;
@@ -38,6 +41,11 @@ public class ShipMove : Destroyable
     {
         ShipColliderSetup.OnShipEnter -= OnShipEnter;
         ShipColliderSetup.OnShipExit -= OnShipExit;
+    }
+    protected override void Die()
+    {
+        PlayerDeath?.Invoke();
+        gameObject.SetActive(false);
     }
     void OnShipEnter() 
     {

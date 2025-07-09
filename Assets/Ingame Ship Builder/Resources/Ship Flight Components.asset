@@ -16,7 +16,6 @@ MonoBehaviour:
   - {fileID: 2172332685347710143, guid: ded70e8024ce2034fab7bd9b89288714, type: 3}
   - {fileID: 600142880082745211, guid: 134470b648e01e84e91439ea16fd49fb, type: 3}
   ComponentPrefabs:
-  - {fileID: 5274805572210870819, guid: 552722b8b592c9e48b3d9caa5873f3ce, type: 3}
   - {fileID: 689339494352841324, guid: 69a4f88fdb7016d4bb5722de6fc9defc, type: 3}
   - {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
   - {fileID: 1247817801364433646, guid: 8c9bf607c7b92c440abf8b2486896965, type: 3}
