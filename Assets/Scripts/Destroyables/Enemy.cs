@@ -5,11 +5,13 @@ public class Enemy : Destroyable, ISpawnable
 {
     protected EnemiesManager enemiesManager;
 
-    [SerializeField] protected bool canShoot;
+    [Header("Movement")]
     
     [SerializeField] protected float rotationSpeed;
     [SerializeField] protected float moveSpeed;
     
+    [Space(10), Header("Shooting")]
+    [SerializeField] protected bool canShoot;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawnPoint;
     
@@ -25,18 +27,23 @@ public class Enemy : Destroyable, ISpawnable
     protected override void Start()
     {
         base.Start();
-        enemiesManager = FindFirstObjectByType<EnemiesManager>(FindObjectsInactive.Include);
+        
+        if (enemiesManager == null)
+            enemiesManager = FindFirstObjectByType<EnemiesManager>(FindObjectsInactive.Include);
+        
         playerShip = enemiesManager.GetPlayerReference();
         rb = GetComponent<Rigidbody>();
     }
     
     public void OnSpawn()
     {
+        if (enemiesManager == null)
+            enemiesManager = FindFirstObjectByType<EnemiesManager>(FindObjectsInactive.Include);
+        
         enemiesManager?.AddEnemy(this);
-        Debug.Log("Added to enemy Manager");
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         timer += Time.deltaTime;
         if (canShoot)

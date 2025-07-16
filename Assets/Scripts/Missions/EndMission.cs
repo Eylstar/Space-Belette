@@ -31,6 +31,7 @@ public class EndMission : MonoBehaviour
     {
         //ShipManager.PlayerDeath -= MissionFail;
         Spawner.EndMission -= MissionComplete;
+        ShipMove.PlayerDeath -= MissionFail;
     }
     private void BackToMenu()
     {
@@ -80,7 +81,7 @@ public class EndMission : MonoBehaviour
             saveBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
                 // Appeller la sauvegarde ici
-                // à voir quelle methode on va utiliser
+                //voir quelle methode on va utiliser
                 BackToMenu();
             });
 

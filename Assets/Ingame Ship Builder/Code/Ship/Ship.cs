@@ -82,8 +82,8 @@ public class Ship : MonoBehaviour
                     break;
             }
         }
-        Debug.Log($"Pilot Name : {MainPilot.pilotName}");
-        shipMove.SpeedModificator(engineCount);
+        //Debug.Log($"Pilot Name : {MainPilot.pilotName}");
+        //shipMove.SpeedModificator(engineCount);
         shipMove.SetLife(MaxLife);
     }
 

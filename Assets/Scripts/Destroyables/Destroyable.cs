@@ -8,6 +8,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
     protected int scoreValue;
     protected int maxHealth;
     public int health;
+    public bool damageable = true;
     
     [SerializeField] protected CollidableType collisionType;
     [SerializeField] protected List<CollidableType> collisionFilter = new();
@@ -30,14 +31,18 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 
     public virtual void TakeDamage(int damage)
     {
+        if (!damageable)
+            return;
+        
         health -= damage;
         if (health <= 0)
         {
+            Debug.Log("Destroyable " + gameObject.name + " destroyed" + " with " + damage + " damage");
             Die();
         }
     }
 
-    public Action OnDestroy { get; set; }
+    public Action OnDestroyAction { get; set; }
 
     protected virtual void Die()
     {
@@ -47,8 +52,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
             g.transform.localScale = Vector3.one * 4f;
         }
         Destroy(gameObject);
-        OnDestroy?.Invoke();
-        //Debug.Log("I am destroyed");
+        OnDestroyAction?.Invoke();
     }
     
     protected virtual void OnCollisionEnter(Collision other)
@@ -91,9 +95,6 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         }
     }
     
-    void CollisionHandler(Collision collision)
-    {
-    }
 
     public GameObject GetGameObject() => gameObject;
 }
