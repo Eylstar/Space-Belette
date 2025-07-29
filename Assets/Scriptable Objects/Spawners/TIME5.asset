@@ -16,14 +16,14 @@ MonoBehaviour:
   - spawnType: 0
     spawnCount: 1
     spawnDeltaPercentage: 1
-    spawnRate: 1.5
+    spawnRate: 0.5
     distanceFromPlayerToSpawn: 150
     waveCompletionType: 0
     waveSecondsDurationOrEnemiesToKill: 120
     groupDispersion: 0
     singleRandomOffset: 0.5
     prefabsToSpawn:
-    - prefab: {fileID: 6659495259796537511, guid: 77d8a1456e9144c499cbee2876d6c7f9, type: 3}
+    - prefab: {fileID: 449216156686728494, guid: 6b6090bcb6271a34db9f581e80f9f854, type: 3}
       weight: 0
-    maxSpawnCount: 0
+    maxSpawnCount: 50
     despawnDistance: 0
