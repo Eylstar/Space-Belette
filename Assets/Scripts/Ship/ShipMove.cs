@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShipMove : Destroyable
+public class ShipMove : MonoBehaviour
 {
     CameraLerp camLerp;
     
@@ -25,13 +25,9 @@ public class ShipMove : Destroyable
 
     Rigidbody rb;
 
-    public static event Action PlayerDeath;
     
-    protected override void Die()
-    {
-        PlayerDeath?.Invoke();
-        gameObject.SetActive(false);
-    }
+    
+    
     
     void Awake()
     {

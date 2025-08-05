@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 {
     [SerializeField] protected int hitPower = 1;
+    [SerializeField] protected int xpValue = 0;
     protected int scoreValue;
     protected int maxHealth;
     public int health;
-    public bool damageable = true;
+    public bool canBeDamaged = true;
     
     [SerializeField] protected CollidableType collisionType;
     [SerializeField] protected List<CollidableType> collisionFilter = new();
@@ -31,7 +33,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 
     public virtual void TakeDamage(int damage)
     {
-        if (!damageable)
+        if (!canBeDamaged)
             return;
         
         health -= damage;
@@ -80,7 +82,7 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         //If the other object is collidable
         if (other.gameObject.TryGetComponent(out ICollidable collidable))
         {
-            //Debug.Log("Trigger with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
+            Debug.Log("Trigger with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
             //If the other object is in the filter
             if (collidable.GetFilter().Contains(collisionType))
             {

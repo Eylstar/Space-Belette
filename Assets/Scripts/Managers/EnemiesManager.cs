@@ -68,7 +68,7 @@ public class EnemiesManager : MonoBehaviour
             }
             foreach (Enemy e in enemies)
             {
-                e.damageable = !inRangeSet.Contains(e);
+                e.canBeDamaged = !inRangeSet.Contains(e);
             }
             yield return new WaitForSeconds(beaconCheckInterval);
         }

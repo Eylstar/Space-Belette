@@ -9,9 +9,9 @@ public class PLifeRegen : Skill
         timer += Time.deltaTime;
         if (timer >= 1f) 
         {
-            if (ship.shipMove.health <= 0 || ship.shipMove.health == ship.MaxLife) return;
-            ship.shipMove.health += RegenEffect;
-            if (ship.shipMove.health > ship.MaxLife) ship.shipMove.health = ship.MaxLife;
+            if (ship.ShipGameplayManager.health <= 0 || ship.ShipGameplayManager.health == ship.MaxLife) return;
+            ship.ShipGameplayManager.health += RegenEffect;
+            if (ship.ShipGameplayManager.health > ship.MaxLife) ship.ShipGameplayManager.health = ship.MaxLife;
             timer = 0f;
         }
     }
