@@ -54,13 +54,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPower: 1
+  xpValue: 10
   health: 0
+  canBeDamaged: 1
   collisionType: 0
   collisionFilter: 0200000003000000
+  xpOrb: {fileID: 1663845784735456288, guid: 250e53ac82e570d4abe139c2718baf10, type: 3}
   explosionPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
-  canShoot: 0
   rotationSpeed: 30
   moveSpeed: 35
+  canShoot: 0
   bulletPrefab: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
   distanceToPlayerToShoot: 0

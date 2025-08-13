@@ -33,6 +33,7 @@ public class Enemy : Destroyable, ISpawnable
         
         playerShip = enemiesManager.GetPlayerReference();
         rb = GetComponent<Rigidbody>();
+        xpValue = 10;
     }
     
     public void OnSpawn()
