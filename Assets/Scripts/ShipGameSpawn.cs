@@ -5,7 +5,7 @@ public class ShipGameSpawn : MonoBehaviour
     [SerializeField] Transform spawnTransform;
     public ShipBuilderComponents Components;
 
-   /* private void Awake()
+    private void Awake()
     {
         SerializableShipData data = SerializableShipData.LoadFromFile(ShipBuilderController.SAVE_FOLDER + "TestSnapshot.ship");
 
@@ -30,6 +30,5 @@ public class ShipGameSpawn : MonoBehaviour
         shipcomp.isPlayerShip = true;
         shipcomp.ShipCost = data.ShipCost;
         //Camera.main.GetComponent<CameraController>().SetTargetShip(hull.GetComponent<Ship>());
-    }*/
-
+    }
 }

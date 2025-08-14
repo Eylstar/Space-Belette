@@ -149,7 +149,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 915749635}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -526,6 +526,7 @@ MonoBehaviour:
   spawnWaves:
   - spawnRules: {fileID: 11400000, guid: baf2a36585b41a14291b714c53fc48c0, type: 2}
   optionalSpawnWaves: []
+  sceneDebug: 0
 --- !u!4 &1307851434
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,10 +1065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1031561504443046861, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 644951607}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
 --- !u!114 &1471527097741218939 stripped
@@ -1081,11 +1079,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0220f4040307f2a45a27ef20a895b030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1471527097741218940 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1031561504443046861, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
-  m_PrefabInstance: {fileID: 1471527097741218938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3611100115049392194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1259,6 +1252,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ignore
       objectReference: {fileID: 0}
+    - target: {fileID: 7570899727174129912, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8441756461712367558, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1351,3 +1348,4 @@ SceneRoots:
   - {fileID: 3611100115049392194}
   - {fileID: 1229541660}
   - {fileID: 614677866680946945}
+  - {fileID: 10076615}

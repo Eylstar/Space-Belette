@@ -16,11 +16,15 @@ public class Spawner : MonoBehaviour
 
     public static event Action EndMission;
 
+    public bool sceneDebug = false;
+
     float timeElapsed = 0f;
 
     private void OnEnable()
     {
-        /*spawnWaves = new();
+        if (sceneDebug) return;
+        
+        spawnWaves = new();
         optionalSpawnWaves = new();
 
         foreach (SpawnRulesSO wave in MissionManager.CurrentMission.MainWaves)
@@ -30,7 +34,7 @@ public class Spawner : MonoBehaviour
         foreach (SpawnRulesSO wave in MissionManager.CurrentMission.OptionalWaves)
         {
             optionalSpawnWaves.Add(new SpawnWave { spawnRules = wave });
-        }*/
+        }
     }
 
     void Start()

@@ -11,8 +11,8 @@ public class LifeBar : MonoBehaviour
     private void OnEnable()
     {
         lifeBarSlider = GetComponent<Slider>();
-        ShipMove.OnLifeSetup += OnLifeSetup;
-        ShipMove.OnLifeChange += OnLifeChange;
+        ShipGameplayManager.OnLifeSetup += OnLifeSetup;
+        ShipGameplayManager.OnLifeChange += OnLifeChange;
     }
 
     private void OnLifeChange(int obj)
