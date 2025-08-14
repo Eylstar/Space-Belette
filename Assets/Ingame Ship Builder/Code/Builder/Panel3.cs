@@ -39,6 +39,9 @@ public class Panel3 : MonoBehaviour
         SerializableShipData data = new SerializableShipData();
         data.HullName = buildController.Ship.gameObject.name;
         data.ShipCost = buildController.ShipFullCost;
+        data.ShipLife = LifeCount();
+        data.ShipRegen = LifeRegenCount();
+        data.ShipWeaponNumber = WeaponCount();
         data.Components = new System.Collections.Generic.List<SerializableComponentData>();
         foreach (var mountedComponent in buildController.Ship.MountedComponents)
         {
@@ -49,8 +52,47 @@ public class Panel3 : MonoBehaviour
                 "" : mountedComponent.Value.name.Replace("(Clone)", "").Trim();
             data.Components.Add(component);
         }
-
         return data;
     }
-
+    int WeaponCount()
+    {
+        int count = 0;
+        foreach (var mountedComponent in buildController.Ship.MountedComponents)
+        {
+            if (mountedComponent.Value != null && mountedComponent.Value.GetComponent<ShipProp>() != null)
+            {
+                if (mountedComponent.Value.GetComponent<ShipProp>().Type == ShipProp.PropType.Weapon)
+                    count++;
+            }
+        }
+        return count;
+    }
+    int LifeRegenCount()
+    {
+        int count = buildController.Ship.ShipRegen;
+        foreach (var mountedComponent in buildController.Ship.MountedComponents)
+        {
+            var prop = mountedComponent.Value != null ? mountedComponent.Value.GetComponent<ShipProp>() : null;
+            if (prop != null && prop.Type == ShipProp.PropType.Utility)
+            {
+                count += prop.LifeRegen;
+            }
+        }
+        return count;
+    }
+    int LifeCount()
+    {
+        int count = buildController.Ship.ShipLife;
+        foreach (var mountedComponent in buildController.Ship.MountedComponents)
+        {
+            var prop = mountedComponent.Value != null ? mountedComponent.Value.GetComponent<ShipProp>() : null;
+            if (prop == null)
+                continue;
+            if (prop.Type == ShipProp.PropType.Utility || prop.Type == ShipProp.PropType.Engine)
+            {
+                count += prop.BonusLife;
+            }
+        }
+        return count;
+    }
 }

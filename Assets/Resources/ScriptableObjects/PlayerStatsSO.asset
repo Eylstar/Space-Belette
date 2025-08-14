@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f4c3219a9ea364fb84d543a73e8b85, type: 3}
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
-  Money: 0
-  PlayerLevel: 7
-  PlayerExperience: 1508
+  Money: 129987700
+  PlayerLevel: 4
+  PlayerExperience: 690

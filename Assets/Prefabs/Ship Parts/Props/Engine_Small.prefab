@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd797c63cd53049488cfdb1e4c848a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PropName: Engine
+  PropName: Engine I
   Type: 1
   ShootPoints: []
   BonusLife: 500
@@ -86,3 +86,4 @@ MonoBehaviour:
   BonusShield: 0
   LifeRegen: 0
   Cost: 500
+  IsStartProp: 0

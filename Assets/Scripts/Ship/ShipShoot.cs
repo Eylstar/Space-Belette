@@ -112,4 +112,19 @@ public class ShipShoot : MonoBehaviour
         if (shoot.ReadValue<float>() > 0)
             InvokeRepeating(nameof(Shoot), 0, shootRate / factor);
     }
+    public void SetBulletDmg(int damage)
+    {
+        if (bulletPrefab.TryGetComponent(out Projectile projectile))
+        {
+            projectile.SetHitPower(damage);
+        }
+    }
+    public int GetBulletDmg()
+    {
+        if (bulletPrefab.TryGetComponent(out Projectile projectile))
+        {
+            return projectile.GetHitPower();
+        }
+        return 0;
+    }
 }

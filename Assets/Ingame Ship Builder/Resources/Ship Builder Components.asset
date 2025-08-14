@@ -15,15 +15,13 @@ MonoBehaviour:
   HullPrefabs:
   - {fileID: 1174311730966461211, guid: f80944599a6128c48be475f35dbbc9eb, type: 3}
   - {fileID: 2474722940359989410, guid: 4d3e1df79a1587e4e815cac1b6f1599c, type: 3}
+  - {fileID: 7694201558915253851, guid: 689603c15f0d76544be732e459432da7, type: 3}
+  - {fileID: 1724293489803698475, guid: ea383c876954da54ab48b854874edb45, type: 3}
   ComponentPrefabs:
   - {fileID: 689339494352841324, guid: 69a4f88fdb7016d4bb5722de6fc9defc, type: 3}
-  - {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
-  - {fileID: 1247817801364433646, guid: 8c9bf607c7b92c440abf8b2486896965, type: 3}
-  - {fileID: 4561796265504704344, guid: 55f8a30b31c3737439fd9579caa5d15f, type: 3}
   - {fileID: 7507289440404027721, guid: 5ef1443ce4aeabb48ba60f1c809b4a88, type: 3}
+  - {fileID: 4728503630410624183, guid: 3399aebba03353945981602de5ce7ae9, type: 3}
   ComponentIcons:
-  - {fileID: 21300000, guid: a5ff23d874e24c54282e53096d84b122, type: 3}
-  - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
-  - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
-  - {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
-  - {fileID: 21300000, guid: fc2980fcfe82bc14eb1cf4a13433dc94, type: 3}
+  - {fileID: 21300000, guid: 59ff68e38e3fe8d44a99160d7fab39d1, type: 3}
+  - {fileID: 21300000, guid: ec6eb9ea73ff47644b444a03b56b9f2f, type: 3}
+  - {fileID: 21300000, guid: 49d7b9e441745cb44af95e609a541c27, type: 3}

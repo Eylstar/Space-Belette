@@ -15,10 +15,10 @@ MonoBehaviour:
   HullPrefabs:
   - {fileID: 2172332685347710143, guid: ded70e8024ce2034fab7bd9b89288714, type: 3}
   - {fileID: 600142880082745211, guid: 134470b648e01e84e91439ea16fd49fb, type: 3}
+  - {fileID: 8178729677388714803, guid: a7a9405fe863d8d46b2cadff4fba034b, type: 3}
+  - {fileID: 3111118303136843405, guid: 1886144ce5f813c43ba306106e842190, type: 3}
   ComponentPrefabs:
   - {fileID: 689339494352841324, guid: 69a4f88fdb7016d4bb5722de6fc9defc, type: 3}
-  - {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
-  - {fileID: 1247817801364433646, guid: 8c9bf607c7b92c440abf8b2486896965, type: 3}
-  - {fileID: 4561796265504704344, guid: 55f8a30b31c3737439fd9579caa5d15f, type: 3}
   - {fileID: 7507289440404027721, guid: 5ef1443ce4aeabb48ba60f1c809b4a88, type: 3}
+  - {fileID: 4728503630410624183, guid: 3399aebba03353945981602de5ce7ae9, type: 3}
   ComponentIcons: []

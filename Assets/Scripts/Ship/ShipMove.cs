@@ -31,6 +31,7 @@ public class ShipMove : Destroyable
     Rigidbody rb;
 
     public static event Action PlayerDeath;
+    public static event Action<int> OnLifeSetup, OnLifeChange;
 
     private void OnEnable()
     {
@@ -46,6 +47,24 @@ public class ShipMove : Destroyable
     {
         PlayerDeath?.Invoke();
         gameObject.SetActive(false);
+    }
+    public new void SetLife(int life)
+    {
+        base.SetLife(life);
+        OnLifeSetup?.Invoke(life);
+    }
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        OnLifeChange?.Invoke(health);
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    public void OnLifeChanged(int newLife)
+    {
+        OnLifeChange?.Invoke(health);
     }
     void OnShipEnter() 
     {

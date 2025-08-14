@@ -125,6 +125,9 @@ PrefabInstance:
       addedObject: {fileID: 9151580611013807405}
     - targetCorrespondingSourceObject: {fileID: 4421113213308146, guid: 26a3052b856cb7d4290f1fef30ee7290, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7269091623292244145}
+    - targetCorrespondingSourceObject: {fileID: 4421113213308146, guid: 26a3052b856cb7d4290f1fef30ee7290, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3286592559812276625}
     - targetCorrespondingSourceObject: {fileID: 4421113213308146, guid: 26a3052b856cb7d4290f1fef30ee7290, type: 3}
       insertIndex: -1
@@ -159,6 +162,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4862b49c0b3a94c82653d55496c483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShipCost: 0
+  ShipLife: 100
+  ShipRegen: 0
+--- !u!1001 &1738351123671593405
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1171054321384484797}
+    m_Modifications:
+    - target: {fileID: 9000745319033379348, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_Name
+      value: Weapon_SIngle_Laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+--- !u!4 &7269091623292244145 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9006879788283109644, guid: 2ece8cc4fccf04c4bbcfc418bcd1426a, type: 3}
+  m_PrefabInstance: {fileID: 1738351123671593405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2725993755469941169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6544960563534660764, guid: 104076808e04254468c564d9b7cd44dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.218
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6544960563534660764, guid: 104076808e04254468c564d9b7cd44dd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -294,6 +362,10 @@ PrefabInstance:
     - target: {fileID: 4566065280684939058, guid: 104076808e04254468c564d9b7cd44dd, type: 3}
       propertyPath: m_Name
       value: HullHardpoint (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566065280684939058, guid: 104076808e04254468c564d9b7cd44dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6544960563534660764, guid: 104076808e04254468c564d9b7cd44dd, type: 3}
       propertyPath: m_LocalPosition.x

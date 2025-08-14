@@ -4,7 +4,6 @@ public class Projectile : Destroyable
 {
     [SerializeField] float lifeTime = 5f;
     float speed = 10f;
-    
     protected override void Start()
     {
         base.Start();

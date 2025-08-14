@@ -86,9 +86,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipModelInfo: {fileID: 11400000, guid: bf5f64ddfb83df1478310435225e4ee7, type: 2}
   isPlayerShip: 0
-  CurrentLife: 0
   MaxLife: 200
+  lifeRegen: 10
   ShootPoints: []
   ShipProps: []
   shipMove: {fileID: 0}
   shipShoot: {fileID: 0}
+  ShipCost: 0
+  clockTime: 1
+  timer: 0

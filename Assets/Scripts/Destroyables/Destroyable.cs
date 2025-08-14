@@ -6,8 +6,8 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 {
     [SerializeField] protected int hitPower = 1;
     protected int scoreValue;
-    protected int maxHealth;
-    public int health;
+    [SerializeField] protected int maxHealth;
+    [HideInInspector] public int health;
     
     [SerializeField] protected CollidableType collisionType;
     [SerializeField] protected List<CollidableType> collisionFilter = new();
@@ -16,12 +16,13 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
     public CollidableType GetCollidableType() => collisionType;
     
     [SerializeField] GameObject explosionPrefab;
-    
+
     protected virtual void Start()
     {
         health = maxHealth;
     }
-    
+    public void SetHitPower(int value) => hitPower = value;
+    public int GetHitPower() => hitPower;
     public void SetLife(int life)
     {
         maxHealth = life;
@@ -36,7 +37,6 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
             Die();
         }
     }
-
     public Action OnDestroy { get; set; }
 
     protected virtual void Die()

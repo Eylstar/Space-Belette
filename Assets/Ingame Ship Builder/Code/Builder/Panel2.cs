@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Panel2 : MonoBehaviour
@@ -14,6 +16,8 @@ public class Panel2 : MonoBehaviour
     private static Vector3 eraserOffset = new Vector3(22, 13, 0);
     [SerializeField] int freeSlot = 0;
 
+    PopUpSystem popUpSystem;
+
     private enum PanelState
     {
         SELECT_COMPONENT, // Select a component from the UI to add to model
@@ -23,6 +27,7 @@ public class Panel2 : MonoBehaviour
 
     private void Awake()
     {
+        popUpSystem = FindFirstObjectByType<PopUpSystem>();
         buildController = GetComponentInParent<ShipBuilderController>();
         if (buildController.ComponentList.ComponentPrefabs.Length != buildController.ComponentList.ComponentIcons.Length)
             Debug.LogWarning("ShipBuilderController prefab and icon list should match!");
@@ -42,9 +47,57 @@ public class Panel2 : MonoBehaviour
             componentImage.GetComponent<Image>().sprite = sprite;
             var componentIndex = i;
             componentImage.GetComponent<Button>().onClick.AddListener(() => OnComponentSelected(componentIndex));
+
+            EventTrigger trigger = componentImage.AddComponent<EventTrigger>();
+
+            var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            entry.callback.AddListener((data) => ShowComponentPopUp(componentIndex));
+            trigger.triggers.Add(entry);
+
+            var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            exit.callback.AddListener((data) => HidePopUp());
+            trigger.triggers.Add(exit);
         }
     }
+    private void ShowComponentPopUp(int index)
+    {
+        var prefab = buildController.ComponentList.ComponentPrefabs[index];
+        var prop = prefab.GetComponent<ShipProp>();
+        string name = prop != null ? prop.PropName : prefab.name;
+        string description = "";
+        if (prop != null)
+        {
+            switch (prop.Type)
+            {
+                case ShipProp.PropType.Weapon:
+                    description = $"{prop.Type}\n";
+                    if(prop.BonusDamage != 0) description += $"Bonus DMG : +{prop.BonusDamage}";
+                    if(prop.IsStartProp) description += $"\nAdd 1 for free";
+                    break;
+                case ShipProp.PropType.Engine:
+                    description = $"{prop.Type}\nLife : +{prop.BonusLife}";
+                    break;
+                case ShipProp.PropType.Utility:
+                    description = $"{prop.Type}";
+                    if (prop.BonusDamage != 0) description += $"\nBonus Damage : +{prop.BonusDamage}";
+                    if (prop.BonusLife != 0) description += $"\nBonus Life : +{prop.BonusLife}";
+                    if (prop.BonusShield != 0) description += $"\nBonus Shield : +{prop.BonusShield}";
+                    if (prop.LifeRegen != 0) description += $"\nLife Regen : +{prop.LifeRegen}";       
+                    break;
+                default:
+                    description = prop.Type.ToString();
+                    break;
+            }
+        }
 
+        string price = prop.Cost.ToString("N0") + " $";
+
+        popUpSystem.ShowPopUp(name, description, price);
+    }
+    private void HidePopUp()
+    {
+        popUpSystem.HidePopUp();
+    }
     private void OnComponentSelected(int componentIndex)
     {
         var prefab = buildController.ComponentList.ComponentPrefabs[componentIndex];

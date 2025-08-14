@@ -17,6 +17,6 @@ MonoBehaviour:
   pilotExperience: 0
   pilotImage: {fileID: 21300000, guid: 1cc208abcfe343341a6764bee27c6079, type: 3}
   pilotPrefab: {fileID: 7559989451116966275, guid: 7be43e9eedeaef94a9692e3a0c4dcdb6, type: 3}
-  IsUnlocked: 1
+  IsUnlocked: 0
   ActiveSkill: {fileID: 11400000, guid: 34e440fc6d937754c9f1ed886cf7cb0c, type: 2}
   PassiveSkill: {fileID: 11400000, guid: 8cee0121ad756584399ff749bd10f4f4, type: 2}

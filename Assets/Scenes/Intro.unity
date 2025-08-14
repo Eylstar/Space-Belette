@@ -644,14 +644,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "G\xE9n\xE9ral :\n\n\u2022 Connexion obligatoire : Tous les blocs doivent
-    \xEAtre connect\xE9s. Cela garantit une structure unique et non fragment\xE9e.\r\n\n\u2022
-    Co\xFBt : Chaque bloc a un co\xFBt en #currency# Le co\xFBt total ne peut pas
-    d\xE9passer votre #currency#\n\n\u2022 BlocWeight : Chaque bloc a un poids qui
-    contribue au poids total du vaisseau. Le poids total ne doit pas d\xE9passer
-    une limite d\xE9finie pour garantir que le vaisseau peut voler.\r\n\n\u2022 WeightGain
-    : Les moteurs peuvent compenser le poids total du vaisseau en fournissant une
-    capacit\xE9 de portance."
+  m_text: "Panel1\u202F: Choisir ou charger la coque de votre vaisseau\n\r\nDans
+    ce premier \xE9cran, vous pouvez s\xE9lectionner la base de votre vaisseau parmi
+    diff\xE9rentes coques propos\xE9es, ou bien charger un vaisseau que vous avez
+    d\xE9j\xE0 sauvegard\xE9.\n\r\nChaque coque a ses propres caract\xE9ristiques
+    et un co\xFBt\u202F: assurez-vous d\u2019avoir assez de cr\xE9dits pour la construire\u202F!\n\r\nUne
+    fois votre choix fait, passez \xE0 l\u2019\xE9tape suivante pour personnaliser
+    votre vaisseau."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58717e8aae2116e43a96549badd51203, type: 2}
   m_sharedMaterial: {fileID: 9154214133889223685, guid: 58717e8aae2116e43a96549badd51203, type: 2}
@@ -850,7 +849,7 @@ RectTransform:
   m_AnchorMin: {x: 0.039062496, y: 0.10125953}
   m_AnchorMax: {x: 0.9609375, y: 0.89874077}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -310.5197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155717678
 MonoBehaviour:
@@ -975,12 +974,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sp\xE9cifique : \n\nCockpit\r\n\n\u2022 Position unique : Un seul cockpit
-    est autoris\xE9 par vaisseau.\r\n\n\u2022 Pas de blocs devant : Aucune case ne
-    doit \xEAtre occup\xE9e devant le cockpit (sur la m\xEAme colonne, mais sur toutes
-    les lignes au-dessus). Cela garantit une ligne de tir d\xE9gag\xE9e pour le pilote.\n\n\u2022
-    Pas de bloc Weapon derri\xE8re : la case derri\xE8re la cockpit ne doit pas \xEAtre
-    de type Weapon. \r\n\n\u2022 Connexion obligatoire : En dessous\n\n"
+  m_text: "Panel2\u202F: Personnaliser votre vaisseau et g\xE9rer son co\xFBt\n\r\nIci,
+    vous pouvez ajouter, retirer ou modifier les composants de votre vaisseau\u202F:
+    armes, moteurs, modules utilitaires\u2026\n\r\nChaque pi\xE8ce a un effet sp\xE9cifique
+    (d\xE9g\xE2ts, vitesse, bonus, etc.) et un prix qui s\u2019ajoute au co\xFBt
+    total du vaisseau.\n\r\nVous pouvez visualiser en temps r\xE9el l\u2019impact
+    de vos choix sur les performances et le budget de votre vaisseau.\n\r\nN\u2019h\xE9sitez
+    pas \xE0 exp\xE9rimenter pour cr\xE9er le vaisseau qui vous ressemble\u202F!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58717e8aae2116e43a96549badd51203, type: 2}
   m_sharedMaterial: {fileID: 9154214133889223685, guid: 58717e8aae2116e43a96549badd51203, type: 2}
@@ -1802,7 +1802,7 @@ RectTransform:
   m_AnchorMin: {x: 0.039062496, y: 0.14375734}
   m_AnchorMax: {x: 0.9609375, y: 0.8562432}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -402.30472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &960005753
 MonoBehaviour:
@@ -1927,11 +1927,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sp\xE9cifique : \n\nMoteurs\r\n\n\u2022 Placement sp\xE9cifique : Les
-    moteurs ne peuvent pas \xEAtre plac\xE9s en diagonale d'un Cockpit ni sur sa
-    droite ou sa gauche.  \n\n\u2022 Pas de blocs derri\xE8re : Aucune case ne doit
-    \xEAtre occup\xE9e derri\xE8re le moteur.\r\r\n\n\u2022 Connexion obligatoire
-    : Au dessus"
+  m_text: "Panel3\u202F: Sauvegarder et tester votre vaisseau\n\r\nUne fois votre
+    vaisseau pr\xEAt, vous pouvez donnez-lui un nom et le sauvegarder pour le retrouver
+    plus tard.\n\r\nVous pouvez aussi lancer un vol pour s\xE9lectionner un pilote
+    et voir votre cr\xE9ation en action dans le jeu.\n\r\nC\u2019est l\u2019occasion
+    de v\xE9rifier si votre vaisseau est pr\xEAt \xE0 relever tous les d\xE9fis\u202F!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58717e8aae2116e43a96549badd51203, type: 2}
   m_sharedMaterial: {fileID: 9154214133889223685, guid: 58717e8aae2116e43a96549badd51203, type: 2}

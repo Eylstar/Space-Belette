@@ -35,9 +35,9 @@ public class ShipBuilderController : MonoBehaviour
             Directory.CreateDirectory(SAVE_FOLDER);
         }
 
-        SerializableShipData data = SerializableShipData.LoadFromFile(SAVE_FOLDER+"TestSnapshot.ship");
-        if (data == null)
-            return;
+        //SerializableShipData data = SerializableShipData.LoadFromFile(SAVE_FOLDER+"TestSnapshot.ship");
+        //if (data == null)
+        //    return;
 
         //LoadShipFromData(data);
         PlayerCurrency.text = $"{PlayerStats.Money.ToString("N0")} $";
@@ -78,8 +78,10 @@ public class ShipBuilderController : MonoBehaviour
     public void LoadShipFromData(SerializableShipData data)
     {
         var hullPrefab = ComponentList.GetHullByName(data.HullName.Replace("(Clone)", "").Trim());
-        var hullComponent = hullPrefab.GetComponent<ConstructionHull>();
-        int hullCost = hullComponent != null ? hullComponent.ShipCost : 0;
+
+        int hullCost = data.ShipCost;
+        //var hullComponent = hullPrefab.GetComponent<ConstructionHull>();
+        //int hullCost = hullComponent != null ? hullComponent.ShipCost : 0;
 
         // Vérifie l'argent du joueur
         if (PlayerStats.Money < hullCost)

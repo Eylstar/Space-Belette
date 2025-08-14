@@ -1,6 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -53,6 +52,7 @@ public class Ship : MonoBehaviour
         ShipProps = new();
         int engineCount = 1;
         var props = GetComponentsInChildren<ShipProp>();
+        int newDmg = shipShoot.GetBulletDmg();
         foreach (var prop in props)
         {
             ShipProps.Add(prop);
@@ -79,10 +79,15 @@ public class Ship : MonoBehaviour
                 case ShipProp.PropType.Utility:
                     MaxLife += prop.BonusLife;
                     lifeRegen += prop.LifeRegen;
+                    if (prop.BonusDamage > 0)
+                    {
+                        newDmg += prop.BonusDamage;
+                    }
                     break;
             }
         }
         Debug.Log($"Pilot Name : {MainPilot.pilotName}");
+        shipShoot.SetBulletDmg(newDmg);
         shipMove.SpeedModificator(engineCount);
         shipMove.SetLife(MaxLife);
     }
@@ -101,6 +106,7 @@ public class Ship : MonoBehaviour
             {
                 shipMove.health += lifeRegen;
                 if (shipMove.health > MaxLife) shipMove.health = MaxLife;
+                shipMove.OnLifeChanged(shipMove.health);
             }
         }
         else

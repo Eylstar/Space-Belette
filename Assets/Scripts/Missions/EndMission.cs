@@ -34,7 +34,7 @@ public class EndMission : MonoBehaviour
     }
     private void BackToMenu()
     {
-        SceneManager.LoadScene("ShipBuilder");
+        SceneManager.LoadScene("StartScene");
     }
     void MissionFail()
     {
