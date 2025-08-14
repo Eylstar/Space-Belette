@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 {
     [SerializeField] protected int hitPower = 1;
-    protected int scoreValue;
-    [SerializeField] protected int maxHealth;
-    [HideInInspector] public int health;
+    [SerializeField] protected int xpValue = 0;
+    protected int maxHealth;
+    public int health;
+    public bool canBeDamaged = true;
     
     [SerializeField] protected CollidableType collisionType;
     [SerializeField] protected List<CollidableType> collisionFilter = new();
+    
+    protected int xpToLoot = 0;
+    [SerializeField] GameObject xpOrb;
     
     public List<CollidableType> GetFilter() => collisionFilter;
     public CollidableType GetCollidableType() => collisionType;
@@ -31,13 +36,18 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 
     public virtual void TakeDamage(int damage)
     {
+        if (!canBeDamaged)
+            return;
+        
         health -= damage;
         if (health <= 0)
         {
+            Debug.Log("Destroyable " + gameObject.name + " destroyed" + " with " + damage + " damage");
             Die();
         }
     }
-    public Action OnDestroy { get; set; }
+
+    public Action OnDestroyAction { get; set; }
 
     protected virtual void Die()
     {
@@ -46,17 +56,31 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
             GameObject g = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             g.transform.localScale = Vector3.one * 4f;
         }
+        if (xpOrb != null && xpValue > 0)
+        {
+            float orbs = UnityEngine.Random.Range(1, 5);
+            for (int i = 0; i < orbs; i++)
+            {
+                GameObject xp = Instantiate(xpOrb, transform.position + new Vector3(UnityEngine.Random.Range(-5f, 5f), 0, UnityEngine.Random.Range(-5f, 5f)), Quaternion.identity);
+                xp.transform.localScale = Vector3.one / (orbs/2);
+                xp.GetComponent<XPContainer>().SetExperience(xpValue / orbs);
+            }
+        }
         Destroy(gameObject);
-        OnDestroy?.Invoke();
-        //Debug.Log("I am destroyed");
+        OnDestroyAction?.Invoke();
     }
     
     protected virtual void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.tag == "Ignore" || gameObject.tag == "Ignore")
+        {
+            Debug.Log("Collision with Ignore object: " + other.gameObject.name);
+            return; // Ignore collisions with objects tagged as "Ignore"
+        }
         //If the other object is collidable
         if (other.gameObject.TryGetComponent(out ICollidable collidable))
         {
-            //Debug.Log("Collision with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
+            Debug.Log("Collision with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
             //If the other object is in the filter
             if (collidable.GetFilter().Contains(collisionType))
             {
@@ -73,10 +97,15 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Ignore" || gameObject.tag == "Ignore")
+        {
+            Debug.Log("Trigger with Ignore object: " + other.gameObject.name);
+            return; // Ignore collisions with objects tagged as "Ignore"
+        }
         //If the other object is collidable
         if (other.gameObject.TryGetComponent(out ICollidable collidable))
         {
-            //Debug.Log("Trigger with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
+            Debug.Log("Trigger with " + collidable.GetCollidableType() + "  " + collidable.GetGameObject().name + " by " + gameObject.name);
             //If the other object is in the filter
             if (collidable.GetFilter().Contains(collisionType))
             {
@@ -91,9 +120,6 @@ public abstract class Destroyable : MonoBehaviour, IDamageable, ICollidable
         }
     }
     
-    void CollisionHandler(Collision collision)
-    {
-    }
 
     public GameObject GetGameObject() => gameObject;
 }

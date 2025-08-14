@@ -40,9 +40,9 @@ public class AFireRate : Skill
         effectTimer = effectDuration;
         ship.shipShoot.factor *= Rate;
         ship.shipShoot.UpdateShootRate();
-        ship.shipMove.zigzagAmplitude = 100f;
+        /*ship.shipMove.zigzagAmplitude = 100f;
         ship.shipMove.zigzagFrequency = effectDuration;
-        ship.shipMove.ZigzagActive = true;
+        ship.shipMove.ZigzagActive = true;*/
         // Tu peux ajouter un feedback visuel ici
     }
 
@@ -53,9 +53,9 @@ public class AFireRate : Skill
             isActive = false;
             ship.shipShoot.factor = 1;
             ship.shipShoot.UpdateShootRate();
-            ship.shipMove.ZigzagActive = false;
+            /*ship.shipMove.ZigzagActive = false;
             ship.shipMove.zigzagAmplitude = 0f;
-            ship.shipMove.zigzagFrequency = 0f;
+            ship.shipMove.zigzagFrequency = 0f;*/
             // Tu peux ajouter un feedback visuel ici
         }
     }

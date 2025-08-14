@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        spawnWaves = new();
+        /*spawnWaves = new();
         optionalSpawnWaves = new();
 
         foreach (SpawnRulesSO wave in MissionManager.CurrentMission.MainWaves)
@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
         foreach (SpawnRulesSO wave in MissionManager.CurrentMission.OptionalWaves)
         {
             optionalSpawnWaves.Add(new SpawnWave { spawnRules = wave });
-        }
+        }*/
     }
 
     void Start()
@@ -106,10 +106,10 @@ public class Spawner : MonoBehaviour
 
             if (spawnedObject.TryGetComponent(out IDamageable damage))
             {
-                damage.OnDestroy += () => ObjectDestroyed(sr);
+                damage.OnDestroyAction += () => ObjectDestroyed(sr);
                 if (sr.waveCompletionType == WaveCompletionType.EnemiesKilled)
                 {
-                    damage.OnDestroy += () => EnemyKilled(sr);
+                    damage.OnDestroyAction += () => EnemyKilled(sr);
                 }
             }
         }

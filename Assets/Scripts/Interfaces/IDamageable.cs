@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IDamageable
 {
     void TakeDamage(int damage);
-    public Action OnDestroy { get; set; }
+    public Action OnDestroyAction { get; set; }
     GameObject GetGameObject();
 }

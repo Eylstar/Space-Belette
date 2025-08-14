@@ -17,6 +17,7 @@ TagManager:
   - ValidBtn
   - Grid
   - Text
+  - Ignore
   layers:
   - Default
   - TransparentFX

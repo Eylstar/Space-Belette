@@ -1,4 +1,4 @@
-﻿
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +20,8 @@ public class Ship : MonoBehaviour
 
     private void Awake()
     {
-        shipMove = FindFirstObjectByType<ShipMove>();
+        ShipGameplayManager = FindFirstObjectByType<ShipGameplayManager>();
+        //shipMove = FindFirstObjectByType<ShipMove>();
         shipShoot = FindFirstObjectByType<ShipShoot>();
 
     }
@@ -41,6 +42,7 @@ public class Ship : MonoBehaviour
     public int lifeRegen = 0;
     public List<Transform> ShootPoints = new();
     public List<ShipProp> ShipProps;
+    public ShipGameplayManager ShipGameplayManager;
     public ShipMove shipMove;
     public ShipShoot shipShoot;
     public int ShipCost;
@@ -86,10 +88,9 @@ public class Ship : MonoBehaviour
                     break;
             }
         }
-        Debug.Log($"Pilot Name : {MainPilot.pilotName}");
-        shipShoot.SetBulletDmg(newDmg);
-        shipMove.SpeedModificator(engineCount);
-        shipMove.SetLife(MaxLife);
+        //Debug.Log($"Pilot Name : {MainPilot.pilotName}");
+        //shipMove.SpeedModificator(engineCount);
+        ShipGameplayManager.SetLife(MaxLife);
     }
 
     private void Update()
@@ -102,11 +103,10 @@ public class Ship : MonoBehaviour
         if (timer <= 0f)
         {
             timer = clockTime;
-            if (shipMove.health < MaxLife)
+            if (ShipGameplayManager.health < MaxLife)
             {
-                shipMove.health += lifeRegen;
-                if (shipMove.health > MaxLife) shipMove.health = MaxLife;
-                shipMove.OnLifeChanged(shipMove.health);
+                ShipGameplayManager.health += lifeRegen;
+                if (ShipGameplayManager.health > MaxLife) ShipGameplayManager.health = MaxLife;
             }
         }
         else

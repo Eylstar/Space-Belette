@@ -24,13 +24,14 @@ public class EndMission : MonoBehaviour
         Currency.text = string.Empty;
         EndPanel.SetActive(false);
         mission = MissionManager.CurrentMission;
-        ShipMove.PlayerDeath += MissionFail;
+        ShipGameplayManager.PlayerDeath += MissionFail;
         Spawner.EndMission += MissionComplete;
     }
     private void OnDisable()
     {
         //ShipManager.PlayerDeath -= MissionFail;
         Spawner.EndMission -= MissionComplete;
+        ShipGameplayManager.PlayerDeath -= MissionFail;
     }
     private void BackToMenu()
     {
@@ -80,7 +81,7 @@ public class EndMission : MonoBehaviour
             saveBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
                 // Appeller la sauvegarde ici
-                // à voir quelle methode on va utiliser
+                //voir quelle methode on va utiliser
                 BackToMenu();
             });
 

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b618b5c307558440ae57ab7482dd395, type: 3}
-  m_Name: TIME5
+  m_Name: Orbiting
   m_EditorClassIdentifier: 
   spawnRules:
   - spawnType: 0
-    spawnCount: 1
-    spawnDeltaPercentage: 1
-    spawnRate: 0.5
-    distanceFromPlayerToSpawn: 150
+    spawnCount: 10
+    spawnDeltaPercentage: 0.5
+    spawnRate: 2
+    distanceFromPlayerToSpawn: 100
     waveCompletionType: 0
-    waveSecondsDurationOrEnemiesToKill: 120
-    groupDispersion: 0
-    singleRandomOffset: 0.5
+    waveSecondsDurationOrEnemiesToKill: 60
+    groupDispersion: 3
+    singleRandomOffset: 1
     prefabsToSpawn:
-    - prefab: {fileID: 8787239336557295923, guid: f3a81693fd6a3ae4ea46d0ca7f5b065b, type: 3}
-      weight: 0
+    - prefab: {fileID: 840686319919927727, guid: 4a0a400d02297a84ebded0dd5eea487e, type: 3}
+      weight: 1
     maxSpawnCount: 50
-    despawnDistance: 0
+    despawnDistance: 20
