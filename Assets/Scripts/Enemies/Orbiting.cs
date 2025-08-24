@@ -33,25 +33,13 @@ public class OrbitingEnemy : Enemy
     private int lastGroupCount = -1;
     private int myIndex = 0;
 
-    private static float groupFireTimer = 0f;
-    private static bool leaderExists = false;
-    private static int fireCycleCount = 0;
-
     bool canUpdate = false;
 
     protected override void Start()
     {
         base.Start();
         Invoke(nameof(ForceUpdateGroupInfo), 0.2f);
-        //ForceUpdateGroupInfo();
         currentAngle = targetAngle;
-
-        if (!leaderExists)
-        {
-            leaderExists = true;
-            groupFireTimer = 0f;
-            fireCycleCount = 0;
-        }
     }
     
     private void ForceUpdateGroupInfo()
@@ -64,7 +52,6 @@ public class OrbitingEnemy : Enemy
 
         lastGroupCount = groupMembers.Count;
         myIndex = groupMembers.IndexOf(this);
-        Debug.Log($"Group members count: {lastGroupCount}, My index: {myIndex}");
 
         targetAngle = (360f / groupMembers.Count) * myIndex;
 
@@ -80,28 +67,13 @@ public class OrbitingEnemy : Enemy
 
     protected override void Update()
     {
-        base.Update();
         if (!canUpdate) return;
 
         if (isRushing) return;
 
-        if (IsGroupLeader())
+        if (!isRegrouping)
         {
-            groupFireTimer += Time.deltaTime;
-
-            if (groupFireTimer >= groupFireRate + (lastGroupCount * fireOffset))
-            {
-                groupFireTimer = 0f;
-                fireCycleCount++;
-
-                if (fireCycleCount >= maxFireCyclesBeforeRush)
-                    StartGroupRush();
-            }
-        }
-
-        if (!isRegrouping && canShoot && ShouldShoot())
-        {
-            Shoot();
+            base.Update();
         }
     }
 
@@ -179,43 +151,5 @@ public class OrbitingEnemy : Enemy
 
             regroupPoint = playerShip.transform.position + offset;
         }
-    }
-
-    
-
-    private bool ShouldShoot()
-    {
-        return groupFireTimer >= (myIndex * fireOffset) && groupFireTimer < (myIndex * fireOffset) + 0.1f;
-    }
-
-    private bool IsGroupLeader()
-    {
-        List<OrbitingEnemy> groupMembers = enemiesManager
-            .GetInRangeEnemies(playerShip.transform.position, regroupRadius)
-            .OfType<OrbitingEnemy>()
-            .OrderBy(e => e.GetInstanceID())
-            .ToList();
-
-        return groupMembers.Count > 0 && groupMembers[0] == this;
-    }
-
-    private void StartGroupRush()
-    {
-        var groupMembers = enemiesManager
-            .GetInRangeEnemies(playerShip.transform.position, regroupRadius)
-            .OfType<OrbitingEnemy>();
-
-        foreach (var enemy in groupMembers)
-        {
-            enemy.isRushing = true;
-        }
-    }
-
-    protected override void Die()
-    {
-        base.Die();
-
-        if (IsGroupLeader())
-            leaderExists = false;
     }
 }

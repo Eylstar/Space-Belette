@@ -98,7 +98,7 @@ public class Ship : MonoBehaviour
         if (MainPilot != null)
         {
             if (MainPilot.ActiveSkill.Effect != null) MainPilot.ActiveSkill.Effect.Apply(this, MainPilot);
-            if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
+            //if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
         }
         if (timer <= 0f)
         {
@@ -107,6 +107,7 @@ public class Ship : MonoBehaviour
             {
                 ShipGameplayManager.health += lifeRegen;
                 if (ShipGameplayManager.health > MaxLife) ShipGameplayManager.health = MaxLife;
+                ShipGameplayManager.OnLifeChanged(ShipGameplayManager.health);
             }
         }
         else

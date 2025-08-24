@@ -526,7 +526,7 @@ MonoBehaviour:
   spawnWaves:
   - spawnRules: {fileID: 11400000, guid: baf2a36585b41a14291b714c53fc48c0, type: 2}
   optionalSpawnWaves: []
-  sceneDebug: 0
+  sceneDebug: 1
 --- !u!4 &1307851434
 Transform:
   m_ObjectHideFlags: 0
@@ -790,6 +790,73 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &2080138008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080138009}
+  - component: {fileID: 2080138010}
+  - component: {fileID: 2080138011}
+  m_Layer: 0
+  m_Name: XP Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080138009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080138008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2080138010
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080138008}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2080138011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080138008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e67ee8e9aad49438a9abea0b657c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipGameplayManager: {fileID: 1555799250}
 --- !u!1 &2132439198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8741251926653587814, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
@@ -1168,30 +1235,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 583365632490740330, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101783953928337742, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: collisionType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101783953928337742, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: collisionFilter.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101783953928337742, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: 'collisionFilter.Array.data[0]'
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101783953928337742, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: 'collisionFilter.Array.data[1]'
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101783953928337742, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: 'collisionFilter.Array.data[2]'
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3143081865424624480, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: m_Name
       value: Ship
@@ -1236,40 +1279,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7205706414924130057, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205706414924130057, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: shipGameplayManager
-      value: 
-      objectReference: {fileID: 1555799250}
-    - target: {fileID: 7496390950311103655, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7496390950311103655, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_TagString
-      value: Ignore
-      objectReference: {fileID: 0}
-    - target: {fileID: 7570899727174129912, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8441756461712367558, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8573625272599689246, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
       propertyPath: cameraHolder
       value: 
       objectReference: {fileID: 506136616}
-    - target: {fileID: 8918735565388366834, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8441756461712367558, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1340,6 +1354,7 @@ SceneRoots:
   - {fileID: 26054833}
   - {fileID: 9191534121770251318}
   - {fileID: 1129271296}
+  - {fileID: 2080138009}
   - {fileID: 551409313}
   - {fileID: 1386085804}
   - {fileID: 1307851434}

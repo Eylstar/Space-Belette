@@ -43,6 +43,7 @@ Transform:
   - {fileID: 2303273133653969849}
   - {fileID: 6735756183311802874}
   - {fileID: 6903530814397093339}
+  - {fileID: 1386806921288985833}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2300382045154354675
@@ -116,24 +117,55 @@ MonoBehaviour:
   xpOrb: {fileID: 1663845784735456288, guid: 250e53ac82e570d4abe139c2718baf10, type: 3}
   explosionPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
   rotationSpeed: 10
-  moveSpeed: 10
-  canShoot: 0
+  moveSpeed: 40
+  canShoot: 1
   bulletPrefab: {fileID: 8708950737766626871, guid: 0b7475d637cb4b643bfe1f89cd645c76, type: 3}
-  bulletSpawnPoint: {fileID: 0}
-  distanceToPlayerToShoot: 0
-  bulletSpeed: 0
-  fireRate: 0
-  orbitDistance: 80
-  orbitSpeed: 10
-  regroupRadius: 15
-  regroupPointOffset: 50
-  regroupTime: 10
-  angleLerpSpeed: 20
-  reorganizeDelay: 0.2
-  groupFireRate: 2
+  bulletSpawnPoint: {fileID: 1386806921288985833}
+  distanceToPlayerToShoot: 50
+  bulletSpeed: 50
+  fireRate: 1
+  orbitDistance: 200
+  orbitSpeed: 50
+  regroupRadius: 10
+  regroupPointOffset: 40
+  regroupTime: 2
+  angleLerpSpeed: 30
+  reorganizeDelay: 0.5
+  groupFireRate: 0.5
   fireOffset: 0.2
   maxFireCyclesBeforeRush: 10
   rushSpeedMultiplier: 2
+--- !u!1 &3729160700860860324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386806921288985833}
+  m_Layer: 0
+  m_Name: Bullet Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1386806921288985833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729160700860860324}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4926154999431836171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1007139923869704303
 PrefabInstance:
   m_ObjectHideFlags: 0
