@@ -747,6 +747,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef390fcaddd99c438abb3983d6df6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1555799260 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4648167457882114383, guid: 84df2de9285eb40479a8450c072a6661, type: 3}
+  m_PrefabInstance: {fileID: 9191534121770251318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1558330269 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2847883637742366638, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}
@@ -801,6 +806,8 @@ GameObject:
   - component: {fileID: 2080138009}
   - component: {fileID: 2080138010}
   - component: {fileID: 2080138011}
+  - component: {fileID: 2080138012}
+  - component: {fileID: 2080138013}
   m_Layer: 0
   m_Name: XP Collider
   m_TagString: Untagged
@@ -857,6 +864,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipGameplayManager: {fileID: 1555799250}
+--- !u!114 &2080138012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080138008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5732237b37c579346a79381c2ce2f720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1555799260}
+--- !u!54 &2080138013
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080138008}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &2132439198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8741251926653587814, guid: fe398614aa08ce443a543ad07d8c1edb, type: 3}

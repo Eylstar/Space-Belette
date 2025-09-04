@@ -7,6 +7,7 @@ public class XPCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("XP Collider triggered by: " + other.name);
         if (other.TryGetComponent<XPContainer>(out XPContainer xpContainer) && !xpContainer.triggered)
         {
             shipGameplayManager.GainExperience(xpContainer.experience);
