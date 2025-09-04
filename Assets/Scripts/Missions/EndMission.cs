@@ -18,7 +18,7 @@ public class EndMission : MonoBehaviour
     public static event Action<int, int> MissionReward;
     private void OnEnable()
     {
-
+        playerStats = Resources.Load<PlayerStatsSo>("ScriptableObjects/PlayerStatsSO");
         pilot = Ship.MainPilot;
         PilotXp.text = string.Empty;
         Currency.text = string.Empty;
@@ -55,10 +55,9 @@ public class EndMission : MonoBehaviour
         EndLabel.text = "Mission Complete";
         PilotXp.text = mission.rewardExperience.ToString();
         Currency.text = $"{mission.rewardCredits.ToString()} + {BonusReward}";
-
-        pilot.AddExperience(mission.rewardExperience);
+        Ship.MainPilot.ResetExperience();
         MissionReward?.Invoke(mission.rewardExperience, mission.rewardCredits+BonusReward);
-
+        
     }
     
     void SetBtns(bool Success)

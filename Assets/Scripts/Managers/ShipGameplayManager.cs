@@ -5,13 +5,17 @@ using UnityEngine;
 public class ShipGameplayManager : Destroyable
 {
     [SerializeField] Collider xpTriggerCollider;
+    [SerializeField] Ship ship;
     [SerializeField] List<MonoBehaviour> skills = new();
     public float experience = 0;
     
     public static event Action<int> OnLifeSetup, OnLifeChange;
     
     public static event Action PlayerDeath;
-    
+    private void OnEnable()
+    {
+        ship = Ship.PlayerShip;
+    }
     protected override void Die()
     {
         PlayerDeath?.Invoke();
@@ -21,6 +25,7 @@ public class ShipGameplayManager : Destroyable
     public void GainExperience(float amount)
     {
         experience += amount;
+        Ship.MainPilot?.AddExperience(amount);
     }
     
     

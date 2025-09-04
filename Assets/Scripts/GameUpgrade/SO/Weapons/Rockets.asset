@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5389cd7c4d8293e4480efbcb0d623adf, type: 3}
+  m_Name: Rockets
+  m_EditorClassIdentifier: 
+  Type: 4
+  Icon: {fileID: 21300000, guid: a5aab43ba59e8ef409db0013d7e2fc51, type: 3}
+  UpgradeName: Rockets
+  IsUpgradable: 1
+  Level: 0
+  MaxLevel: 5
+  EffectValue: 0
+  WeaponUpgrade: {fileID: 11400000, guid: 659f137be2b5df044babaedbca56a3be, type: 2}

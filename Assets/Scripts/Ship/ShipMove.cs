@@ -79,7 +79,6 @@ public class ShipMove : MonoBehaviour
     }
     public void SpeedModificator(float mult) 
     {
-        //multiplier = mult;
-        //Debug.Log($"Max Speed : {maxSpeed}");
+        baseMaxSpeed = baseMaxSpeed + ((baseMaxSpeed*mult)/100);
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5389cd7c4d8293e4480efbcb0d623adf, type: 3}
+  m_Name: ShockWave
+  m_EditorClassIdentifier: 
+  Type: 4
+  Icon: {fileID: 0}
+  UpgradeName: ShockWave
+  IsUpgradable: 1
+  Level: 1
+  MaxLevel: 5
+  EffectValue: 0
+  WeaponUpgrade: {fileID: 11400000, guid: eb82af14dabddef4eaccca45ce75e6de, type: 2}

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,6 +43,7 @@ public class Ship : MonoBehaviour
     public int lifeRegen = 0;
     public List<Transform> ShootPoints = new();
     public List<ShipProp> ShipProps;
+    public List<ShipUpgradeSo> ShipWeapons = new();
     public ShipGameplayManager ShipGameplayManager;
     public ShipMove shipMove;
     public ShipShoot shipShoot;
@@ -49,6 +51,45 @@ public class Ship : MonoBehaviour
 
     public float clockTime = 1;
     public float timer = 0;
+    private void OnEnable()
+    {
+        PopUpUpgrade.UpgradeSelected += OnUpgradeSelected;
+    }
+    private void OnDisable()
+    {
+        PopUpUpgrade.UpgradeSelected -= OnUpgradeSelected;
+    }
+
+    private void OnUpgradeSelected(ShipUpgradeSo so)
+    {
+        if (so.Type == ShipUpgradeSo.UpgradeType.Weapon && so.WeaponUpgrade != null)
+        {
+            ShipWeapons.Add(so);
+        }
+        else
+        {
+            ApplyBasicUpgrade(so);
+        }
+    }
+    private void ApplyBasicUpgrade(ShipUpgradeSo upgrade)
+    {
+        switch (upgrade.Type)
+        {
+            case ShipUpgradeSo.UpgradeType.MaxLife:
+                Ship.PlayerShip.MaxLife += Mathf.RoundToInt(upgrade.EffectValue);
+                Ship.PlayerShip.ShipGameplayManager.SetLife(Ship.PlayerShip.MaxLife);
+                break;
+            case ShipUpgradeSo.UpgradeType.LifeRegen:
+                Ship.PlayerShip.lifeRegen += Mathf.RoundToInt(upgrade.EffectValue);
+                break;
+            case ShipUpgradeSo.UpgradeType.Damage:
+                Ship.PlayerShip.shipShoot.SetBulletDmg(Ship.PlayerShip.shipShoot.GetBulletDmg() + (int)upgrade.EffectValue );
+                break;
+            case ShipUpgradeSo.UpgradeType.Speed:
+                Ship.PlayerShip.shipMove.SpeedModificator(upgrade.EffectValue);
+                break;
+        }
+    }
     void SetShipStats() 
     {
         ShipProps = new();
@@ -91,6 +132,7 @@ public class Ship : MonoBehaviour
         //Debug.Log($"Pilot Name : {MainPilot.pilotName}");
         //shipMove.SpeedModificator(engineCount);
         ShipGameplayManager.SetLife(MaxLife);
+        MainPilot.pilotExperience = 0;
     }
 
     private void Update()
@@ -98,15 +140,26 @@ public class Ship : MonoBehaviour
         if (MainPilot != null)
         {
             if (MainPilot.ActiveSkill.Effect != null) MainPilot.ActiveSkill.Effect.Apply(this, MainPilot);
-            if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
+            //if (MainPilot.PassiveSkill.Effect != null) MainPilot.PassiveSkill.Effect.Apply(this, MainPilot);
+        }
+        if (ShipWeapons.Count != 0)
+        {
+            foreach(ShipUpgradeSo wpn in ShipWeapons) 
+            {
+                if (wpn.WeaponUpgrade != null)
+                {
+                    wpn.Apply(this);
+                }
+            }
         }
         if (timer <= 0f)
         {
             timer = clockTime;
-            if (ShipGameplayManager.health < MaxLife)
+            if (ShipGameplayManager.health <= MaxLife)
             {
                 ShipGameplayManager.health += lifeRegen;
                 if (ShipGameplayManager.health > MaxLife) ShipGameplayManager.health = MaxLife;
+                ShipGameplayManager.OnLifeChanged(ShipGameplayManager.health);
             }
         }
         else

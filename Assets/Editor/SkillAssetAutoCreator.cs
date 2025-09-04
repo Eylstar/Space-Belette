@@ -27,16 +27,22 @@ public class SkillAssetAutoCreator : AssetPostprocessor
 
             if (type == null) continue;
 
-            // Verifier que la classe herite bien de Skill
-            if (!typeof(Skill).IsAssignableFrom(type)) continue;
+            // Verifier que la classe herite bien de Skill ou de NewWeapon
+            bool isSkill = typeof(Skill).IsAssignableFrom(type);
+            bool isNewWeapon = typeof(NewWeapon).IsAssignableFrom(type);
 
-            // Verifier si un asset existe deja
+            if (!isSkill && !isNewWeapon) continue;
+
+            // Determiner le type pour la recherche d'asset existant
+            string typeFilter = isSkill ? "Skill" : "NewWeapon";
+
+            // Vérifier si un asset existe deja
             string folder = Path.GetDirectoryName(assetPath);
-            string[] existingAssets = AssetDatabase.FindAssets($"{scriptName} t:Skill", new[] { folder });
+            string[] existingAssets = AssetDatabase.FindAssets($"{scriptName} t:{typeFilter}", new[] { folder });
 
             if (existingAssets.Length > 0) continue; // Ne pas recreer s'il existe deja
 
-            // Creer l'instance
+            // Créer l'instance
             ScriptableObject instance = ScriptableObject.CreateInstance(type);
             string assetPathSO = Path.Combine(folder, scriptName + ".asset");
 
